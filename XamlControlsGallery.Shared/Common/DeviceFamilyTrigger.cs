@@ -14,9 +14,11 @@ namespace AppUIBasics
             get { return _triggerDeviceFamily; }
             set
             {
+#if NETFX_CORE
                 _triggerDeviceFamily = value;
                 _actualDeviceFamily = AnalyticsInfo.VersionInfo.DeviceFamily;
                 SetActive(_triggerDeviceFamily == _actualDeviceFamily);
+#endif
             }
         }
     }

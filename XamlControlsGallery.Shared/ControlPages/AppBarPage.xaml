@@ -38,19 +38,19 @@
                             </TransitionCollection>
                         </StackPanel.ChildrenTransitions>
                         <StackPanel.Resources>
-                            <Style TargetType="Button">
+                            <Style x:Key="navButton" TargetType="Button">
                                 <Setter Property="Height" Value="90" />
                                 <Setter Property="Width" Value="157" />
                             </Style>
                         </StackPanel.Resources>
-                        <Button Click="NavBarButton_Click" Content="App bars" Tag="AppBars" />
-                        <Button Click="NavBarButton_Click" Content="Buttons" Tag="Buttons" />
-                        <Button Click="NavBarButton_Click" Content="Collections" Tag="Collections" />
-                        <Button Click="NavBarButton_Click" Content="Flyouts" Tag="Flyouts" />
-                        <Button Click="NavBarButton_Click" Content="Progress" Tag="Progress" />
-                        <Button Click="NavBarButton_Click" Content="Layout" Tag="Layout" />
-                        <Button Click="NavBarButton_Click" Content="Text" Tag="Text" />
-                        <Button Click="NavBarButton_Click" Content="Selection" Tag="Selection" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="App bars" Tag="AppBars" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Buttons" Tag="Buttons" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Collections" Tag="Collections" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Flyouts" Tag="Flyouts" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Progress" Tag="Progress" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Layout" Tag="Layout" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Text" Tag="Text" />
+                        <Button Style="{StaticResource navButton}" Click="NavBarButton_Click" Content="Selection" Tag="Selection" />
                     </StackPanel>
                 </ScrollViewer>
             </AppBar>

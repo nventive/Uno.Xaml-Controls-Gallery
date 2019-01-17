@@ -5,7 +5,7 @@
       xmlns:local2="using:AppUIBasics.ControlPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:muxcontrols="using:Microsoft.UI.Xaml.Controls"
+      xmlns:muxcontrols="using:Windows.UI.Xaml.Controls"
       mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="HorizontalSwipe" TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemRevealStyle}">
@@ -19,8 +19,8 @@
 
     <StackPanel>
         <local:ControlExample HeaderText="Exposing a command in multiple controls using StandardUICommand"
-                              XamlSource="UICommand\UICommandSample1_xaml.txt"
-                              CSharpSource="UICommand\UICommandSample1_cs.txt"
+                              XamlSource="UICommand/UICommandSample1_xaml.txt"
+                              CSharpSource="UICommand/UICommandSample1_cs.txt"
                               HorizontalContentAlignment="Stretch"
                               MinimumUniversalAPIContract="7"
                               Loaded="ControlExample_Loaded">

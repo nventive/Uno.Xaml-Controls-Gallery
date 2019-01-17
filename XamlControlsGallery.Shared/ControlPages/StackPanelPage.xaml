@@ -23,15 +23,15 @@
 
             <StackPanel x:Name="Control1" VerticalAlignment="Top">
                 <StackPanel.Resources>
-                    <Style TargetType="Rectangle">
+                    <Style x:Key="squareStyle" TargetType="Rectangle">
                         <Setter Property="Height" Value="40" />
                         <Setter Property="Width" Value="40" />
                     </Style>
                 </StackPanel.Resources>
-                <Rectangle Fill="Red" />
-                <Rectangle Fill="Blue" />
-                <Rectangle Fill="Green" />
-                <Rectangle Fill="Yellow" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Red" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Blue" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Green" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Yellow" />
             </StackPanel>
 
             <local:ControlExample.Options>
@@ -44,7 +44,9 @@
 
             <local:ControlExample.Xaml>
                 <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;StackPanel Orientation="<Run x:Name="OrientationLabel">Vertical</Run>"&gt;</Paragraph>
+                    <Paragraph>&lt;StackPanel Orientation="
+                        <Run x:Name="OrientationLabel">Vertical</Run> "&gt;
+                    </Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Red"/&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Blue"/&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Green"/&gt;</Paragraph>

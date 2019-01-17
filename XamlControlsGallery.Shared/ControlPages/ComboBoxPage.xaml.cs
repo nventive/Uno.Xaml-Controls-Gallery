@@ -58,7 +58,7 @@ namespace AppUIBasics.ControlPages
         private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string colorName = e.AddedItems[0].ToString();
-            Color color;
+            Color color = new Color();
             switch (colorName)
             {
                 case "Yellow":

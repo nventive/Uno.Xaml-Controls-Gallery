@@ -1,4 +1,5 @@
 ﻿using System;
+using Uno.UI;
 using Windows.UI.Xaml;
 
 namespace AppUIBasics.Wasm

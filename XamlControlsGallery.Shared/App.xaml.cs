@@ -9,6 +9,7 @@
 //*********************************************************
 using AppUIBasics.Common;
 using AppUIBasics.Data;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -86,15 +87,22 @@ namespace AppUIBasics
         /// </summary>
         public App()
         {
+#if DEBUG
+            ConfigureFilters(Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+#endif
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.Resuming += App_Resuming;
             this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
 
+// UNO TODO
+#if NETFX_CORE
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
             {
                 this.FocusVisualKind = AnalyticsInfo.VersionInfo.DeviceFamily == "Xbox" ? FocusVisualKind.Reveal : FocusVisualKind.HighVisibility;
             }
+#endif
         }
 
         public void EnableSound(bool withSpatial = false)
@@ -148,9 +156,12 @@ namespace AppUIBasics
                 this.DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
+
+// UNO TODO
+#if NETFX_CORE
             //draw into the title bar
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            
+#endif
             //remove the solid-colored backgrounds behind the caption controls and system back button
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
             titleBar.ButtonBackgroundColor = Colors.Transparent;
@@ -248,7 +259,7 @@ namespace AppUIBasics
             }
 
             rootFrame.Navigate(targetPageType, targetPageArguments);
-            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
+            ((Windows.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
 
             // Ensure the current window is active
             Window.Current.Activate();
@@ -267,7 +278,9 @@ namespace AppUIBasics
                     throw new Exception("Root frame not found");
                 }
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
+#if NETFX_CORE
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
+#endif
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Window.Current.Content = rootPage;
@@ -287,7 +300,7 @@ namespace AppUIBasics
         /// <param name="e">Details about the navigation failure</param>
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+            throw new Exception($"Failed to load Page {e.SourcePageType}, {e.Exception}");
         }
 
         /// <summary>
@@ -303,5 +316,39 @@ namespace AppUIBasics
             await SuspensionManager.SaveAsync();
             deferral.Complete();
         }
+
+
+        static void ConfigureFilters(ILoggerFactory factory)
+        {
+            factory
+                .WithFilter(new FilterLoggerSettings
+                    {
+                        { "Uno", LogLevel.Warning },
+                        { "Windows", LogLevel.Warning },
+						
+						// Generic Xaml events
+						//{ "Windows.UI.Xaml", LogLevel.Debug },
+						// { "Windows.UI.Xaml.Shapes", LogLevel.Debug },
+						//{ "Windows.UI.Xaml.VisualStateGroup", LogLevel.Debug },
+						//{ "Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug },
+						// { "Windows.UI.Xaml.UIElement", LogLevel.Debug },
+						// { "Windows.UI.Xaml.Setter", LogLevel.Debug },
+						   
+						// Layouter specific messages
+						// { "Windows.UI.Xaml.Controls", LogLevel.Debug },
+						//{ "Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug },
+						//{ "Windows.UI.Xaml.Controls.Panel", LogLevel.Debug },
+						   
+						// Binding related messages
+						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
+						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
+						   
+						//  Binder memory references tracking
+						// { "ReferenceHolder", LogLevel.Debug },
+					}
+                )
+                .AddConsole(LogLevel.Debug);
+        }
+
     }
 }

@@ -38,10 +38,12 @@ namespace AppUIBasics
             this.InitializeComponent();
             Loaded += OnSettingsPageLoaded;
 
+#if NETFX_CORE // UNO TODO
             if (ElementSoundPlayer.State == ElementSoundPlayerState.On)
                 soundToggle.IsOn = true;
             if (ElementSoundPlayer.SpatialAudioMode == ElementSpatialAudioMode.On)
                 spatialSoundBox.IsChecked = true;
+#endif
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -101,14 +103,17 @@ namespace AppUIBasics
         }
         private void spatialSoundBox_Checked(object sender, RoutedEventArgs e)
         {
+#if NETFX_CORE // UNO TODO
             if(soundToggle.IsOn == true)
             {
                 ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.On;
             }
+#endif
         }
 
         private void soundToggle_Toggled(object sender, RoutedEventArgs e)
         {
+#if NETFX_CORE // UNO TODO
             if (soundToggle.IsOn == true)
             {
                 spatialSoundBox.IsEnabled = true;
@@ -122,14 +127,17 @@ namespace AppUIBasics
                 ElementSoundPlayer.State = ElementSoundPlayerState.Off;
                 ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;                
             }
+#endif
         }
 
         private void spatialSoundBox_Unchecked(object sender, RoutedEventArgs e)
         {
+#if NETFX_CORE // UNO TODO
             if (soundToggle.IsOn == true)
             {
                 ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;
             }
+#endif
         }
     }
 }

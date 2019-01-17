@@ -60,7 +60,9 @@ namespace AppUIBasics
 
             if (gridView.ContainerFromItem(item) is GridViewItem)
             {
-                gridView.PrepareConnectedAnimation("controlAnimation", item, "controlRoot");
+#if NETFX_CORE // UNO TODO
+               gridView.PrepareConnectedAnimation("controlAnimation", item, "controlRoot");
+#endif
             }
 
             this.Frame.Navigate(typeof(ItemPage), _itemId);
@@ -71,7 +73,7 @@ namespace AppUIBasics
             if (e.Key == VirtualKey.Up)
             {
                 var nextElement = FocusManager.FindNextElement(FocusNavigationDirection.Up);
-                if (nextElement?.GetType() == typeof(Microsoft.UI.Xaml.Controls.NavigationViewItem))
+                if (nextElement?.GetType() == typeof(Windows.UI.Xaml.Controls.NavigationViewItem))
                 {
                     NavigationRootPage.Current.PageHeader.Focus(FocusState.Programmatic);
                 }
@@ -98,6 +100,8 @@ namespace AppUIBasics
                         ((GridViewItem)gridView.ContainerFromItem(item))?.Focus(FocusState.Programmatic);
                     }
 
+// UNO TODO
+#if NETFX_CORE
                     ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("controlAnimation");
 
                     if (animation != null)
@@ -110,6 +114,7 @@ namespace AppUIBasics
 
                         await gridView.TryStartConnectedAnimationAsync(animation, item, "controlRoot");
                     }
+#endif
                 }
             }
         }

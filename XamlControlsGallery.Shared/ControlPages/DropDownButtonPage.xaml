@@ -7,7 +7,7 @@
       xmlns:data="using:AppUIBasics.Data"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:muxcontrols="using:Microsoft.UI.Xaml.Controls"
+      xmlns:muxcontrols="using:Windows.UI.Xaml.Controls"
       mc:Ignorable="d">
     
     <StackPanel>

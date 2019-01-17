@@ -13,9 +13,10 @@ namespace AppUIBasics.ControlPages
             this.InitializeComponent();
         }
 
-        private void myListButton_Click(Microsoft.UI.Xaml.Controls.SplitButton sender, Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs args)
+        private void myListButton_Click(Windows.UI.Xaml.Controls.SplitButton sender, Windows.UI.Xaml.Controls.SplitButtonClickEventArgs args)
         {
-            if ((sender as Microsoft.UI.Xaml.Controls.ToggleSplitButton).IsChecked)
+#if NETFX_CORE
+            if ((sender as Windows.UI.Xaml.Controls.ToggleSplitButton).IsChecked)
             {
                 //add bulleted list
                 myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;                
@@ -24,7 +25,8 @@ namespace AppUIBasics.ControlPages
             {
                 //remove bulleted list
                 myRichEditBox.Document.Selection.ParagraphFormat.ListType = MarkerType.None;
-            }            
+            }      
+#endif
         }
 
         private void BulletButton_Click(object sender, RoutedEventArgs e)
@@ -44,11 +46,17 @@ namespace AppUIBasics.ControlPages
                 mySymbolIcon.Symbol = Symbol.Bullets;
                 myListButton.SetValue(AutomationProperties.NameProperty, "Roman Numerals");
             }
+
+#if NETFX_CORE
             myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
+#endif
 
             myListButton.IsChecked = true;
             myListButton.Flyout.Hide();
+
+#if NETFX_CORE // UNO TODO
             myRichEditBox.Focus(FocusState.Keyboard);
+#endif
         }
     }
 }

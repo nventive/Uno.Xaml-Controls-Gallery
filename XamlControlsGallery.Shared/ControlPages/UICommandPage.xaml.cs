@@ -76,7 +76,9 @@ namespace AppUIBasics.ControlPages
                 var deleteCommand = new StandardUICommand(StandardUICommandKind.Delete);
                 deleteCommand.ExecuteRequested += DeleteCommand_ExecuteRequested;
 
+#if NETFX_CORE // UNO TODO
                 DeleteFlyoutItem.Command = deleteCommand;
+#endif
 
                 for (var i = 0; i < 15; i++)
                 {

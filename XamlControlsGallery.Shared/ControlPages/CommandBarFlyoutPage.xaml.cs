@@ -36,7 +36,9 @@ namespace AppUIBasics.ControlPages
                 {
                     FlyoutShowOptions myOption = new FlyoutShowOptions();
                     myOption.ShowMode = FlyoutShowMode.Transient;
+#if NETFX_CORE // UNO TODO
                     myOption.Placement = FlyoutPlacementMode.RightEdgeAlignedTop;
+#endif
                     CommandBarFlyout1.ShowAt(Image1, myOption);
                 }
                 else

@@ -18,19 +18,26 @@ namespace AppUIBasics.ControlPages
             var rectangle = (Windows.UI.Xaml.Shapes.Rectangle)clickedColor.Content;
             var color = ((Windows.UI.Xaml.Media.SolidColorBrush)rectangle.Fill).Color;
 
+#if NETFX_CORE // UNO TODO
             myRichEditBox.Document.Selection.CharacterFormat.ForegroundColor = color;
+#endif
             CurrentColor.Fill = new SolidColorBrush(color);
 
             myColorButton.Flyout.Hide();
+
+#if NETFX_CORE // UNO TODO
             myRichEditBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+#endif
         }
 
-        private void myColorButton_Click(Microsoft.UI.Xaml.Controls.SplitButton sender, Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs args)
+        private void myColorButton_Click(Windows.UI.Xaml.Controls.SplitButton sender, Windows.UI.Xaml.Controls.SplitButtonClickEventArgs args)
         {
             var rectangle = (Windows.UI.Xaml.Shapes.Rectangle)sender.Content;
             var color = ((Windows.UI.Xaml.Media.SolidColorBrush)rectangle.Fill).Color;
 
+#if NETFX_CORE // UNO TODO
             myRichEditBox.Document.Selection.CharacterFormat.ForegroundColor = color;
+#endif
         }
     }
 }

@@ -20,7 +20,8 @@
         <local:ControlExample x:Name="Example1" HeaderText="A 3x3 Grid control.">
             <Grid x:Name="Control1" Width="240" Height="160" Background="Gray">
                 <Grid.Resources>
-                    <Style TargetType="Rectangle">
+                    <!-- UNO TODO -->
+                    <Style x:Key="squareStyle" TargetType="Rectangle">
                         <Setter Property="Height" Value="40" />
                         <Setter Property="Width" Value="40" />
                     </Style>
@@ -35,13 +36,13 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Rectangle x:Name="Rectangle1" Fill="Red"
+                <Rectangle x:Name="Rectangle1" Style="{StaticResource squareStyle}" Fill="Red"
                         Grid.Column="{x:Bind ColumnSlider.Value, Converter={StaticResource doubleIntConverter}, Mode=OneWay}"
                         Grid.Row="{x:Bind RowSlider.Value, Converter={StaticResource doubleIntConverter}, Mode=OneWay}"
                         Height="50" Width="50" />
-                <Rectangle Fill="Blue" Grid.Row="1" />
-                <Rectangle Fill="Green" Grid.Column="1" />
-                <Rectangle Fill="Yellow" Grid.Row="1" Grid.Column="1" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Blue" Grid.Row="1" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Green" Grid.Column="1" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Yellow" Grid.Row="1" Grid.Column="1" />
             </Grid>
 
             <local:ControlExample.Options>
@@ -70,10 +71,12 @@
                     <Paragraph TextIndent="24">&lt;RowDefinition Height="Auto" /&gt;</Paragraph>
                     <Paragraph TextIndent="24">&lt;RowDefinition /&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;/Grid.RowDefinitions&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle Fill="Red" Grid.Column="<Run FontSize="16" FontWeight="Bold"
-                                Text="{x:Bind ColumnSlider.Value, Converter={StaticResource valueToStringConverter}, Mode=OneWay}" />"
-                        Grid.Row="<Run FontSize="16" FontWeight="Bold"
-                                Text="{x:Bind RowSlider.Value, Converter={StaticResource valueToStringConverter}, Mode=OneWay}" />" /&gt;
+                    <Paragraph TextIndent="12">&lt;Rectangle Fill="Red" Grid.Column="
+                        <Run FontSize="16" FontWeight="Bold"
+                                Text="{x:Bind ColumnSlider.Value, Converter={StaticResource valueToStringConverter}, Mode=OneWay}" /> "
+                        Grid.Row="
+                        <Run FontSize="16" FontWeight="Bold"
+                                Text="{x:Bind RowSlider.Value, Converter={StaticResource valueToStringConverter}, Mode=OneWay}" /> " /&gt;
                     </Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Blue" Grid.Row="1" /&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Green" Grid.Column="1" /&gt;</Paragraph>

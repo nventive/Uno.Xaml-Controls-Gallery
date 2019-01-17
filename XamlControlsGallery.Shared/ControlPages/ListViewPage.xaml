@@ -117,7 +117,7 @@
             </local:ControlExample.Xaml>
         </local:ControlExample>
 
-        <local:ControlExample HeaderText="A ListView with Grouped Headers" XamlSource="ListView\ListViewGroupedHeaderSample_xaml.txt">
+        <local:ControlExample HeaderText="A ListView with Grouped Headers" XamlSource="ListView/ListViewGroupedHeaderSample_xaml.txt">
             <ListView 
                 ItemsSource="{x:Bind ContactsCVS.View, Mode=OneWay}"
                 ItemTemplate="{StaticResource ContactListViewTemplate}"
@@ -147,7 +147,7 @@
             </ListView>
         </local:ControlExample>
 
-        <local:ControlExample HeaderText="A ListView with Grouped Sticky Headers" XamlSource="ListView\ListViewStickyHeaderSample_xaml.txt">
+        <local:ControlExample HeaderText="A ListView with Grouped Sticky Headers" XamlSource="ListView/ListViewStickyHeaderSample_xaml.txt">
             <ListView 
                 ItemsSource="{x:Bind ContactsCVS.View, Mode=OneWay}"
                 ItemTemplate="{StaticResource ContactListViewTemplate}"

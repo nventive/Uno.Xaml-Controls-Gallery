@@ -18,17 +18,19 @@
 
             <Canvas x:Name="Control1" Width="120" Height="120" Background="Gray" VerticalAlignment="Top">
                 <Canvas.Resources>
-                    <Style TargetType="Rectangle">
+                    <!-- UNO TODO -->
+                    <Style x:Key="squareStyle" TargetType="Rectangle">
                         <Setter Property="Height" Value="40" />
                         <Setter Property="Width" Value="40" />
                     </Style>
                 </Canvas.Resources>
-                <Rectangle Fill="Red" Canvas.Left="{x:Bind LeftSlider.Value, Mode=OneWay}"
+                <Rectangle Style="{StaticResource squareStyle}" 
+						   Fill="Red" Canvas.Left="{x:Bind LeftSlider.Value, Mode=OneWay}"
                         Canvas.Top="{x:Bind TopSlider.Value, Mode=OneWay}"
                         Canvas.ZIndex="{x:Bind ZSlider.Value, Converter={StaticResource doubleIntConverter}, Mode=OneWay}" />
-                <Rectangle Fill="Blue" Canvas.Left="20" Canvas.Top="20" Canvas.ZIndex="1" />
-                <Rectangle Fill="Green" Canvas.Left="40" Canvas.Top="40" Canvas.ZIndex="2" />
-                <Rectangle Fill="Yellow" Canvas.Left="60" Canvas.Top="60" Canvas.ZIndex="3" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Blue" Canvas.Left="20" Canvas.Top="20" Canvas.ZIndex="1" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Green" Canvas.Left="40" Canvas.Top="40" Canvas.ZIndex="2" />
+                <Rectangle Style="{StaticResource squareStyle}" Fill="Yellow" Canvas.Left="60" Canvas.Top="60" Canvas.ZIndex="3" />
             </Canvas>
 
             <local:ControlExample.Options>
@@ -48,9 +50,12 @@
             <local:ControlExample.Xaml>
                 <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
                     <Paragraph>&lt;Canvas Width="120" Height="120" Background="Gray"&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle Fill="Red" Canvas.Left="<Run Text="{x:Bind LeftSlider.Value, Mode=OneWay}" />"
-                                Canvas.Top="<Run Text="{x:Bind TopSlider.Value, Mode=OneWay}" />"
-                                Canvas.ZIndex="<Run Text="{x:Bind ZSlider.Value, Mode=OneWay}" />" /&gt;
+                    <Paragraph TextIndent="12">&lt;Rectangle Fill="Red" Canvas.Left="
+                        <Run Text="{x:Bind LeftSlider.Value, Mode=OneWay}" /> "
+                                Canvas.Top="
+                        <Run Text="{x:Bind TopSlider.Value, Mode=OneWay}" /> "
+                                Canvas.ZIndex="
+                        <Run Text="{x:Bind ZSlider.Value, Mode=OneWay}" /> " /&gt;
                     </Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Blue" Canvas.Left="20" Canvas.Top="20" Canvas.ZIndex="1" /&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Green" Canvas.Left="40" Canvas.Top="40" Canvas.ZIndex="2" /&gt;</Paragraph>

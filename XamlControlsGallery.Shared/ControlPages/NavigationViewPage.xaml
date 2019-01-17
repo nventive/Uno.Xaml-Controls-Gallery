@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="using:AppUIBasics.Common"
-        xmlns:muxcontrols="using:Microsoft.UI.Xaml.Controls"
+        xmlns:muxcontrols="using:Windows.UI.Xaml.Controls"
         x:Class="AppUIBasics.ControlPages.NavigationViewPage"
         mc:Ignorable="d">
     <Page.Resources>
@@ -83,7 +83,7 @@
                               HeaderText="NavigationView with default PaneDisplayMode" 
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample1.txt"
+                              XamlSource="NavigationView/NavigationViewSample1.txt"
                               WebViewHeight="250">
             <Grid>
                 <Grid.RowDefinitions>
@@ -117,7 +117,7 @@
                               HeaderText="NavigationView with PaneDisplayMode set to Top"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample2.txt"
+                              XamlSource="NavigationView/NavigationViewSample2.txt"
                               WebViewHeight="200" >
             <Grid>
                 <Grid.RowDefinitions>
@@ -152,7 +152,7 @@
                               HeaderText="NavigationView that switches pane orientation based on window width"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample3.txt" 
+                              XamlSource="NavigationView/NavigationViewSample3.txt" 
                               WebViewHeight="450">
             <Grid x:Name="InnerGrid">
                 <Grid.RowDefinitions>
@@ -185,8 +185,8 @@
                               HeaderText="Tying selection and focus - Tabs"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample4_xaml.txt"
-                              CSharpSource="NavigationView\NavigationViewSample4_cs.txt"
+                              XamlSource="NavigationView/NavigationViewSample4_xaml.txt"
+                              CSharpSource="NavigationView/NavigationViewSample4_cs.txt"
                               WebViewHeight="800">
             <Grid>
                 <Grid.RowDefinitions>
@@ -216,8 +216,8 @@
                               HeaderText="Data binding"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch"
-                              XamlSource="NavigationView\NavigationViewSample5_xaml.txt"
-                              CSharpSource="NavigationView\NavigationViewSample5_cs.txt"
+                              XamlSource="NavigationView/NavigationViewSample5_xaml.txt"
+                              CSharpSource="NavigationView/NavigationViewSample5_cs.txt"
                               WebViewHeight="950">
             <Grid>
                 <Grid.RowDefinitions>

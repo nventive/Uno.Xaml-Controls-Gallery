@@ -1,12 +1,13 @@
-﻿using System;
+﻿#if NETFX_CORE
+using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using LayoutContext = Microsoft.UI.Xaml.Controls.LayoutContext;
-using VirtualizingLayout = Microsoft.UI.Xaml.Controls.VirtualizingLayout;
-using VirtualizingLayoutContext = Microsoft.UI.Xaml.Controls.VirtualizingLayoutContext;
+using LayoutContext = Windows.UI.Xaml.Controls.LayoutContext;
+using VirtualizingLayout = Windows.UI.Xaml.Controls.VirtualizingLayout;
+using VirtualizingLayoutContext = Windows.UI.Xaml.Controls.VirtualizingLayoutContext;
 
 namespace AppUIBasics.Common
 {
@@ -271,3 +272,4 @@ namespace AppUIBasics.Common
         private List<Rect> _layoutRects;
     }
 }
+#endif

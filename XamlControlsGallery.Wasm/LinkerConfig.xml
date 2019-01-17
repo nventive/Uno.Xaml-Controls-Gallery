@@ -1,9 +1,16 @@
 ﻿<linker>
-  <assembly fullname="AppUIBasics.Wasm" />
+  <assembly fullname="XamlControlsGallery.Wasm" />
   <assembly fullname="Uno.UI" />
+  <assembly fullname="Uno" />
 
   <assembly fullname="System.Core">
 	<!-- This is required by JSon.NET and any expression.Compile caller -->
 	<type fullname="System.Linq.Expressions*" />
   </assembly>
+
+  <assembly fullname="System">
+    <!-- This is required by JSon.NET and any expression.Compile caller -->
+    <type fullname="System.ComponentModel.*Converter" />
+  </assembly>
+
 </linker>

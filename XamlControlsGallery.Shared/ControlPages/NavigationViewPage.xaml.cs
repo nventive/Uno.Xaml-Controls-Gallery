@@ -1,7 +1,7 @@
 ﻿using AppUIBasics.SamplePages;
 using AppUIBasics.Common;
 using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
 using System;
 using System.Diagnostics;
 using Windows.Foundation;
@@ -39,10 +39,10 @@ namespace AppUIBasics.ControlPages
         {
             this.InitializeComponent();
 
-            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
 
             Categories = new ObservableCollection<CategoryBase>();
             Category firstCategory = new Category { Name = "Category 1", Glyph = Symbol.Home, Tooltip = "This is category 1" };
@@ -53,18 +53,18 @@ namespace AppUIBasics.ControlPages
             nvSample4.SelectedItem = firstCategory;
         }
 
-        public Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode ChoosePanePosition(Boolean toggleOn)
+        public Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode ChoosePanePosition(Boolean toggleOn)
         {
             if (toggleOn)
             {
-                return Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+                return Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
             } else
             {
-                return Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                return Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
             }
         }
 
-        private void NavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
@@ -72,7 +72,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 if (selectedItem != null)
                 {
                     string selectedItemTag = ((string)selectedItem.Tag);
@@ -84,7 +84,7 @@ namespace AppUIBasics.ControlPages
             }
         }
 
-        private void NavigationView_SelectionChanged2(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged2(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (!CameFromGridChange)
             {
@@ -94,7 +94,7 @@ namespace AppUIBasics.ControlPages
                 }
                 else
                 {
-                    var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                    var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                     string selectedItemTag = ((string)selectedItem.Tag);
                     string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
                     Type pageType = Type.GetType(pageName);
@@ -105,7 +105,7 @@ namespace AppUIBasics.ControlPages
             CameFromGridChange = false;
         }
 
-        private void NavigationView_SelectionChanged4(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged4(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
@@ -125,7 +125,7 @@ namespace AppUIBasics.ControlPages
         }
 
 
-        private void NavigationView_SelectionChanged5(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged5(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
@@ -133,7 +133,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string selectedItemTag = ((string)selectedItem.Tag);
                 sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
@@ -141,7 +141,7 @@ namespace AppUIBasics.ControlPages
                 contentFrame5.Navigate(pageType);
             }
         }
-        private void NavigationView_SelectionChanged6(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged6(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
@@ -149,14 +149,14 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
                 Type pageType = Type.GetType(pageName);
                 contentFrame6.Navigate(pageType);
             }
         }
 
-        private void NavigationView_SelectionChanged7(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged7(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
@@ -164,7 +164,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
                 Type pageType = Type.GetType(pageName);
 
@@ -217,11 +217,11 @@ namespace AppUIBasics.ControlPages
         {
             if ((sender as CheckBox).IsChecked == true)
             {
-                nvSample.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
+                nvSample.IsBackButtonVisible = Windows.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
             }
             else
             {
-                nvSample.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
+                nvSample.IsBackButtonVisible = Windows.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
             }
         }
 
@@ -272,7 +272,7 @@ namespace AppUIBasics.ControlPages
         {
             if ((sender as RadioButton).IsChecked == true && nvSample != null)
             {
-                nvSample.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+                nvSample.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
                 nvSample.IsPaneOpen = true;
                 FooterStackPanel.Orientation = Orientation.Vertical;
             }
@@ -283,7 +283,7 @@ namespace AppUIBasics.ControlPages
         {
             if ((sender as RadioButton).IsChecked == true && nvSample != null)
             {
-                nvSample.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                nvSample.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
                 nvSample.IsPaneOpen = false;
                 FooterStackPanel.Orientation = Orientation.Horizontal;
             }
@@ -293,11 +293,11 @@ namespace AppUIBasics.ControlPages
         {
             if ((sender as CheckBox).IsChecked == true)
             {
-                nvSample.SelectionFollowsFocus = Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled;
+                nvSample.SelectionFollowsFocus = Windows.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled;
             }
             else
             {
-                nvSample.SelectionFollowsFocus = Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled;
+                nvSample.SelectionFollowsFocus = Windows.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled;
             }
         }
 

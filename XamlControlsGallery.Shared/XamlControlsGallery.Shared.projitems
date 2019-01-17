@@ -214,7 +214,7 @@
     <Content Include="$(MSBuildThisFileDirectory)ControlPagesSampleCode\TreeView\TreeViewTemplateSelectorSample_xaml.txt" />
     <Content Include="$(MSBuildThisFileDirectory)ControlPagesSampleCode\UICommand\UICommandSample1_cs.txt" />
     <Content Include="$(MSBuildThisFileDirectory)ControlPagesSampleCode\UICommand\UICommandSample1_xaml.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)DataModel\ControlInfoData.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)DataModel\ControlInfoData.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AllControlsPage.xaml.cs">
@@ -952,6 +952,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

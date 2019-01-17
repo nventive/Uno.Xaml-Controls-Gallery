@@ -19,8 +19,8 @@ using Windows.Gaming.Input;
 using Windows.System;
 using Windows.System.Profile;
 using Windows.UI.ViewManagement;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
@@ -41,10 +41,10 @@ namespace AppUIBasics
         private PageHeader _header;
         private bool _isGamePadConnected;
         private bool _isKeyboardConnected;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _allControlsMenuItem;
-        private Microsoft.UI.Xaml.Controls.NavigationViewItem _newControlsMenuItem;
+        private Windows.UI.Xaml.Controls.NavigationViewItem _allControlsMenuItem;
+        private Windows.UI.Xaml.Controls.NavigationViewItem _newControlsMenuItem;
 
-        public Microsoft.UI.Xaml.Controls.NavigationView NavigationView
+        public Windows.UI.Xaml.Controls.NavigationView NavigationView
         {
             get { return NavigationViewControl; }
         }
@@ -92,9 +92,11 @@ namespace AppUIBasics
 
             Window.Current.SetTitleBar(AppTitleBar);
 
+#if NETFX_CORE
             CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle(s);
 
             _isKeyboardConnected = Convert.ToBoolean(new KeyboardCapabilities().KeyboardPresent);
+#endif
         }
 
         void UpdateAppTitle(CoreApplicationViewTitleBar coreTitleBar)
@@ -114,7 +116,7 @@ namespace AppUIBasics
         {
             foreach (var group in ControlInfoDataSource.Instance.Groups.OrderBy(i => i.Title))
             {
-                var item = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = group.Title, Tag = group.UniqueId, DataContext = group };
+                var item = new Windows.UI.Xaml.Controls.NavigationViewItem() { Content = group.Title, Tag = group.UniqueId, DataContext = group };
                 AutomationProperties.SetName(item, group.Title);
                 if (group.ImagePath.ToLowerInvariant().EndsWith(".png"))
                 {
@@ -124,7 +126,9 @@ namespace AppUIBasics
                 {
                     item.Icon = new FontIcon()
                     {
+#if NETFX_CORE
                         FontFamily = new FontFamily("Segoe MDL2 Assets"),
+#endif
                         Glyph = group.ImagePath
                     };
                 }
@@ -147,13 +151,14 @@ namespace AppUIBasics
             NavigationViewControl.MenuItems.Insert(0, _newControlsMenuItem);
 
             // Separate the All/New items from the rest of the categories.
-            NavigationViewControl.MenuItems.Insert(2, new Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator());
+            NavigationViewControl.MenuItems.Insert(2, new Windows.UI.Xaml.Controls.NavigationViewItemSeparator());
 
             _newControlsMenuItem.Loaded += OnNewControlsMenuItemLoaded;
         }
 
         private void SetDeviceFamily()
         {
+#if NETFX_CORE
             var familyName = AnalyticsInfo.VersionInfo.DeviceFamily;
 
             if (!Enum.TryParse(familyName.Replace("Windows.", string.Empty), out DeviceType parsedDeviceType))
@@ -162,6 +167,7 @@ namespace AppUIBasics
             }
 
             DeviceFamily = parsedDeviceType;
+#endif
         }
 
         private void OnNewControlsMenuItemLoaded(object sender, RoutedEventArgs e)
@@ -183,7 +189,7 @@ namespace AppUIBasics
             _isGamePadConnected = Gamepad.Gamepads.Any();
         }
 
-        private void OnNavigationViewItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        private void OnNavigationViewItemInvoked(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
@@ -270,15 +276,15 @@ namespace AppUIBasics
             controlsSearchBox.Focus(FocusState.Keyboard);
         }
 
-        private void NavigationViewControl_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
+        private void NavigationViewControl_PaneClosing(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
             AppTitle.Visibility = Visibility.Collapsed;
         }
 
-        private void NavigationViewControl_PaneOpened(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
+        private void NavigationViewControl_PaneOpened(Windows.UI.Xaml.Controls.NavigationView sender, object args)
         {
             AppTitle.Visibility = Visibility.Visible;
-            if (sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
+            if (sender.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
             {
                 AppTitleBar.Margin = new Thickness(40, 0, 0, 0);
             }

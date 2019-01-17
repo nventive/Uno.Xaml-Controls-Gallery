@@ -10,9 +10,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Json;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
-using Windows.Data.Json;
 using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -187,6 +189,99 @@ namespace AppUIBasics.Data
                 }
             }
 
+            var name = this.GetType().GetTypeInfo().Assembly.GetManifestResourceNames().FirstOrDefault(n => n.EndsWith("ControlInfoData.json"));
+
+            if (name == null)
+            {
+                throw new InvalidOperationException($"Unable to find ControlInfoData.json in embedded resources");
+            }
+
+
+            using (var s = new StreamReader(this.GetType().GetTypeInfo().Assembly.GetManifestResourceStream(name)))
+            {
+                var jsonObject = JsonObject.Load(s);
+
+                var jsonArray = jsonObject["Groups"];
+
+                lock (_lock)
+                {
+                    foreach (JsonValue groupValue in jsonArray)
+                    {
+                        if (groupValue is JsonObject groupObject)
+                        {
+                            ControlInfoDataGroup group = new ControlInfoDataGroup(groupObject["UniqueId"],
+                                                                                  groupObject["Title"],
+                                                                                  groupObject["Subtitle"],
+                                                                                  groupObject["ImagePath"],
+                                                                                  groupObject["Description"]);
+
+                            foreach (JsonValue itemValue in groupObject["Items"])
+                            {
+                                if (itemValue is JsonObject itemObject)
+                                {
+                                    string badgeString = null;
+
+                                    bool isNew = itemObject.ContainsKey("IsNew") ? (bool)itemObject["IsNew"] : false;
+                                    bool isUpdated = itemObject.ContainsKey("IsUpdated") ? (bool)itemObject["IsUpdated"] : false;
+                                    bool isPreview = itemObject.ContainsKey("IsPreview") ? (bool)itemObject["IsPreview"] : false;
+
+                                    if (isNew)
+                                    {
+                                        badgeString = "New";
+                                    }
+                                    else if (isUpdated)
+                                    {
+                                        badgeString = "Updated";
+                                    }
+                                    else if (isPreview)
+                                    {
+                                        badgeString = "Preview";
+                                    }
+
+                                    var item = new ControlInfoDataItem(itemObject["UniqueId"],
+                                                                            itemObject["Title"],
+                                                                            itemObject["Subtitle"],
+                                                                            itemObject["ImagePath"],
+                                                                            badgeString,
+                                                                            itemObject["Description"],
+                                                                            itemObject["Content"],
+                                                                            isNew,
+                                                                            isUpdated,
+                                                                            isPreview);
+
+                                    if (itemObject.ContainsKey("Docs"))
+                                    {
+                                        foreach (JsonValue docValue in itemObject["Docs"])
+                                        {
+                                            if (docValue is JsonObject docObject)
+                                            {
+                                                item.Docs.Add(new ControlInfoDocLink(docObject["Title"], docObject["Uri"]));
+                                            }
+                                        }
+                                    }
+
+                                    if (itemObject.ContainsKey("RelatedControls"))
+                                    {
+                                        foreach (JsonValue relatedControlValue in itemObject["RelatedControls"])
+                                        {
+                                            item.RelatedControls.Add(relatedControlValue);
+                                        }
+                                    }
+
+                                    group.Items.Add(item);
+                                }
+                            }
+
+                            if (!Groups.Any(g => g.Title == group.Title))
+                            {
+                                Groups.Add(group);
+                            }
+                        }
+                    }
+                }
+            }
+
+#if false
             Uri dataUri = new Uri("ms-appx:///DataModel/ControlInfoData.json");
 
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
@@ -266,6 +361,7 @@ namespace AppUIBasics.Data
                     }
                 }
             }
+#endif
         }
     }
 }

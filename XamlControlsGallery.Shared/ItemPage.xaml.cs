@@ -19,8 +19,8 @@ using Windows.System;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
@@ -50,6 +50,12 @@ namespace AppUIBasics
 
             LayoutVisualStates.CurrentStateChanged += (s, e) => UpdateSeeAlsoPanelVerticalTranslationAnimation();
             Loaded += (s,e) => SetInitialVisuals();
+            contentFrame.NavigationFailed += ContentFrame_NavigationFailed;
+        }
+
+        private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            Console.WriteLine($"Navigation to {e.SourcePageType} failed. {e.Exception}");
         }
 
         public void SetInitialVisuals()
@@ -69,6 +75,7 @@ namespace AppUIBasics
 
         private void UpdateSeeAlsoPanelVerticalTranslationAnimation()
         {
+#if NETFX_CORE
             var isEnabled = LayoutVisualStates.CurrentState == LargeLayout;
 
             ElementCompositionPreview.SetIsTranslationEnabled(seeAlsoPanel, true);
@@ -89,6 +96,7 @@ namespace AppUIBasics
             {
                 targetPanelVisual.StopAnimation("Translation.Y");
             }
+#endif
         }
 
         private void OnToggleTheme()
@@ -100,6 +108,7 @@ namespace AppUIBasics
 
         private void SetControlExamplesTheme(ElementTheme theme)
         {
+#if NETFX_CORE // UNO TODO
             var controlExamples = (this.contentFrame.Content as UIElement)?.GetDescendantsOfType<ControlExample>();
 
             if (controlExamples != null)
@@ -112,6 +121,7 @@ namespace AppUIBasics
                     controlExample.ExampleContainer.RequestedTheme = theme;
                 }
             }
+#endif
         }
 
         private void OnRelatedControlClick(object sender, RoutedEventArgs e)
@@ -132,7 +142,12 @@ namespace AppUIBasics
                 // Load control page into frame.
                 var loader = ResourceLoader.GetForCurrentView();
 
-                string pageRoot = loader.GetString("PageStringRoot");
+#if NETFX_CORE
+				string pageRoot = loader.GetString("PageStringRoot");
+#else
+                // UNO TODO, path parsing for resource files is incorrect
+                string pageRoot = typeof(ControlPages.BorderPage).Namespace + ".";
+#endif
 
                 string pageString = pageRoot + item.UniqueId + "Page";
                 Type pageType = Type.GetType(pageString);
@@ -150,7 +165,7 @@ namespace AppUIBasics
                 }
 
                 ControlInfoDataGroup group = await ControlInfoDataSource.Instance.GetGroupFromItemAsync((String)e.Parameter);
-                var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Microsoft.UI.Xaml.Controls.NavigationViewItemBase>().FirstOrDefault(m => m.Tag?.ToString() == group.UniqueId);
+                var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItemBase>().FirstOrDefault(m => m.Tag?.ToString() == group.UniqueId);
                 if (menuItem != null)
                 {
                     menuItem.IsSelected = true;
@@ -164,6 +179,8 @@ namespace AppUIBasics
 
         void PlayConnectedAnimation()
         {
+// UNO TODO
+#if NETFX_CORE
             if (NavigationRootPage.Current.PageHeader != null)
             {
                 var connectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("controlAnimation");
@@ -181,6 +198,7 @@ namespace AppUIBasics
                     connectedAnimation.TryStart(target, new UIElement[] { subTitleText });
                 }
             }
+#endif
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -195,12 +213,14 @@ namespace AppUIBasics
             NavigationRootPage.Current.PageHeader.TopCommandBar.Visibility = Visibility.Collapsed;
             NavigationRootPage.Current.PageHeader.ToggleThemeAction = null;
 
+#if NETFX_CORE
             //Reverse Connected Animation
             if (e.SourcePageType != typeof(ItemPage))
             {
                 var target = NavigationRootPage.Current.PageHeader.TitlePanel;
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("controlAnimation", target);
             }
+#endif
 
             base.OnNavigatedFrom(e);
         }
@@ -209,10 +229,12 @@ namespace AppUIBasics
         {
             string targetState = "NormalFrameContent";
 
+#if NETFX_CORE
             if ((contentColumn.ActualWidth) >= 1000)
             {
                 targetState = "WideFrameContent";
             }
+#endif
 
             VisualStateManager.GoToState(this, targetState, false);
         }
