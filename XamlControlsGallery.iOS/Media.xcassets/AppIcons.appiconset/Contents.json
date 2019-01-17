@@ -1,0 +1,106 @@
+{
+  "images": [
+    {
+      "scale": "2x",
+      "size": "29x29",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "3x",
+      "size": "29x29",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "2x",
+      "size": "40x40",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "3x",
+      "size": "60x60",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "1x",
+      "size": "20x20",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "1x",
+      "size": "29x29",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "size": "29x29",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "1x",
+      "size": "40x40",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "size": "40x40",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "1x",
+      "size": "76x76",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "iphone",
+      "filename": "SmallTile-sdk.altform-unplated_targetsize-40.png"
+    },
+    {
+      "scale": "3x",
+      "size": "20x20",
+      "idiom": "iphone",
+      "filename": "SmallTile-sdk.altform-unplated_targetsize-60.png"
+    },
+    {
+      "scale": "3x",
+      "size": "40x40",
+      "idiom": "iphone",
+      "filename": "squaretile-sdk-iphone.png"
+    },
+    {
+      "scale": "2x",
+      "size": "60x60",
+      "idiom": "iphone",
+      "filename": "squaretile-sdk-iphone1.png"
+    },
+    {
+      "scale": "2x",
+      "size": "76x76",
+      "idiom": "ipad",
+      "filename": "squaretile-sdk-ipad.png"
+    },
+    {
+      "scale": "2x",
+      "size": "83.5x83.5",
+      "idiom": "ipad",
+      "filename": "squaretile-sdk-ipadpro.png"
+    },
+    {
+      "scale": "1x",
+      "size": "1024x1024",
+      "idiom": "ios-marketing",
+      "filename": "LargeTile-Square.scale-400.png"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  }
+}
