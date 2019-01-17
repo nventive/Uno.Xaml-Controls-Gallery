@@ -5,7 +5,13 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlControlsGallery", "XamlControlsGallery.csproj", "{3F68773A-31A5-59FE-926C-0569E415C9D9}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamlControlsGallery.Shared", "..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.shproj", "{21A6DDAB-F557-4753-8048-4E770B8BD0DB}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{21a6ddab-f557-4753-8048-4e770b8bd0db}*SharedItemsImports = 13
+		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{3f68773a-31a5-59fe-926c-0569e415c9d9}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
