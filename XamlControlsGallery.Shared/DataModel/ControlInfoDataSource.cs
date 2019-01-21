@@ -34,7 +34,7 @@ namespace AppUIBasics.Data
     /// </summary>
     public class ControlInfoDataItem
     {
-        public ControlInfoDataItem(String uniqueId, String title, String subtitle, String imagePath, String badgeString, String description, String content, bool isNew, bool isUpdated, bool isPreview)
+        public ControlInfoDataItem(String uniqueId, String title, String subtitle, String imagePath, String badgeString, String description, String content, bool isNew, bool isUpdated, bool isPreview, bool isUno)
         {
             this.UniqueId = uniqueId;
             this.Title = title;
@@ -48,6 +48,7 @@ namespace AppUIBasics.Data
             this.IsPreview = isPreview;
             this.Docs = new ObservableCollection<ControlInfoDocLink>();
             this.RelatedControls = new ObservableCollection<string>();
+            this.IsUno = isUno;
         }
 
         public string UniqueId { get; private set; }
@@ -62,6 +63,7 @@ namespace AppUIBasics.Data
         public bool IsPreview { get; private set; }
         public ObservableCollection<ControlInfoDocLink> Docs { get; private set; }
         public ObservableCollection<string> RelatedControls { get; private set; }
+        public bool IsUno { get; private set; }
 
         public override string ToString()
         {
@@ -224,6 +226,7 @@ namespace AppUIBasics.Data
                                     bool isNew = itemObject.ContainsKey("IsNew") ? (bool)itemObject["IsNew"] : false;
                                     bool isUpdated = itemObject.ContainsKey("IsUpdated") ? (bool)itemObject["IsUpdated"] : false;
                                     bool isPreview = itemObject.ContainsKey("IsPreview") ? (bool)itemObject["IsPreview"] : false;
+                                    bool isUno = itemObject.ContainsKey("IsUno") ? (bool)itemObject["IsUno"] : false;
 
                                     if (isNew)
                                     {
@@ -247,7 +250,8 @@ namespace AppUIBasics.Data
                                                                             itemObject["Content"],
                                                                             isNew,
                                                                             isUpdated,
-                                                                            isPreview);
+                                                                            isPreview,
+                                                                            isUno);
 
                                     if (itemObject.ContainsKey("Docs"))
                                     {

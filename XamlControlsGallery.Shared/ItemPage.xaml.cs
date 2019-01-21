@@ -55,7 +55,9 @@ namespace AppUIBasics
 
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            Console.WriteLine($"Navigation to {e.SourcePageType} failed. {e.Exception}");
+            string errorString = $"Navigation to {e.SourcePageType} failed. {e.Exception}";
+            Console.WriteLine(errorString);
+            contentFrame.Content = new TextBlock { Text = errorString, TextWrapping = TextWrapping.Wrap };
         }
 
         public void SetInitialVisuals()

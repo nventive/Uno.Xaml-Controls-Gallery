@@ -45,7 +45,17 @@
                     Source="{x:Bind ImagePath}"
                     Stretch="Uniform" />
 
-                <RelativePanel Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0">
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0" 
+                           TextWrapping="Wrap"
+                           Foreground="Gray"
+                           Visibility="{x:Bind IsUno, Converter={StaticResource nullToVisibilityConverter}}">
+                    <Run Text="The "/>
+                    <Run Text="{x:Bind Title}"/>
+                    <Run Text=" sample is not available for the Uno Platform" />
+                </TextBlock>
+
+                <RelativePanel Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0" 
+                               Visibility="{x:Bind IsUno, Converter={StaticResource inverseNullToVisibilityConverter}}">
                     <TextBlock
                         x:Name="titleText"
                         Style="{StaticResource SubtitleTextBlockStyle}"

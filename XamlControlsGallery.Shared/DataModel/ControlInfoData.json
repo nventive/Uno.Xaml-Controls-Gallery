@@ -25,6 +25,7 @@
       "Items": [
         {
           "UniqueId": "UICommand",
+          "IsUno": true,
           "Title": "XamlUICommand",
           "Subtitle": "An object which is used to define the look and feel of a given command",
           "ImagePath": "ms-appx:///Assets/AppBarSeparator.png",

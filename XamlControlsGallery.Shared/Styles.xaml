@@ -68,13 +68,13 @@
 
     <x:String x:Key="AppName">All controls</x:String>
 
-    <win:Style x:Key="XamlCodeRichTextBlockStyle" TargetType="RichTextBlock">
-        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+    <Style x:Key="XamlCodeRichTextBlockStyle" TargetType="RichTextBlock">
+        <win:Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontFamily" Value="Consolas" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextWrapping" Value="NoWrap" />
-    </win:Style>
+    </Style>
 
     <Style x:Key="OutputTextBlockStyle" BasedOn="{StaticResource BodyTextBlockStyle}" TargetType="TextBlock">
         <Setter Property="Margin" Value="8,8,0,0" />
