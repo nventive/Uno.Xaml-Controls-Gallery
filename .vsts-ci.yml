@@ -1,0 +1,7 @@
+jobs:
+
+- template: .vsts-win-build.yml
+  parameters:
+    name: Windows
+    pool:
+      vmImage: 'vs2017-win2016'

@@ -1,0 +1,92 @@
+parameters:
+  pool: ''
+  sign: false
+
+jobs:
+- job: Windows
+  pool: ${{ parameters.pool }}
+
+  variables:
+    ANDROID_NDK_HOME: C:\Microsoft\AndroidNDK64\android-ndk-r15c
+    ANDROID_NDK_PATH: C:\Microsoft\AndroidNDK64\android-ndk-r15c
+    AndroidNdkDirectory: C:\Microsoft\AndroidNDK64\android-ndk-r15c
+
+  steps:
+  - checkout: self
+    clean: true
+    
+  - task: GitVersion@3
+    # Ignore gitversion for forks, until this is fixed:
+    # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
+    condition: eq(variables['System.PullRequest.IsFork'], 'False')
+    inputs:
+      updateAssemblyInfo: false
+
+  - task: NuGetToolInstaller@0
+    inputs:
+      versionSpec: 4.7.0
+      checkLatest: false
+
+  - task: MSBuild@1
+    inputs:
+      solution: build/Build.csproj
+      msbuildLocationMethod: version
+      msbuildVersion: latest
+      msbuildArchitecture: x86
+      msbuildArguments: "/r"
+      clean: false
+      maximumCpuCount: true
+      restoreNugetPackages: false
+      logProjectEvents: false
+      createLogFile: false
+
+  - task: MSBuild@1
+    inputs:
+      solution: XamlControlsGallery.Windows\XamlControlsGallery.sln
+      msbuildLocationMethod: version
+      msbuildVersion: latest
+      msbuildArchitecture: x86
+      msbuildArguments: '/r /p:Configuration=Release /detailedsummary /m:16 /nr:false "/p:AndroidSigningStorePass=$(nventivekeystore_pwd)" "/p:AndroidSigningKeyAlias=$(nventivekeystore_alias)" "/p:AndroidSigningKeyPass=$(nventivekeystore_aliaspwd)"'
+      clean: false
+      maximumCpuCount: true
+      restoreNugetPackages: false
+      logProjectEvents: false
+      createLogFile: false
+
+  - task: CopyFiles@2
+    displayName: 'Publish Wasm Binaries'
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Wasm/bin/Release/netstandard2.0/dist
+      Contents: '**/*.*'
+      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-wasm
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+  - task: CopyFiles@2
+    displayName: 'Publish Android Binaries'
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Droid/bin/Release
+      Contents: '*.apk'
+      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-android
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+  - task: CopyFiles@2
+    displayName: 'Publish Windows Binaries'
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Windows/AppPackages
+      Contents: '**/*.appx'
+      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-windows
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+  - task: PublishBuildArtifacts@1
+    # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
+    condition: eq(variables['System.PullRequest.IsFork'], 'False')
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: universal-samples-drop
+      ArtifactType: Container

@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+		<UpdateAssemblyInfo>false</UpdateAssemblyInfo>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="3.6.5" />
+    <PackageReference Include="MSBuildTasks" Version="1.5.0.235" />
+  </ItemGroup>
+
+
+	<Target Name="UpdateVersion" DependsOnTargets="GetVersion" BeforeTargets="Build">
+
+		<Message Text="Updating versions" />
+		
+		<ItemGroup>
+			<_PListFiles Include="../**/Info.plist" Exclude="../**/bin/**;../**/obj/**" />
+			<_AndroidManifestFiles Include="../**/Properties/AndroidManifest.xml"  Exclude="../**/bin/**;../**/obj/**"/>
+			<_WindowsManifests Include="../**/package.appxmanifest" Exclude="../**/bin/**;../**/obj/**" />
+		</ItemGroup>
+
+		<Message Text="Assm: Ver $(GITVERSION_MAJOR).$(GITVERSION_MINOR).$(GITVERSION_COMMITSSINCEVERSIONSOURCE)" />
+	</Target>
+
+	<Target Name="UpdateAndroidManifests" Inputs="@(_AndroidManifestFiles)" Outputs="Invalid" AfterTargets="UpdateVersion">
+
+		<XmlUpdate
+			XmlFileName="%(_AndroidManifestFiles.Identity)"
+			XPath="/manifest/@android:versionCode"
+			Value="$(GITVERSION_COMMITSSINCEVERSIONSOURCE)"
+			Namespace="http://schemas.android.com/apk/res/android"
+			Prefix="android" />
+		
+	</Target>
+
+	<Target Name="UpdateWindowsManifests" Inputs="@(_windowsManifests)" Outputs="Invalid" AfterTargets="UpdateVersion">
+
+		<XmlUpdate
+			XmlFileName="%(_windowsManifests.Identity)"
+			XPath="/x:Package/x:Identity/@Version"
+			Value="$(GITVERSION_MAJOR).$(GITVERSION_MINOR).$(GITVERSION_COMMITSSINCEVERSIONSOURCE).0"
+			Namespace="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+			Prefix="x"/>
+	</Target>
+
+	<Target Name="UpdatePLists" Inputs="@(_PListFiles)" Outputs="Invalid" AfterTargets="UpdateVersion">
+
+		<Message Text="Updating %(_PListFiles.Identity)" Importance="high" 	/>
+		
+		<XmlUpdate XmlFileName="%(_PListFiles.Identity)"
+								XPath="//plist/dict/key[text() = 'CFBundleShortVersionString']/following-sibling::string[1]"
+								Value="$(GITVERSION_MAJOR).$(GITVERSION_MINOR)" />
+
+		<XmlUpdate XmlFileName="%(_PListFiles.Identity)"
+								XPath="//plist/dict/key[text() = 'CFBundleVersion']/following-sibling::string[1]"
+								Value="$(GITVERSION_COMMITSSINCEVERSIONSOURCE)" />
+	</Target>
+
+
+</Project>
