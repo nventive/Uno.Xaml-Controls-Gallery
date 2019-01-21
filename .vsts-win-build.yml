@@ -27,6 +27,9 @@ jobs:
       versionSpec: 4.7.0
       checkLatest: false
 
+  - powershell: .\build\Install-WindowsSdkISO.ps1 17763
+    displayName: Install Windows SDK 17763
+
   - task: MSBuild@1
     inputs:
       solution: build/Build.csproj
