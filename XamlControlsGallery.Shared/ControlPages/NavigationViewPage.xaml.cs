@@ -113,7 +113,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                Debug.WriteLine("Before hitting sample page 1");
+                System.Diagnostics.Debug.WriteLine("Before hitting sample page 1");
 
                 var selectedItem = (Category)args.SelectedItem;
                 string selectedItemTag = selectedItem.Name;

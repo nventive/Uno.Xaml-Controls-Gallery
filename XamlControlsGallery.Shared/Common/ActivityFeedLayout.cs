@@ -5,15 +5,15 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using LayoutContext = Windows.UI.Xaml.Controls.LayoutContext;
-using VirtualizingLayout = Windows.UI.Xaml.Controls.VirtualizingLayout;
-using VirtualizingLayoutContext = Windows.UI.Xaml.Controls.VirtualizingLayoutContext;
+using LayoutContext = Microsoft.UI.Xaml.Controls.LayoutContext;
+using VirtualizingLayout = Microsoft.UI.Xaml.Controls.VirtualizingLayout;
+using VirtualizingLayoutContext = Microsoft.UI.Xaml.Controls.VirtualizingLayoutContext;
 
 namespace AppUIBasics.Common
 {
     class ActivityFeedLayout : VirtualizingLayout
     {
-        #region Layout parameters
+#region Layout parameters
 
         // We'll cache copies of the dependency properties to avoid calling GetValue during layout since that
         // can be quite expensive due to the number of times we'd end up calling these.
@@ -89,9 +89,9 @@ namespace AppUIBasics.Common
             layout.InvalidateMeasure();
         }
 
-        #endregion
+#endregion
 
-        #region Setup / teardown
+#region Setup / teardown
 
         protected override void InitializeForContextCore(VirtualizingLayoutContext context)
         {
@@ -115,9 +115,9 @@ namespace AppUIBasics.Common
             context.LayoutState = null;
         }
 
-        #endregion
+#endregion
 
-        #region Layout
+#region Layout
 
         protected override Size MeasureOverride(VirtualizingLayoutContext context, Size availableSize)
         {
@@ -206,8 +206,8 @@ namespace AppUIBasics.Common
             return finalSize;
         }
 
-        #endregion
-        #region Helper methods
+#endregion
+#region Helper methods
 
         private Rect[] CalculateLayoutBoundsForRow(int rowIndex, double desiredItemWidth)
         {
@@ -245,7 +245,7 @@ namespace AppUIBasics.Common
             return boundsForRow;
         }
 
-        #endregion
+#endregion
     }
 
     internal class ActivityFeedLayoutState

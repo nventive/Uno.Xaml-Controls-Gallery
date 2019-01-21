@@ -108,11 +108,13 @@ namespace AppUIBasics
 
         private void rootGrid_Loaded(object sender, RoutedEventArgs e)
         {
+#if NETFX_CORE // UNO TODO
             if ((ushort)MinimumUniversalAPIContract == 0) return;
             if (!(ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", (ushort)MinimumUniversalAPIContract)))
             {
                 ErrorTextBlock.Visibility = Visibility.Visible;
             }
+#endif
         }
 
         private Uri GetDerivedSource(Uri rawSource)

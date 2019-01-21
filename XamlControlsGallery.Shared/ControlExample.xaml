@@ -1,6 +1,7 @@
 ﻿<UserControl
     x:Class="AppUIBasics.ControlExample"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
@@ -68,12 +69,12 @@
 
         <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,15" Text="{x:Bind HeaderText}" />
 
-        <RichTextBlock x:Name="ErrorTextBlock" Visibility="Collapsed" Grid.Row="1" Margin="0,0,0,12" Foreground="Red" IsTextSelectionEnabled="True">
+        <win:RichTextBlock x:Name="ErrorTextBlock" Visibility="Collapsed" Grid.Row="1" Margin="0,0,0,12" Foreground="Red" IsTextSelectionEnabled="True">
             <Paragraph>
                 This sample requires a later version of Windows to be fully functional. Learn more about version adaptive apps:
                 <Hyperlink NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/version-adaptive-apps">https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/version-adaptive-apps</Hyperlink>
             </Paragraph>
-        </RichTextBlock>
+        </win:RichTextBlock>
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>

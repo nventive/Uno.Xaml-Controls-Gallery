@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace AppUIBasics
 {
-    public abstract class ItemsPageBase : Page, INotifyPropertyChanged
+    public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

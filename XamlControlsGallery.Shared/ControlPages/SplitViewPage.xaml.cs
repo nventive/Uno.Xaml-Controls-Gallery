@@ -45,7 +45,7 @@ namespace AppUIBasics.ControlPages
 
         private void togglePaneButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Window.Current.Bounds.Width >= 640)
+            if (Windows.UI.Xaml.Window.Current.Bounds.Width >= 640)
             {
                 if (splitView.IsPaneOpen)
                 {

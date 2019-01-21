@@ -30,15 +30,14 @@ namespace AppUIBasics.ControlPages
         {
             myImageBorder.BorderBrush = new SolidColorBrush(Colors.Blue);
 
+#if NETFX_CORE // UNO TODO
             if (wasLeftPointerPressed)
             {
                 if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
                 {
                     FlyoutShowOptions myOption = new FlyoutShowOptions();
                     myOption.ShowMode = FlyoutShowMode.Transient;
-#if NETFX_CORE // UNO TODO
                     myOption.Placement = FlyoutPlacementMode.RightEdgeAlignedTop;
-#endif
                     CommandBarFlyout1.ShowAt(Image1, myOption);
                 }
                 else
@@ -47,6 +46,7 @@ namespace AppUIBasics.ControlPages
                 }
                 wasLeftPointerPressed = false;
             }
+#endif
             args.Handled = true;
         }
 

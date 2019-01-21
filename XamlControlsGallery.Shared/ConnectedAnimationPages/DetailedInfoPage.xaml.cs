@@ -21,6 +21,7 @@ namespace AppUIBasics.ConnectedAnimationPages
             // Store the item to be used in binding to UI
             DetailedObject = e.Parameter as CustomDataObject;
 
+#if NETFX_CORE // UNO TODO
             ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ForwardConnectedAnimation");
             if (imageAnimation != null)
             {
@@ -28,6 +29,7 @@ namespace AppUIBasics.ConnectedAnimationPages
                 imageAnimation.TryStart(detailedImage, new UIElement[] { coordinatedPanel });
 
             }
+#endif
         }
 
         // Create connected animation back to collection page.
@@ -35,7 +37,9 @@ namespace AppUIBasics.ConnectedAnimationPages
         {
             base.OnNavigatingFrom(e);
 
+#if NETFX_CORE // UNO TODO
             ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("BackConnectedAnimation", detailedImage);
+#endif
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

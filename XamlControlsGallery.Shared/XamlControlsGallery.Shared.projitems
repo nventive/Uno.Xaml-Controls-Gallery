@@ -69,7 +69,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\PickerIcon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\ProgressIcon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\TextIcon.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\new.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\newdemo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ninegrid.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ParallaxView.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\PasswordBox.png" />

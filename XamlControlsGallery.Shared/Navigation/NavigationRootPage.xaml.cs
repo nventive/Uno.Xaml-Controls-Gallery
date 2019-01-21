@@ -83,14 +83,14 @@ namespace AppUIBasics
                 // helpful for debugging focus problems w/ keyboard & gamepad
                 if (FocusManager.GetFocusedElement() is FrameworkElement focus)
                 {
-                    Debug.WriteLine("got focus: " + focus.Name + " (" + focus.GetType().ToString() + ")");
+                    System.Diagnostics.Debug.WriteLine("got focus: " + focus.Name + " (" + focus.GetType().ToString() + ")");
                 }
             };
 
             Gamepad.GamepadAdded += OnGamepadAdded;
             Gamepad.GamepadRemoved += OnGamepadRemoved;
 
-            Window.Current.SetTitleBar(AppTitleBar);
+            Windows.UI.Xaml.Window.Current.SetTitleBar(AppTitleBar);
 
 #if NETFX_CORE
             CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle(s);

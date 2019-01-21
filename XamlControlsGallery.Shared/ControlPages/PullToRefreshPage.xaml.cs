@@ -73,8 +73,10 @@ namespace AppUIBasics.ControlPages
                 ptrImage.Width = 35;
                 ptrImage.Height = 35;
 
+#if NETFX_CORE  // UNO TODO
                 rv2.Content = ptrImage;
                 rc2.Visualizer = rv2;
+#endif
 
                 ListView lv2 = new ListView();
                 lv2.Width = 200;

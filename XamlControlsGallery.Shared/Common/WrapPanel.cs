@@ -18,7 +18,7 @@ namespace AppUIBasics
     /// positioned in the next row or column.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
-    public class WrapPanel : Panel
+    public partial class WrapPanel : Panel
     {
         /// <summary>
         /// A value indicating whether a dependency property change handler
@@ -344,43 +344,45 @@ namespace AppUIBasics
             int lineStart = 0;
             for (int lineEnd = 0; lineEnd < count; lineEnd++)
             {
-                UIElement element = children[lineEnd];
-
-                // Get the size of the element
-                OrientedSize elementSize = new OrientedSize(
-                    o,
-                    hasFixedWidth ? itemWidth : element.DesiredSize.Width,
-                    hasFixedHeight ? itemHeight : element.DesiredSize.Height);
-
-                // If this element falls of the edge of the line
-                if (NumericExtensions.IsGreaterThan(lineSize.Direct + elementSize.Direct, maximumSize.Direct))
+                // UNO TODO
+                if (children[lineEnd] is UIElement element)
                 {
-                    // Then we just completed a line and we should arrange it
-                    ArrangeLine(lineStart, lineEnd, directDelta, indirectOffset, lineSize.Indirect);
+                    // Get the size of the element
+                    OrientedSize elementSize = new OrientedSize(
+                        o,
+                        hasFixedWidth ? itemWidth : element.DesiredSize.Width,
+                        hasFixedHeight ? itemHeight : element.DesiredSize.Height);
 
-                    // Move the current element to a new line
-                    indirectOffset += lineSize.Indirect;
-                    lineSize = elementSize;
-
-                    // If the current element is larger than the maximum size
-                    if (NumericExtensions.IsGreaterThan(elementSize.Direct, maximumSize.Direct))
+                    // If this element falls of the edge of the line
+                    if (NumericExtensions.IsGreaterThan(lineSize.Direct + elementSize.Direct, maximumSize.Direct))
                     {
-                        // Arrange the element as a single line
-                        ArrangeLine(lineEnd, ++lineEnd, directDelta, indirectOffset, elementSize.Indirect);
+                        // Then we just completed a line and we should arrange it
+                        ArrangeLine(lineStart, lineEnd, directDelta, indirectOffset, lineSize.Indirect);
 
-                        // Move to a new line
+                        // Move the current element to a new line
                         indirectOffset += lineSize.Indirect;
-                        lineSize = new OrientedSize(o);
-                    }
+                        lineSize = elementSize;
 
-                    // Advance the start index to a new line after arranging
-                    lineStart = lineEnd;
-                }
-                else
-                {
-                    // Otherwise just add the element to the end of the line
-                    lineSize.Direct += elementSize.Direct;
-                    lineSize.Indirect = Math.Max(lineSize.Indirect, elementSize.Indirect);
+                        // If the current element is larger than the maximum size
+                        if (NumericExtensions.IsGreaterThan(elementSize.Direct, maximumSize.Direct))
+                        {
+                            // Arrange the element as a single line
+                            ArrangeLine(lineEnd, ++lineEnd, directDelta, indirectOffset, elementSize.Indirect);
+
+                            // Move to a new line
+                            indirectOffset += lineSize.Indirect;
+                            lineSize = new OrientedSize(o);
+                        }
+
+                        // Advance the start index to a new line after arranging
+                        lineStart = lineEnd;
+                    }
+                    else
+                    {
+                        // Otherwise just add the element to the end of the line
+                        lineSize.Direct += elementSize.Direct;
+                        lineSize.Indirect = Math.Max(lineSize.Indirect, elementSize.Indirect);
+                    }
                 }
             }
 
@@ -422,22 +424,24 @@ namespace AppUIBasics
             for (int index = lineStart; index < lineEnd; index++)
             {
                 // Get the size of the element
-                UIElement element = children[index];
-                OrientedSize elementSize = new OrientedSize(o, element.DesiredSize.Width, element.DesiredSize.Height);
+                if (children[index] is UIElement element)
+                {
+                    OrientedSize elementSize = new OrientedSize(o, element.DesiredSize.Width, element.DesiredSize.Height);
 
-                // Determine if we should use the element's desired size or the
-                // fixed item width or height
-                double directGrowth = directDelta != null ?
-                    directDelta.Value :
-                    elementSize.Direct;
+                    // Determine if we should use the element's desired size or the
+                    // fixed item width or height
+                    double directGrowth = directDelta != null ?
+                        directDelta.Value :
+                        elementSize.Direct;
 
-                // Arrange the element
-                Rect bounds = isHorizontal ?
-                    new Rect(directOffset, indirectOffset, directGrowth, indirectGrowth) :
-                    new Rect(indirectOffset, directOffset, indirectGrowth, directGrowth);
-                element.Arrange(bounds);
+                    // Arrange the element
+                    Rect bounds = isHorizontal ?
+                        new Rect(directOffset, indirectOffset, directGrowth, indirectGrowth) :
+                        new Rect(indirectOffset, directOffset, indirectGrowth, directGrowth);
+                    element.Arrange(bounds);
 
-                directOffset += directGrowth;
+                    directOffset += directGrowth;
+                }
             }
         }
     }

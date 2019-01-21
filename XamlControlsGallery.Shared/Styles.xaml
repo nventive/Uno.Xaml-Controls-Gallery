@@ -9,13 +9,13 @@
     xmlns:xamarin="http://uno.ui/xamarin"
 	mc:Ignorable="d xamarin">
     
-    <win:ResourceDictionary>
+    <!--<win:ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
             <local:ItemTemplates />
             <XamlControlsResources xmlns="using:Windows.UI.Xaml.Controls"/>
         </ResourceDictionary.MergedDictionaries>
 
-    </win:ResourceDictionary>
+    </win:ResourceDictionary>-->
 
     <win:ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
@@ -68,13 +68,13 @@
 
     <x:String x:Key="AppName">All controls</x:String>
 
-    <Style x:Key="XamlCodeRichTextBlockStyle" TargetType="RichTextBlock">
+    <win:Style x:Key="XamlCodeRichTextBlockStyle" TargetType="RichTextBlock">
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontFamily" Value="Consolas" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextWrapping" Value="NoWrap" />
-    </Style>
+    </win:Style>
 
     <Style x:Key="OutputTextBlockStyle" BasedOn="{StaticResource BodyTextBlockStyle}" TargetType="TextBlock">
         <Setter Property="Margin" Value="8,8,0,0" />

@@ -78,7 +78,7 @@ namespace AppUIBasics.ControlPages
                 itemTemplateKey = "VerticalBarTemplate";
             }
 
-            repeater.Layout = Resources[layoutKey] as Windows.UI.Xaml.Controls.VirtualizingLayout;
+            repeater.Layout = Resources[layoutKey] as Microsoft.UI.Xaml.Controls.VirtualizingLayout;
             repeater.ItemTemplate = Resources[itemTemplateKey] as DataTemplate;
             repeater.ItemsSource = BarItems;
 
@@ -92,7 +92,7 @@ namespace AppUIBasics.ControlPages
         {
             string layoutKey = ((FrameworkElement)sender).Tag as string;
 
-            repeater2.Layout = Resources[layoutKey] as Windows.UI.Xaml.Controls.VirtualizingLayout;
+            repeater2.Layout = Resources[layoutKey] as Microsoft.UI.Xaml.Controls.VirtualizingLayout;
 
             layout2.Text = layoutKey;
         }
@@ -124,7 +124,7 @@ namespace AppUIBasics.ControlPages
                 repeater.MaxWidth = 540;
             }
 
-            repeater.Layout = Resources[layoutKey] as Windows.UI.Xaml.Controls.VirtualizingLayout;
+            repeater.Layout = Resources[layoutKey] as Microsoft.UI.Xaml.Controls.VirtualizingLayout;
             repeater.ItemTemplate = Resources[itemTemplateKey] as DataTemplate;
             repeater.ItemsSource = BarItems;
 

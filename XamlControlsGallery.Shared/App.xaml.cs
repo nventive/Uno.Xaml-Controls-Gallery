@@ -9,7 +9,6 @@
 //*********************************************************
 using AppUIBasics.Common;
 using AppUIBasics.Data;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -26,6 +25,10 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+#if HAS_UNO
+using Microsoft.Extensions.Logging;
+#endif
 
 namespace AppUIBasics
 {
@@ -44,7 +47,7 @@ namespace AppUIBasics
         {
             get
             {
-                if (Window.Current.Content is FrameworkElement rootElement)
+                if (Windows.UI.Xaml.Window.Current.Content is FrameworkElement rootElement)
                 {
                     if (rootElement.RequestedTheme != ElementTheme.Default)
                     {
@@ -63,7 +66,7 @@ namespace AppUIBasics
         {
             get
             {
-                if (Window.Current.Content is FrameworkElement rootElement)
+                if (Windows.UI.Xaml.Window.Current.Content is FrameworkElement rootElement)
                 {
                     return rootElement.RequestedTheme;
                 }
@@ -72,7 +75,7 @@ namespace AppUIBasics
             }
             set
             {
-                if (Window.Current.Content is FrameworkElement rootElement)
+                if (Windows.UI.Xaml.Window.Current.Content is FrameworkElement rootElement)
                 {
                     rootElement.RequestedTheme = value;
                 }
@@ -87,7 +90,7 @@ namespace AppUIBasics
         /// </summary>
         public App()
         {
-#if DEBUG
+#if HAS_UNO && DEBUG
             ConfigureFilters(Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 #endif
 
@@ -259,16 +262,16 @@ namespace AppUIBasics
             }
 
             rootFrame.Navigate(targetPageType, targetPageArguments);
-            ((Windows.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
+            ((Windows.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Windows.UI.Xaml.Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
 
             // Ensure the current window is active
-            Window.Current.Activate();
+            Windows.UI.Xaml.Window.Current.Activate();
         }
 
         private Frame GetRootFrame()
         {
             Frame rootFrame;
-            NavigationRootPage rootPage = Window.Current.Content as NavigationRootPage;
+            NavigationRootPage rootPage = Windows.UI.Xaml.Window.Current.Content as NavigationRootPage;
             if (rootPage == null)
             {
                 rootPage = new NavigationRootPage();
@@ -283,7 +286,7 @@ namespace AppUIBasics
 #endif
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Window.Current.Content = rootPage;
+                Windows.UI.Xaml.Window.Current.Content = rootPage;
             }
             else
             {
@@ -317,7 +320,7 @@ namespace AppUIBasics
             deferral.Complete();
         }
 
-
+#if HAS_UNO
         static void ConfigureFilters(ILoggerFactory factory)
         {
             factory
@@ -349,6 +352,6 @@ namespace AppUIBasics
                 )
                 .AddConsole(LogLevel.Debug);
         }
-
+#endif
     }
 }

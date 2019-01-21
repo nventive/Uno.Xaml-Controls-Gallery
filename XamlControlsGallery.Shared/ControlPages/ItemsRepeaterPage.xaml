@@ -6,7 +6,7 @@
     xmlns:local="using:AppUIBasics"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:muxcontrols="using:Windows.UI.Xaml.Controls"
+    xmlns:muxcontrols="using:Microsoft.UI.Xaml.Controls"
     xmlns:l="using:AppUIBasics.ControlPages"
     xmlns:common="using:AppUIBasics.Common"
     mc:Ignorable="d" FontFamily="Segoe UI">
