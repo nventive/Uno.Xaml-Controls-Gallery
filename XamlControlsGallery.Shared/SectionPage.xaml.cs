@@ -33,7 +33,13 @@ namespace AppUIBasics
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = menuItem.Content;
 
-            Items = group.Items.OrderBy(i => i.Title).ToList();
+            Items = group.Items
+                .OrderByDescending(i => i.IsUno)
+                .ThenBy(i => i.Title)
+#if !DEBUG
+                .Where(i => i.IsUno)
+#endif
+                .ToList();
         }
 
         protected override bool GetIsNarrowLayoutState()

@@ -14,12 +14,6 @@
                 Background="{ThemeResource SystemControlBackgroundListLowBrush}">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="LayoutVisualStates">
-                        <VisualState x:Name="WideLayout">
-                            <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters />
-                        </VisualState>
                         <VisualState x:Name="NarrowLayout">
                             <VisualState.StateTriggers>
                                 <AdaptiveTrigger MinWindowWidth="0" />
@@ -28,6 +22,13 @@
                                 <Setter Target="controlRoot.Width" Value="Auto" />
                                 <Setter Target="controlRoot.Height" Value="120" />
                             </VisualState.Setters>
+                        </VisualState>
+                        <!-- UNO TODO Adjust triggers ordering -->
+                        <VisualState x:Name="WideLayout">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters />
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
@@ -45,17 +46,30 @@
                     Source="{x:Bind ImagePath}"
                     Stretch="Uniform" />
 
-                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0" 
-                           TextWrapping="Wrap"
-                           Foreground="Gray"
-                           Visibility="{x:Bind IsUno, Converter={StaticResource nullToVisibilityConverter}}">
-                    <Run Text="The "/>
-                    <Run Text="{x:Bind Title}"/>
-                    <Run Text=" sample is not available for the Uno Platform" />
-                </TextBlock>
+                <RelativePanel Grid.Column="1" 
+                               Grid.ColumnSpan="2" 
+                               Margin="16,6,0,0" 
+                               Visibility="{x:Bind IsUno, Converter={StaticResource negationConverter}}">
+                    <TextBlock
+                        x:Name="notAvailableTitleText"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                        Text="{x:Bind Title}"
+                        Foreground="Gray"
+                        TextLineBounds="TrimToCapHeight"
+                        TextWrapping="NoWrap" />
+
+                    <TextBlock 
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        Margin="0,4,16,0"
+                        RelativePanel.Below="notAvailableTitleText"
+                        TextTrimming="CharacterEllipsis"
+                        Foreground="Gray">
+                        <Run Text="This sample is not available for the Uno Platform"/>
+                    </TextBlock>
+                </RelativePanel>
 
                 <RelativePanel Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0" 
-                               Visibility="{x:Bind IsUno, Converter={StaticResource inverseNullToVisibilityConverter}}">
+                               Visibility="{x:Bind IsUno}">
                     <TextBlock
                         x:Name="titleText"
                         Style="{StaticResource SubtitleTextBlockStyle}"
