@@ -6,7 +6,7 @@
     <WasmHead>true</WasmHead>
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
     <NoWarn>NU1701,Uno0001</NoWarn>
-    <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
+    <MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Fonts\winjs-symbols.woff2" />
@@ -28,9 +28,9 @@
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.143" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.145" />
     
-    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.137" />
+    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.145" />
 	</ItemGroup>
   <Import Project="..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems" Label="Shared" Condition="Exists('..\AppUIBasics.Shared\AppUIBasics.Shared.projitems')" />
   <Import Project="..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems" Label="Shared" />

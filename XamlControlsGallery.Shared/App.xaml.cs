@@ -90,7 +90,7 @@ namespace AppUIBasics
         /// </summary>
         public App()
         {
-#if HAS_UNO && DEBUG
+#if HAS_UNO
             ConfigureFilters(Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 #endif
 
@@ -324,6 +324,7 @@ namespace AppUIBasics
         static void ConfigureFilters(ILoggerFactory factory)
         {
             factory
+#if DEBUG
                 .WithFilter(new FilterLoggerSettings
                     {
                         { "Uno", LogLevel.Warning },
@@ -351,6 +352,9 @@ namespace AppUIBasics
 					}
                 )
                 .AddConsole(LogLevel.Debug);
+#else
+                .AddConsole(LogLevel.Error);
+#endif
         }
 #endif
     }
