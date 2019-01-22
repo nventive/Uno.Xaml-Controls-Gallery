@@ -25,7 +25,6 @@
       "Items": [
         {
           "UniqueId": "UICommand",
-          "IsUno": true,
           "Title": "XamlUICommand",
           "Subtitle": "An object which is used to define the look and feel of a given command",
           "ImagePath": "ms-appx:///Assets/AppBarSeparator.png",
@@ -50,6 +49,7 @@
         },
         {
           "UniqueId": "AppBarButton",
+          "IsUno": true,
           "Title": "AppBarButton",
           "Subtitle": "A button that's styled for use in a CommandBar.",
           "ImagePath": "ms-appx:///Assets/AppBarButton.png",
@@ -86,6 +86,7 @@
         },
         {
           "UniqueId": "AppBarSeparator",
+          "IsUno": true,
           "Title": "AppBarSeparator",
           "Subtitle": "A vertical line that's used to visually separate groups of commands in an app bar.",
           "ImagePath": "ms-appx:///Assets/AppBarSeparator.png",
@@ -110,6 +111,7 @@
         },
         {
           "UniqueId": "AppBarToggleButton",
+          "IsUno": true,
           "Title": "AppBarToggleButton",
           "Subtitle": "A button that can be on, off, or indeterminate like a CheckBox, and is styled for use in an app bar or other specialized UI.",
           "ImagePath": "ms-appx:///Assets/AppBarToggleButton.png",
@@ -327,6 +329,7 @@
         },
         {
           "UniqueId": "GridView",
+          "IsUno": true,
           "Title": "GridView",
           "Subtitle": "Presents a collection of items in rows and columns that can scroll horizontally.",
           "ImagePath": "ms-appx:///Assets/GridView.png",
@@ -377,6 +380,7 @@
         },
         {
           "UniqueId": "ListView",
+          "IsUno": true,
           "Title": "ListView",
           "Subtitle": "Presents a collection of items in a list that can scroll vertically.",
           "ImagePath": "ms-appx:///Assets/ListView.png",
@@ -594,6 +598,7 @@
       "Items": [
         {
           "UniqueId": "Button",
+          "IsUno": true,
           "Title": "Button",
           "Subtitle": "A control that responds to user input and raises a Click event.",
           "ImagePath": "ms-appx:///Assets/Button.png",
@@ -647,6 +652,7 @@
         },
         {
           "UniqueId": "HyperlinkButton",
+          "IsUno": true,
           "Title": "HyperlinkButton",
           "Subtitle": "A button that appears as hyperlink text, and can navigate to a URI or handle a Click event.",
           "ImagePath": "ms-appx:///Assets/HyperlinkButton.png",
@@ -697,6 +703,7 @@
         },
         {
           "UniqueId": "ToggleButton",
+          "IsUno": true,
           "Title": "ToggleButton",
           "Subtitle": "A button that can be switched between two states like a CheckBox.",
           "ImagePath": "ms-appx:///Assets/ToggleButton.png",
@@ -779,6 +786,7 @@
         },
         {
           "UniqueId": "CheckBox",
+          "IsUno": true,
           "Title": "CheckBox",
           "Subtitle": "A control that a user can select or clear.",
           "ImagePath": "ms-appx:///Assets/CheckBox.png",
@@ -825,6 +833,7 @@
         },
         {
           "UniqueId": "ComboBox",
+          "IsUno": true,
           "Title": "ComboBox",
           "Subtitle": "A drop-down list of items a user can select from.",
           "ImagePath": "ms-appx:///Assets/ComboBox.png",
@@ -857,6 +866,7 @@
         },
         {
           "UniqueId": "RadioButton",
+          "IsUno": true,
           "Title": "RadioButton",
           "Subtitle": "A control that allows a user to select a single option from a group of options. When radio buttons are grouped together they are mutually exclusive.",
           "ImagePath": "ms-appx:///Assets/RadioButton.png",
@@ -904,6 +914,7 @@
         },
         {
           "UniqueId": "Slider",
+          "IsUno": true,
           "Title": "Slider",
           "Subtitle": "A control that lets the user select from a range of values by moving a Thumb control along a track.",
           "ImagePath": "ms-appx:///Assets/Slider.png",
@@ -928,6 +939,7 @@
         },
         {
           "UniqueId": "ToggleSwitch",
+          "IsUno": true,
           "Title": "ToggleSwitch",
           "Subtitle": "A switch that can be toggled between 2 states.",
           "ImagePath": "ms-appx:///Assets/ToggleSwitch.png",
@@ -962,6 +974,7 @@
       "Items": [
         {
           "UniqueId": "ProgressBar",
+          "IsUno": true,
           "Title": "ProgressBar",
           "Subtitle": "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction.",
           "ImagePath": "ms-appx:///Assets/ProgressBar.png",
@@ -1062,6 +1075,7 @@
         },
         {
           "UniqueId": "Flyout",
+          "IsUno": true,
           "Title": "Flyout",
           "Subtitle": "Shows contextual information and enables user interaction.",
           "ImagePath": "ms-appx:///Assets/Flyout.png",
@@ -1096,6 +1110,7 @@
       "Items": [
         {
           "UniqueId": "ScrollViewer",
+          "IsUno": true,
           "Title": "ScrollViewer",
           "Subtitle": "A container control that lets the user pan and zoom its content.",
           "ImagePath": "ms-appx:///Assets/ScrollViewer.png",
@@ -1156,6 +1171,7 @@
       "Items": [
         {
           "UniqueId": "Border",
+          "IsUno": true,
           "Title": "Border",
           "Subtitle": "A container control that draws a boundary line, background, or both, around another object.",
           "ImagePath": "ms-appx:///Assets/Border.png",
@@ -1182,6 +1198,7 @@
         },
         {
           "UniqueId": "Canvas",
+          "IsUno": true,
           "Title": "Canvas",
           "Subtitle": "A layout panel that supports absolute positioning of child elements relative to the top left corner of the canvas.",
           "ImagePath": "ms-appx:///Assets/Canvas.png",
@@ -1228,6 +1245,7 @@
         },
         {
           "UniqueId": "Grid",
+          "IsUno": true,
           "Title": "Grid",
           "Subtitle": "A layout panel that supports arranging child elements in rows and columns. ",
           "ImagePath": "ms-appx:///Assets/Grid.png",
@@ -1254,6 +1272,7 @@
         },
         {
           "UniqueId": "RelativePanel",
+          "IsUno": true,
           "Title": "RelativePanel",
           "Subtitle": "A panel that uses relationships between elements to define layout.",
           "ImagePath": "ms-appx:///Assets/RelativePanel.png",
@@ -1280,6 +1299,7 @@
         },
         {
           "UniqueId": "SplitView",
+          "IsUno": true,
           "Title": "SplitView",
           "Subtitle": "A container that has 2 content areas, with multiple display options for the pane.",
           "ImagePath": "ms-appx:///Assets/SplitView.png",
@@ -1306,6 +1326,7 @@
         },
         {
           "UniqueId": "StackPanel",
+          "IsUno": true,
           "Title": "StackPanel",
           "Subtitle": "A layout panel that arranges child elements into a single line that can be oriented horizontally or vertically.",
           "ImagePath": "ms-appx:///Assets/StackPanel.png",
@@ -1418,6 +1439,7 @@
         },
         {
           "UniqueId": "NavigationView",
+          "IsUno": true,
           "Title": "NavigationView",
           "Subtitle": "Common vertical layout for top-level areas of your app via a collapsible navigation menu.",
           "ImagePath": "ms-appx:///Assets/NavigationView.png",
@@ -1441,6 +1463,7 @@
         },
         {
           "UniqueId": "Pivot",
+          "IsUno": true,
           "Title": "Pivot",
           "Subtitle": "Presents information from different sources in a tabbed view.",
           "ImagePath": "ms-appx:///Assets/Pivot.png",
@@ -1475,6 +1498,7 @@
       "Items": [
         {
           "UniqueId": "Image",
+          "IsUno": true,
           "Title": "Image",
           "Subtitle": "A control to display image content.",
           "ImagePath": "ms-appx:///Assets/Image.png",
@@ -1545,6 +1569,7 @@
         },
         {
           "UniqueId": "MediaPlayerElement",
+          "IsUno": true,
           "Title": "MediaPlayerElement",
           "Subtitle": "A control to display video and image content.",
           "ImagePath": "ms-appx:///Assets/MediaElement.png",
@@ -1609,6 +1634,7 @@
         },
         {
           "UniqueId": "WebView",
+          "IsUno": true,
           "Title": "WebView",
           "Subtitle": "A control that hosts HTML content in an app.",
           "ImagePath": "ms-appx:///Assets/WebView.png",
@@ -1751,6 +1777,7 @@
       "Items": [
         {
           "UniqueId": "AutoSuggestBox",
+          "IsUno": true,
           "Title": "AutoSuggestBox",
           "Subtitle": "A control to provide suggestions as a user is typing.",
           "ImagePath": "ms-appx:///Assets/AutoSuggestBox.png",
@@ -1775,6 +1802,7 @@
         },
         {
           "UniqueId": "PasswordBox",
+          "IsUno": true,
           "Title": "PasswordBox",
           "Subtitle": "A control for entering passwords.",
           "ImagePath": "ms-appx:///Assets/PasswordBox.png",
@@ -1850,6 +1878,7 @@
         },
         {
           "UniqueId": "TextBlock",
+          "IsUno": true,
           "Title": "TextBlock",
           "Subtitle": "A lightweight control for displaying small amounts of text.",
           "ImagePath": "ms-appx:///Assets/TextBlock.png",
@@ -1875,6 +1904,7 @@
         },
         {
           "UniqueId": "TextBox",
+          "IsUno": true,
           "Title": "TextBox",
           "Subtitle": "A single-line or multi-line plain text field.",
           "ImagePath": "ms-appx:///Assets/TextBox.png",
@@ -1941,6 +1971,7 @@
         },
         {
           "UniqueId": "EasingFunction",
+          "IsUno": true,
           "Title": "Easing Functions",
           "Subtitle": "Easing is a way to manipulate the velocity of an object as it animates.",
           "ImagePath": "ms-appx:///Assets/EasingFunctions.png",

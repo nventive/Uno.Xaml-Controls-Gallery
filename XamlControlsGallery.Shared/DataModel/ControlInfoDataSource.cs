@@ -183,7 +183,12 @@ namespace AppUIBasics.Data
 
         private async Task GetControlInfoDataAsync()
         {
-            lock (_lock)
+            GetControlInfoData();
+        }
+
+        private void GetControlInfoData()
+        {
+                lock (_lock)
             {
                 if (this.Groups.Count() != 0)
                 {
@@ -227,6 +232,10 @@ namespace AppUIBasics.Data
                                     bool isUpdated = itemObject.ContainsKey("IsUpdated") ? (bool)itemObject["IsUpdated"] : false;
                                     bool isPreview = itemObject.ContainsKey("IsPreview") ? (bool)itemObject["IsPreview"] : false;
                                     bool isUno = itemObject.ContainsKey("IsUno") ? (bool)itemObject["IsUno"] : false;
+
+#if NETFX_CORE
+                                    isUno = false;
+#endif
 
                                     if (isNew)
                                     {
