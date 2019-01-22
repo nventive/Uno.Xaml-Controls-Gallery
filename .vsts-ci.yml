@@ -5,3 +5,11 @@ jobs:
     name: Windows
     pool:
       vmImage: 'vs2017-win2016'
+
+- template: .vsts-linux-build.yml
+  parameters:
+    name: Linux
+    pool:
+      name: Default
+      demands:
+      - agent.os -equals Linux
