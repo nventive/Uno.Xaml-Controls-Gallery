@@ -12,6 +12,7 @@
     mc:Ignorable="d" 
     win:Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
     win:FontSize="24">
+    <!-- UNO TODO UserControl is not part of the VisualTree -->
 
     <Grid>
         <VisualStateManager.VisualStateGroups>
@@ -96,8 +97,8 @@
                     x:Name="TitleTextBlock"
                     Style="{StaticResource HeaderTextBlockStyle}"
                     VerticalAlignment="Center"
-                    FontSize="{Binding ElementName=headerControl, Path=FontSize}"
-                    Foreground="{Binding ElementName=headerControl, Path=Foreground}"
+                    FontSize="{Binding ElementName=headerControl, Path=FontSize, FallbackValue=24}"
+                    Foreground="{Binding ElementName=headerControl, Path=Foreground, FallbackValue={ThemeResource SystemControlForegroundBaseHighBrush}}"
                     Text="{x:Bind Title, Mode=OneWay}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
