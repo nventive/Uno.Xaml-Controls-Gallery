@@ -56,28 +56,8 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
+            <!-- UNO TODO state Triggers ordering -->
             <VisualStateGroup x:Name="LayoutVisualStates">
-                <VisualState x:Name="LargeLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1372" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="WideLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="seeAlsoPanel.Width" Value="Auto" />
-                        <Setter Target="seeAlsoPanel.(Grid.Row)" Value="3" />
-                        <Setter Target="seeAlsoPanel.(Grid.Column)" Value="0" />
-                        <Setter Target="seeAlsoPanel.(Grid.ColumnSpan)" Value="3" />
-                        <Setter Target="DocumentationPanel.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="DocumentationPanel.Margin" Value="0" />
-                        <Setter Target="RelatedControlsPanel.(Grid.Row)" Value="0" />
-                        <Setter Target="RelatedControlsPanel.(Grid.Column)" Value="2" />
-                        <Setter Target="RelatedControlsPanel.(Grid.ColumnSpan)" Value="1" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="NarrowLayout">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
@@ -98,6 +78,27 @@
                         <Setter Target="rightMargin.Width" Value="0" />
                         <Setter Target="contentRoot.Padding" Value="14,0" />
                     </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="seeAlsoPanel.Width" Value="Auto" />
+                        <Setter Target="seeAlsoPanel.(Grid.Row)" Value="3" />
+                        <Setter Target="seeAlsoPanel.(Grid.Column)" Value="0" />
+                        <Setter Target="seeAlsoPanel.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="DocumentationPanel.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="DocumentationPanel.Margin" Value="0" />
+                        <Setter Target="RelatedControlsPanel.(Grid.Row)" Value="0" />
+                        <Setter Target="RelatedControlsPanel.(Grid.Column)" Value="2" />
+                        <Setter Target="RelatedControlsPanel.(Grid.ColumnSpan)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LargeLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1372" />
+                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
