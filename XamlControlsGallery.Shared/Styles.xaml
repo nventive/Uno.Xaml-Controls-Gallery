@@ -96,13 +96,14 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style TargetType="TextBox">
+    <!-- UNO TODO Implicit styles don't merge with default styles -->
+    <Style TargetType="TextBox" xamarin:BasedOn="{StaticResource XamlDefaultTextBox}">
         <Setter Property="PlaceholderForeground" Value="{ThemeResource TextControlPlaceholderForeground}" />
     </Style>
 
-    <Style TargetType="ComboBox">
+    <!--<Style TargetType="ComboBox" xamarin:BasedOn="{StaticResource DefaultComboBoxStyle}">
         <Setter Property="PlaceholderForeground" Value="{ThemeResource ComboBoxPlaceHolderForeground}" />
-    </Style>
+    </Style>-->
 
 
     <!-- UNO TODO Moved inner styles outside of the suggest box style -->

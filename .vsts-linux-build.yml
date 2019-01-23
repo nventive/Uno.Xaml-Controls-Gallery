@@ -1,0 +1,54 @@
+parameters:
+  pool: ''
+
+jobs:
+- job: linux
+  pool: ${{ parameters.pool }}
+
+  steps:
+  - checkout: self
+    clean: true
+  
+  - bash: |
+      sudo apt-get update
+      sudo apt-get install libc6
+      cd $(build.sourcesdirectory)
+      wget https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
+      unzip -o ninja-linux.zip -d ninja-linux
+     
+    displayName: 'Install Ninja'
+
+  - bash: |
+      cd $(build.sourcesdirectory)
+      git clone https://github.com/juj/emsdk.git
+      cd emsdk
+      ./emsdk install sdk-1.38.13-64bit
+      ./emsdk activate sdk-1.38.13-64bit
+      cd emscripten/1.38.13
+      patch -N -p1 < $(build.sourcesdirectory)/build/fix-emscripten-7399.diff
+
+    displayName: 'Install Emscripten'
+
+  - bash: |
+      export PATH=$PATH:$(build.sourcesdirectory)/ninja-linux
+      source $(build.sourcesdirectory)/emsdk/emsdk_env.sh
+      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj
+
+  - task: CopyFiles@2
+    displayName: 'Publish Wasm Binaries'
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Wasm/bin/Release/netstandard2.0/dist
+      Contents: '**/*.*'
+      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-wasm
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+
+  - task: PublishBuildArtifacts@1
+    # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
+    condition: eq(variables['System.PullRequest.IsFork'], 'False')
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: xaml-gallery-aot-drop
+      ArtifactType: Container
