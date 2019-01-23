@@ -29,11 +29,6 @@
     <Grid x:Name="rootGrid" Loaded="rootGrid_Loaded">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState x:Name="IntermediateLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="740" />
-                    </VisualState.StateTriggers>
-                </VisualState>
                 <VisualState x:Name="PhoneLayout">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
@@ -45,6 +40,12 @@
                         <Setter Target="OptionsPresenter.(Grid.Column)" Value="0" />
                         <Setter Target="OptionsPresenter.(Grid.ColumnSpan)" Value="2" />
                     </VisualState.Setters>
+                </VisualState>
+                <!-- UNO TODO VisualState evaluation order adjustment -->
+                <VisualState x:Name="IntermediateLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="740" />
+                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
