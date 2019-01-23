@@ -1,6 +1,3 @@
 ﻿<linker>
   <assembly fullname="XamlControlsGallery.Wasm" />
-  <assembly fullname="Uno.UI">
-    <type fullname="Windows.UI.Xaml.Media.BrushConverter" />
-  </assembly>
 </linker>
