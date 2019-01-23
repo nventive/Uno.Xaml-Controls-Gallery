@@ -21,11 +21,6 @@
         <!--  Visual states reflect the application's window size  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LayoutVisualStates">
-                <VisualState x:Name="WideLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                    </VisualState.StateTriggers>
-                </VisualState>
                 <VisualState x:Name="NarrowLayout">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
@@ -34,6 +29,12 @@
                         <Setter Target="itemGridView.Padding" Value="14,0,14,0" />
                         <Setter Target="itemGridView.ItemContainerStyle" Value="{StaticResource GridViewItemStyleSmall}" />
                     </VisualState.Setters>
+                </VisualState>
+                <!-- UNO TODO Adjust setters -->
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>

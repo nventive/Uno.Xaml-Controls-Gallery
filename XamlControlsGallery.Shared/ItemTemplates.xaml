@@ -1,8 +1,12 @@
 ﻿<ResourceDictionary
     x:Class="AppUIBasics.ItemTemplates"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:xamarin="http://uno.ui/xamarin"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:data="using:AppUIBasics.Data">
+    xmlns:data="using:AppUIBasics.Data"
+    mc:Ignorable="d xamarin">
 
     <DataTemplate x:Key="ControlItemTemplate" x:DataType="data:ControlInfoDataItem">
         <UserControl>
@@ -46,7 +50,7 @@
                     Source="{x:Bind ImagePath}"
                     Stretch="Uniform" />
 
-                <RelativePanel Grid.Column="1" 
+                <xamarin:RelativePanel Grid.Column="1" 
                                Grid.ColumnSpan="2" 
                                Margin="16,6,0,0" 
                                Visibility="{x:Bind IsUno, Converter={StaticResource negationConverter}}">
@@ -66,10 +70,10 @@
                         Foreground="Gray">
                         <Run Text="This sample is not available for the Uno Platform"/>
                     </TextBlock>
-                </RelativePanel>
+                </xamarin:RelativePanel>
 
                 <RelativePanel Grid.Column="1" Grid.ColumnSpan="2" Margin="16,6,0,0" 
-                               Visibility="{x:Bind IsUno}">
+                               xamarin:Visibility="{x:Bind IsUno}">
                     <TextBlock
                         x:Name="titleText"
                         Style="{StaticResource SubtitleTextBlockStyle}"

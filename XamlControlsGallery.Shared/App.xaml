@@ -19,7 +19,9 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xxaml" />
+                <local:ItemTemplates />
+                <!--<XamlControlsResources xmlns="using:Windows.UI.Xaml.Controls"/>-->
+                <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

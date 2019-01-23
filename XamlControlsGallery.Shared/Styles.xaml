@@ -8,14 +8,6 @@
  	xmlns:local="using:AppUIBasics"
     xmlns:xamarin="http://uno.ui/xamarin"
 	mc:Ignorable="d xamarin">
-    
-    <!--<win:ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <local:ItemTemplates />
-            <XamlControlsResources xmlns="using:Windows.UI.Xaml.Controls"/>
-        </ResourceDictionary.MergedDictionaries>
-
-    </win:ResourceDictionary>-->
 
     <win:ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">

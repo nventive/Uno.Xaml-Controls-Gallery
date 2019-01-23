@@ -12,6 +12,7 @@
     mc:Ignorable="d" 
     win:Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
     win:FontSize="24">
+    <!-- UNO TODO UserControl is not part of the VisualTree -->
 
     <Grid>
         <VisualStateManager.VisualStateGroups>
@@ -35,16 +36,6 @@
                 </VisualState>
             </VisualStateGroup>
             <VisualStateGroup>
-                <VisualState x:Name="WideLayout">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger x:Name="WideLayoutTrigger" MinWindowWidth="{StaticResource Breakpoint640Plus}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="commandBarBorder.Visibility" Value="Visible" />
-                        <Setter Target="NarrowBackground.Visibility" Value="Collapsed" />
-                        <Setter Target="WideBackground.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="NarrowLayout">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
@@ -58,6 +49,17 @@
                         <Setter Target="headerRoot.VerticalAlignment" Value="Center" />
                         <Setter Target="NarrowBackground.Visibility" Value="Visible" />
                         <Setter Target="WideBackground.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <!-- UNO TODO State Triggers order -->
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger x:Name="WideLayoutTrigger" MinWindowWidth="{StaticResource Breakpoint640Plus}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="commandBarBorder.Visibility" Value="Visible" />
+                        <Setter Target="NarrowBackground.Visibility" Value="Collapsed" />
+                        <Setter Target="WideBackground.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -95,8 +97,8 @@
                     x:Name="TitleTextBlock"
                     Style="{StaticResource HeaderTextBlockStyle}"
                     VerticalAlignment="Center"
-                    FontSize="{Binding ElementName=headerControl, Path=FontSize}"
-                    Foreground="{Binding ElementName=headerControl, Path=Foreground}"
+                    FontSize="{Binding ElementName=headerControl, Path=FontSize, FallbackValue=24}"
+                    Foreground="{Binding ElementName=headerControl, Path=Foreground, FallbackValue={ThemeResource SystemControlForegroundBaseHighBrush}}"
                     Text="{x:Bind Title, Mode=OneWay}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />

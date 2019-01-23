@@ -35,14 +35,18 @@ namespace AppUIBasics
     public partial class ItemPage : Page
     {
         private Compositor _compositor;
-        private ControlInfoDataItem _item;
         private ElementTheme? _currentElementTheme;
 
+
+        // UNO TODO x:Bind evaluation sequence is incorrect for properties
         public ControlInfoDataItem Item
         {
-            get { return _item; }
-            set { _item = value; }
+            get => (ControlInfoDataItem)GetValue(ItemProperty);
+            set => SetValue(ItemProperty, value);
         }
+
+        public static readonly DependencyProperty ItemProperty =
+            DependencyProperty.Register("Item", typeof(ControlInfoDataItem), typeof(ItemPage), new PropertyMetadata(null));
 
         public ItemPage()
         {

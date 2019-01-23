@@ -14,10 +14,12 @@
     <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1677/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1677/ubuntu-1804-amd64/wasm-release-Linux-c11a3cdd535670e9f7e0282431a608081f5316e9.zip</MonoWasmAOTSDKUri>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Fonts\SEGMDL2.TTF" />
     <None Remove="Fonts\winjs-symbols.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fonts\winjs-symbols.woff2" />
+    <Content Include="Fonts\*.woff2" />
+    <Content Include="Fonts\*.TTF" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
@@ -29,7 +31,7 @@
   <ItemGroup>
     <PackageReference Include="Uno.ColorCode.UWP" Version="2.0.5-gd0f1a63314" />
     <PackageReference Include="Uno.SourceGenerationTasks" Version="1.29.0-dev.239" />
-    <PackageReference Include="Uno.UI" Version="1.43.0-dev.680" />
+    <PackageReference Include="Uno.UI" Version="1.43.0-dev.687" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1-uno.28" />
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
