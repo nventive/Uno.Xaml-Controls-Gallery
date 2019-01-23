@@ -126,9 +126,7 @@ namespace AppUIBasics
                 {
                     item.Icon = new FontIcon()
                     {
-#if NETFX_CORE
                         FontFamily = new FontFamily("Segoe MDL2 Assets"),
-#endif
                         Glyph = group.ImagePath
                     };
                 }

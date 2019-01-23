@@ -1,4 +1,9 @@
 ﻿@font-face {
-	font-family: "Symbols";
-	src: url("Fonts/winjs-symbols.woff2") format('woff');
+    font-family: "Symbols";
+    src: url("Fonts/winjs-symbols.woff2") format('woff');
+}
+
+@font-face {
+    font-family: "Segoe MDL2 Assets";
+    src: url("Fonts/SEGMDL2.TTF") format('truetype');
 }
