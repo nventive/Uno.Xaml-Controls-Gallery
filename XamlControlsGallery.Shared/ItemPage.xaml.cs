@@ -154,8 +154,8 @@ namespace AppUIBasics
                 // UNO TODO, path parsing for resource files is incorrect
                 string pageRoot = typeof(ControlPages.BorderPage).Namespace + ".";
 #endif
-
-                string pageString = pageRoot + item.UniqueId + "Page";
+                // Mono-wasm requires a fully qualified assembly name
+                string pageString = pageRoot + item.UniqueId + "Page, " + typeof(ControlPages.BorderPage).Assembly.FullName;
                 Type pageType = Type.GetType(pageString);
 
                 if (pageType != null)
