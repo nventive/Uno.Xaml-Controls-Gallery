@@ -11,6 +11,7 @@ using AppUIBasics.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -77,17 +78,32 @@ namespace AppUIBasics.ControlPages
         #region Public Methods
         public static async Task<ObservableCollection<Contact>> GetContactsAsync()
         {
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Contacts.txt"));
-            IList<string> lines = await FileIO.ReadLinesAsync(file);
+            var resName = typeof(Contact).Assembly.GetManifestResourceNames().FirstOrDefault(f => f.EndsWith("Contacts.txt"));
 
-            var contacts = new ObservableCollection<Contact>();
-
-            for (int i = 0; i < lines.Count; i += 3)
+            if(resName != null)
             {
-                contacts.Add(new Contact(lines[i], lines[i + 1], lines[i + 2]));
-            }
+                using (var stream = new StreamReader(typeof(Contact).Assembly.GetManifestResourceStream(resName)))
+                {
+                    var lines = new List<string>();
+                    while (await stream.ReadLineAsync() is string line)
+                    {
+                        lines.Add(line);
+                    }
 
-            return contacts;
+                    var contacts = new ObservableCollection<Contact>();
+
+                    for (int i = 0; i < lines.Count; i += 3)
+                    {
+                        contacts.Add(new Contact(lines[i], lines[i + 1], lines[i + 2]));
+                    }
+
+                    return contacts;
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Unable to find Contacts.txt in the embedded resources");
+            }           
         }
 
         public static async Task<ObservableCollection<GroupInfoList>> GetContactsGroupedAsync()
