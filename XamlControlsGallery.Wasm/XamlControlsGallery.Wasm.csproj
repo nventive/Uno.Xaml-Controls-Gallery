@@ -10,24 +10,35 @@
 
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellEnableAOT Condition="$([MSBuild]::IsOsUnixLike())">true</WasmShellEnableAOT>
-    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1677/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1677/ubuntu-1804-amd64/sdks/wasm/mono-wasm-c11a3cdd535.zip</MonoWasmSDKUri>
-    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1677/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1677/ubuntu-1804-amd64/wasm-release-Linux-c11a3cdd535670e9f7e0282431a608081f5316e9.zip</MonoWasmAOTSDKUri>
+    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/sdks/wasm/mono-wasm-c821964b29c.zip</MonoWasmSDKUri>
+    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/wasm-release-Linux-c821964b29c4516569591ea67b24468716ad3601.zip</MonoWasmAOTSDKUri>
   </PropertyGroup>
+  
   <ItemGroup>
     <None Remove="Fonts\SEGMDL2.TTF" />
     <None Remove="Fonts\winjs-symbols.woff2" />
   </ItemGroup>
+  
   <ItemGroup>
     <Content Include="Fonts\*.woff2" />
     <Content Include="Fonts\*.TTF" />
   </ItemGroup>
+  
   <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
     <EmbeddedResource Include="WasmScripts\AppManifest.js" />
   </ItemGroup>
+  
   <ItemGroup>
     <LinkerDescriptor Include="LinkerConfig.xml" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+    <WasmShellMonoEnvironment Include="MONO_LOG_LEVEL" Value="debug" />
+    <WasmShellMonoEnvironment Include="MONO_LOG_MASK" Value="gc" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Uno.ColorCode.UWP" Version="2.0.5-gd0f1a63314" />
     <PackageReference Include="Uno.SourceGenerationTasks" Version="1.29.0-dev.239" />
@@ -36,7 +47,7 @@
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.147" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.151" />
     
     <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.145" />
 	</ItemGroup>
