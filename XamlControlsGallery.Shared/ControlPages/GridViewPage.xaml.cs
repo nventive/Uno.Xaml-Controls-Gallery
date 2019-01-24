@@ -40,7 +40,13 @@ namespace AppUIBasics.ControlPages
             if (tag != null)
             {
                 var template = tag.ToString();
-                Control1.ItemTemplate = (DataTemplate)this.Resources[template];
+                Control1.ItemTemplate = (DataTemplate)this.Resources[template]
+#if HAS_UNO
+                    // UNO TODO Static Resources are not accessible through this.Resources
+
+                    ?? (DataTemplate)StaticResources.FindResource(template)
+#endif
+               ;
                 itemTemplate.Text = template;
             }
         }
