@@ -29,7 +29,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\CommandBarFlyout.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\CompactSizing.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ConnectedAnimations.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Contacts.txt" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Contacts.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ContentDialog.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DatePicker.png" />
