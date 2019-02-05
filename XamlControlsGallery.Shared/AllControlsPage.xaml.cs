@@ -32,7 +32,11 @@ namespace AppUIBasics
             var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().ElementAt(1);
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = menuItem.Content;
-            Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items).OrderBy(i => i.Title).ToList();
+            Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items).OrderBy(i => i.Title)
+#if HAS_UNO && !DEBUG
+                .Where(o => o.IsUno)
+#endif
+                .ToList();
         }
 
         protected override bool GetIsNarrowLayoutState()
