@@ -47,9 +47,22 @@ namespace AppUIBasics
             var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = menuItem.Content;
-            Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsNew)).OrderBy(i => i.Title).ToList();
-            UpdatedItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsUpdated)).OrderBy(i => i.Title).ToList();
-            PreviewItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsPreview)).OrderBy(i => i.Title).ToList();
+            Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsNew)).OrderBy(i => i.Title)
+#if HAS_UNO && !DEBUG
+                .Where(o => o.IsUno)
+#endif
+                .ToList();
+
+            UpdatedItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsUpdated)).OrderBy(i => i.Title)
+#if HAS_UNO && !DEBUG
+                .Where(o => o.IsUno)
+#endif
+                .ToList();
+            PreviewItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsPreview)).OrderBy(i => i.Title)
+#if HAS_UNO && !DEBUG
+                .Where(o => o.IsUno)
+#endif
+                .ToList();
         }
 
         protected override bool GetIsNarrowLayoutState()
