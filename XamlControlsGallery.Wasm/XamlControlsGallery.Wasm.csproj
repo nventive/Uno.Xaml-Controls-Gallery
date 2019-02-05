@@ -47,7 +47,7 @@
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.166" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.171" />
     
     <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.145" />
 	</ItemGroup>
