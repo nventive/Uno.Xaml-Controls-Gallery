@@ -1379,6 +1379,7 @@
         },
         {
           "UniqueId": "ViewBox",
+          "IsUno": true,
           "Title": "ViewBox",
           "Subtitle": "A container control that scales its content to a specified size.",
           "ImagePath": "ms-appx:///Assets/ViewBox.png",
