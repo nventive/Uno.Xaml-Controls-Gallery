@@ -176,7 +176,7 @@
 
         </local:ControlExample>
 
-        <local:ControlExample HeaderText="A ListView with Images">
+        <local:ControlExample HeaderText="A ListView with Images" wasm:Visibility="Collapsed">
             <ListView x:Name="Control4"
                       CanDragItems="True"
                       CanReorderItems="True"
