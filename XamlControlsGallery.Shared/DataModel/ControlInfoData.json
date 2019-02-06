@@ -1972,7 +1972,6 @@
         },
         {
           "UniqueId": "EasingFunction",
-          "IsUno": true,
           "Title": "Easing Functions",
           "Subtitle": "Easing is a way to manipulate the velocity of an object as it animates.",
           "ImagePath": "ms-appx:///Assets/EasingFunctions.png",
