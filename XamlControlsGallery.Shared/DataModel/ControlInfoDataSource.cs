@@ -291,6 +291,25 @@ namespace AppUIBasics.Data
                             }
                         }
                     }
+
+#if HAS_UNO
+                    var allItems = Groups.SelectMany(g => g.Items).Where(i => i.IsUno).ToDictionary(i => i.UniqueId);
+
+                    foreach(var group in Groups)
+                    {
+                        foreach(var sample in group.Items)
+                        {
+                           var list = sample
+                                .RelatedControls
+                                .Where(r => allItems.ContainsKey(r))
+                                .ToList();
+
+                            sample.RelatedControls.Clear();
+
+                            list.ForEach(sample.RelatedControls.Add);
+                        }
+                    }
+#endif
                 }
             }
 
