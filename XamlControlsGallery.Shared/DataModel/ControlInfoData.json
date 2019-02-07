@@ -974,7 +974,6 @@
       "Items": [
         {
           "UniqueId": "ProgressBar",
-          "IsUno": true,
           "Title": "ProgressBar",
           "Subtitle": "Shows the apps progress on a task, or that the app is performing ongoing work that doesn't block user interaction.",
           "ImagePath": "ms-appx:///Assets/ProgressBar.png",
@@ -1110,7 +1109,6 @@
       "Items": [
         {
           "UniqueId": "ScrollViewer",
-          "IsUno": true,
           "Title": "ScrollViewer",
           "Subtitle": "A container control that lets the user pan and zoom its content.",
           "ImagePath": "ms-appx:///Assets/ScrollViewer.png",
@@ -1570,7 +1568,6 @@
         },
         {
           "UniqueId": "MediaPlayerElement",
-          "IsUno": true,
           "Title": "MediaPlayerElement",
           "Subtitle": "A control to display video and image content.",
           "ImagePath": "ms-appx:///Assets/MediaElement.png",
@@ -1635,7 +1632,6 @@
         },
         {
           "UniqueId": "WebView",
-          "IsUno": true,
           "Title": "WebView",
           "Subtitle": "A control that hosts HTML content in an app.",
           "ImagePath": "ms-appx:///Assets/WebView.png",
