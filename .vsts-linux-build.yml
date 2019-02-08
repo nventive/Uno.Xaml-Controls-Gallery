@@ -38,9 +38,7 @@ jobs:
     displayName: 'Publish Wasm Binaries'
     inputs:
       SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Wasm/bin/Release/netstandard2.0/dist
-      Contents: |
-        '**/*.*'
-        !**/*.wast
+      Contents: '**/*.*'
       TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-wasm
       CleanTargetFolder: false
       OverWrite: false
