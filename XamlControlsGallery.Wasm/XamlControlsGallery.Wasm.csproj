@@ -10,8 +10,8 @@
 
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellEnableAOT Condition="$([MSBuild]::IsOsUnixLike())">true</WasmShellEnableAOT>
-    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/sdks/wasm/mono-wasm-c821964b29c.zip</MonoWasmSDKUri>
-    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/wasm-release-Linux-c821964b29c4516569591ea67b24468716ad3601.zip</MonoWasmAOTSDKUri>
+    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/2025/label=ubuntu-1804-amd64/Azure/processDownloadRequest/2025/ubuntu-1804-amd64/sdks/wasm/mono-wasm-b9c611e93c7.zip</MonoWasmSDKUri>
+    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/2025/label=ubuntu-1804-amd64/Azure/processDownloadRequest/2025/ubuntu-1804-amd64/wasm-release-Linux-b9c611e93c781b3a8632a9acb3584f70ca1e3f07.zip</MonoWasmAOTSDKUri>
   </PropertyGroup>
   
   <ItemGroup>
