@@ -140,6 +140,43 @@ namespace XamlControlsGallery
 		public static readonly DependencyProperty LinkToUnoPlatformAppProperty =
 			DependencyProperty.Register("LinkToUnoPlatformApp", typeof(string), typeof(UnoPlatformShell), new PropertyMetadata(null));
 
+		// AppEnvironmentMode
+		public string AppEnvironmentMode
+		{
+			get { return (string)GetValue(AppEnvironmentModeProperty); }
+			set { SetValue(AppEnvironmentModeProperty, value); }
+		}
+
+		public static readonly DependencyProperty AppEnvironmentModeProperty =
+			DependencyProperty.Register("AppEnvironmentMode", typeof(string), typeof(UnoPlatformShell), new PropertyMetadata(null, OnAppEnvironmentModeChanged));
+
+		private static void OnAppEnvironmentModeChanged(object d, DependencyPropertyChangedEventArgs e)
+		{
+			var myShell = d as UnoPlatformShell;
+			myShell.AppEnvironmentModeVisibility = Visibility.Visible;
+			myShell.InterpreterModeWarningVisibility = e.NewValue == "Interpreter" ? Visibility.Visible : Visibility.Collapsed;
+		}
+
+		// AppEnvironmentModeVisibility
+		public Visibility AppEnvironmentModeVisibility
+		{
+			get { return (Visibility)GetValue(AppEnvironmentModeVisibilityProperty); }
+			set { SetValue(AppEnvironmentModeVisibilityProperty, value); }
+		}
+
+		public static readonly DependencyProperty AppEnvironmentModeVisibilityProperty =
+			DependencyProperty.Register("AppEnvironmentModeVisibility", typeof(Visibility), typeof(UnoPlatformShell), new PropertyMetadata(Visibility.Collapsed));
+		
+		// InterpreterModeWarningVisibility
+		public Visibility InterpreterModeWarningVisibility
+		{
+			get { return (Visibility)GetValue(InterpreterModeWarningVisibilityProperty); }
+			set { SetValue(InterpreterModeWarningVisibilityProperty, value); }
+		}
+
+		public static readonly DependencyProperty InterpreterModeWarningVisibilityProperty =
+			DependencyProperty.Register("InterpreterModeWarningVisibility", typeof(Visibility), typeof(UnoPlatformShell), new PropertyMetadata(Visibility.Collapsed));
+
 		// VersionNumber
 		public string VersionNumber
 		{
