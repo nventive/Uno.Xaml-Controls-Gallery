@@ -78,7 +78,7 @@ namespace AppUIBasics.ControlPages
                     string selectedItemTag = ((string)selectedItem.Tag);
                     sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                     string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
-                    Type pageType = Type.GetType(pageName);
+                    Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                     contentFrame.Navigate(pageType);
                 }
             }
@@ -97,7 +97,7 @@ namespace AppUIBasics.ControlPages
                     var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                     string selectedItemTag = ((string)selectedItem.Tag);
                     string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
-                    Type pageType = Type.GetType(pageName);
+                    Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                     contentFrame2.Navigate(pageType);
                 }
             }
@@ -119,7 +119,7 @@ namespace AppUIBasics.ControlPages
                 string selectedItemTag = selectedItem.Name;
                 sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "AppUIBasics.SamplePages." + "SamplePage1";
-                Type pageType = Type.GetType(pageName);
+                Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                 contentFrame4.Navigate(pageType);
             }
         }
@@ -137,7 +137,7 @@ namespace AppUIBasics.ControlPages
                 string selectedItemTag = ((string)selectedItem.Tag);
                 sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
-                Type pageType = Type.GetType(pageName);
+                Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                 contentFrame5.Navigate(pageType);
             }
         }
@@ -151,7 +151,7 @@ namespace AppUIBasics.ControlPages
             {
                 var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
-                Type pageType = Type.GetType(pageName);
+                Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                 contentFrame6.Navigate(pageType);
             }
         }
@@ -166,7 +166,7 @@ namespace AppUIBasics.ControlPages
             {
                 var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
-                Type pageType = Type.GetType(pageName);
+                Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
 
                 contentFrame7.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
             }
