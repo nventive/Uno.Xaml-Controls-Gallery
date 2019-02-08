@@ -31,7 +31,8 @@
 	</Page.Resources>
 
 	<!-- UnoPlatformShell -->
-	<uno:UnoPlatformShell AppName="Xaml Controls Gallery"
+	<uno:UnoPlatformShell x:Name="UnoShell" 
+						  AppName="Xaml Controls Gallery"
 						  AppAuthor="Microsoft"
 						  LinkToOriginalApp="https://github.com/Microsoft/Xaml-Controls-Gallery"
 						  LinkToAppAuthor="https://github.com/Microsoft"
@@ -52,28 +53,7 @@
 					<Bold>
 						entirely locally
 					</Bold> 
-					on your machine, no code is being sent out to the wire.
-				</TextBlock>
-
-				<!-- About Content Line 2 -->
-				<TextBlock TextWrapping="Wrap"
-						   Foreground="{StaticResource Color02Brush}"
-						   FontStyle="Italic"
-						   FontSize="12"
-						   Margin="0,16,0,0">
-					
-					The Mono runtime is using the interpreted mode (which is currently about 
-					
-					<!-- Link to WASM Benchmark -->
-					<Hyperlink NavigateUri="https://github.com/stefan-schweiger/dotWasmBenchmark"
-							   Foreground="{StaticResource Color02Brush}">
-						<Bold>
-							<Underline>
-								50x slower than it should be
-							</Underline>
-						</Bold>
-					</Hyperlink>
-					). For a better experience run it in Microsoft Edge or Mozilla Firefox.
+					on your machine, no data is being sent out to the wire.
 				</TextBlock>
 			</StackPanel>
 		</uno:UnoPlatformShell.AboutContent>
