@@ -92,14 +92,29 @@ namespace AppUIBasics
 
             Windows.UI.Xaml.Window.Current.SetTitleBar(AppTitleBar);
 
+#if __WASM__
+			switch (Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_MONO_RUNTIME_MODE"))
+			{
+				case "Interpreter": 
+					UnoShell.AppEnvironmentMode = "Interpreted";
+					break;
+				case "FullAOT": 
+					UnoShell.AppEnvironmentMode = "AOT";
+					break;
+				case "InterpreterAndAOT": 
+					UnoShell.AppEnvironmentMode = "Mixed";
+					break;
+			}
+#endif
+
 #if NETFX_CORE
             CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle(s);
 
             _isKeyboardConnected = Convert.ToBoolean(new KeyboardCapabilities().KeyboardPresent);
 #endif
-        }
+		}
 
-        void UpdateAppTitle(CoreApplicationViewTitleBar coreTitleBar)
+		void UpdateAppTitle(CoreApplicationViewTitleBar coreTitleBar)
         {
             var full = (ApplicationView.GetForCurrentView().IsFullScreenMode);
             var left = 12 + (full ? 0 : coreTitleBar.SystemOverlayLeftInset);

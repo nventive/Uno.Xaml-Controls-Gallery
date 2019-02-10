@@ -234,43 +234,59 @@
 								</Button>
 
 								<!-- App Name and Author -->
-								<StackPanel x:Name="AppInfo"
-											VerticalAlignment="Center"
-											Grid.Column="1"
-											Margin="20,0,16,0">
+								<StackPanel VerticalAlignment="Center"
+											Margin="20,0,16,0"
+											Grid.Column="1">
 
-									<!-- App Button  -->
-									<Button x:Name="appButton"
-											Style="{StaticResource BasicEmptyButtonStyle}"
-											Margin="0,0,4,0">
+									<StackPanel x:Name="AppInfo">
 
-										<!-- App Name -->
-										<TextBlock Text="{TemplateBinding AppName}"
-												   Foreground="{StaticResource Color02Brush}"
-												   TextTrimming="CharacterEllipsis"
-												   TextWrapping="NoWrap"
-												   FontSize="16"
-												   FontWeight="Bold" />
-									</Button>
+										<!-- App Button  -->
+										<Button x:Name="appButton"
+												Style="{StaticResource BasicEmptyButtonStyle}"
+												Margin="0,0,4,0">
 
-									<!-- Author Button  -->
-									<Button x:Name="authorButton"
-											Style="{StaticResource BasicEmptyButtonStyle}">
-
-										<StackPanel Orientation="Horizontal">
-
-											<!-- by -->
-											<TextBlock Text="by the"
+											<!-- App Name -->
+											<TextBlock Text="{TemplateBinding AppName}"
 													   Foreground="{StaticResource Color02Brush}"
+													   TextTrimming="CharacterEllipsis"
+													   TextWrapping="NoWrap"
 													   FontSize="16"
-													   Margin="0,0,4,0" />
+													   FontWeight="Bold" />
+										</Button>
 
-											<!-- App Author -->
-											<TextBlock Text="{TemplateBinding AppAuthor}"
-													   Foreground="{StaticResource Color02Brush}"
-													   FontSize="16" />
-										</StackPanel>
-									</Button>
+										<!-- Author Button  -->
+										<Button x:Name="authorButton"
+												Style="{StaticResource BasicEmptyButtonStyle}">
+
+											<StackPanel Orientation="Horizontal">
+
+												<!-- by -->
+												<TextBlock Text="by"
+														   Foreground="{StaticResource Color02Brush}"
+														   FontSize="16"
+														   Margin="0,0,4,0" />
+
+												<!-- App Author -->
+												<TextBlock Text="{TemplateBinding AppAuthor}"
+														   Foreground="{StaticResource Color02Brush}"
+														   FontSize="16" />
+											</StackPanel>
+										</Button>
+									</StackPanel>
+
+									<!-- Mode -->
+									<Grid Visibility="{TemplateBinding AppEnvironmentModeVisibility}"
+										  Background="{StaticResource Color02Brush}"
+										  HorizontalAlignment="Left"
+										  CornerRadius="8"
+										  Padding="8,0,8,1"
+										  Margin="0,4,0,0">
+
+										<!-- Value -->
+										<TextBlock Text="{TemplateBinding AppEnvironmentMode}"
+												   Foreground="{StaticResource Color01Brush}"
+												   FontSize="12" />
+									</Grid>
 								</StackPanel>
 
 								<StackPanel Orientation="Horizontal"
@@ -386,6 +402,28 @@
 														  Content="{TemplateBinding AboutContent}"
 														  Margin="0,24,0,0" />
 
+										<!-- Interpreter Warning Content -->
+										<TextBlock Visibility="{TemplateBinding InterpreterModeWarningVisibility}" 
+												   TextWrapping="Wrap"
+												   Foreground="{StaticResource Color02Brush}"
+												   FontStyle="Italic"
+												   FontSize="12"
+												   Margin="0,16,0,0">
+					
+											The Mono runtime is using the interpreted mode (which is currently about 
+					
+											<!-- Link to WASM Benchmark -->
+											<Hyperlink NavigateUri="https://github.com/stefan-schweiger/dotWasmBenchmark"
+																	Foreground="{StaticResource Color02Brush}">
+												<Bold>
+													<Underline>
+														50x slower than it should be
+													</Underline>
+												</Bold>
+											</Hyperlink>
+											). For a better experience run it in Microsoft Edge or Mozilla Firefox.
+										</TextBlock>
+
 										<!-- Version -->
 										<TextBlock Text="{TemplateBinding VersionNumber}"
 												   Foreground="{StaticResource Color02Brush}"
@@ -408,7 +446,7 @@
 													Margin="16">
 
 											<!-- Label -->
-											<TextBlock Text="VISIT UNO PLATFORM WEBSITE"
+											<TextBlock Text="VISIT THE UNO PLATFORM WEBSITE"
 													   Foreground="{StaticResource Color02Brush}"
 													   FontWeight="SemiBold"
 													   FontSize="14" />
