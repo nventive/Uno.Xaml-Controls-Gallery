@@ -66,7 +66,7 @@
                     Margin="0,40,0,0"
                     FontWeight="Normal"
                     Text="About" />
-                <RichTextBlock MaxWidth="840" Margin="0,10,0,0" IsTextSelectionEnabled="True">
+                <win:RichTextBlock MaxWidth="840" Margin="0,10,0,0" IsTextSelectionEnabled="True">
                     <Paragraph>
                         This app is the interactive companion to the
                         <Hyperlink NavigateUri="https://developer.microsoft.com/windows/apps/design">Fluent Design System web site</Hyperlink>.
@@ -85,7 +85,38 @@
                         To contact the authors,
                         <Hyperlink NavigateUri="mailto:ControlsGallery@microsoft.com">mailto:ControlsGallery@microsoft.com </Hyperlink>.
                     </Paragraph>
-                </RichTextBlock>
+                </win:RichTextBlock>
+                <xamarin:StackPanel MaxWidth="840" Margin="0,10,0,0">
+                    <TextBlock TextWrapping="WrapWholeWords">
+						<Run>This app is the interactive companion to the</Run>
+						<Hyperlink NavigateUri="https://developer.microsoft.com/windows/apps/design">Fluent Design System web site</Hyperlink>
+						<Run>. The source code to this app is available on</Run>
+                        <Hyperlink NavigateUri="https://github.com/nventive/Uno.Xaml-Controls-Gallery">
+							https://github.com/nventive/Uno.Xaml-Controls-Gallery
+                        </Hyperlink>
+						<Run>.</Run>
+					</TextBlock>
+					<TextBlock 
+						TextWrapping="WrapWholeWords"
+						Margin="0,10,0,0">
+						To clone the source repository:
+					</TextBlock>
+					<TextBlock
+						TextWrapping="WrapWholeWords"
+						Margin="20,10,0,10">
+						git clone -b uno https://github.com/nventive/Uno.Xaml-Controls-Gallery
+					</TextBlock>
+					<TextBlock>
+						<Run>To contact the authors,</Run>
+						<Hyperlink NavigateUri="mailto:ControlsGallery@microsoft.com">mailto:ControlsGallery@microsoft.com</Hyperlink>
+						<Run>.</Run>
+					</TextBlock>
+					<TextBlock>
+						<Run>To contact the UNO team which created the port of this application to iOS, Android and WebAssembly,</Run>
+						<Hyperlink NavigateUri="mailto:info@platform.uno">mailto:info@platform.uno</Hyperlink>
+						<Run>.</Run>
+					</TextBlock>
+				</xamarin:StackPanel>
                 <TextBlock Margin="0,10,0,0">
                     Version: 
                     <Run Text="{x:Bind Version}" />
@@ -97,16 +128,19 @@
                     Margin="0,40,0,0"
                     FontWeight="Normal"
                     Text="Dependencies and References" />
-                <RichTextBlock IsTextSelectionEnabled="True" MaxWidth="840" Margin="0,10,0,0">
+                <win:RichTextBlock IsTextSelectionEnabled="True" MaxWidth="840" Margin="0,10,0,0">
                     <Paragraph Margin="0,10,0,10">
                         <Hyperlink NavigateUri="https://aka.ms/winui-toolkit">Windows UI Library (Preview)</Hyperlink>
                     </Paragraph>
-                </RichTextBlock>
+                </win:RichTextBlock>
                 <win:RichTextBlock IsTextSelectionEnabled="True" MaxWidth="840" Margin="0,10,0,0">
                     <Paragraph Margin="0,10,0,10">
                         <Hyperlink NavigateUri="https://github.com/WilliamABradley/ColorCode-Universal">ColorCode-Universal</Hyperlink>
                     </Paragraph>
                 </win:RichTextBlock>
+                <xamarin:TextBlock MaxWidth="840" Margin="0,10,0,0">
+                    <Hyperlink NavigateUri="https://github.com/nventive/Uno">Uno platform</Hyperlink>
+                </xamarin:TextBlock>
                 <xamarin:TextBlock MaxWidth="840" Margin="0,10,0,0">
                     <Hyperlink NavigateUri="https://github.com/WilliamABradley/ColorCode-Universal">ColorCode-Universal</Hyperlink>
                 </xamarin:TextBlock>
