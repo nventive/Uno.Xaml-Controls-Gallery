@@ -244,7 +244,7 @@
 										<Button x:Name="appButton"
 												Style="{StaticResource BasicEmptyButtonStyle}"
 												Margin="0,0,4,0">
-
+                      
 											<!-- App Name -->
 											<TextBlock Text="{TemplateBinding AppName}"
 													   Foreground="{StaticResource Color02Brush}"
@@ -275,20 +275,18 @@
 									</StackPanel>
 
 									<!-- Mode -->
-									<StackPanel Visibility="{TemplateBinding AppEnvironmentModeVisibility}"
-												Orientation="Horizontal">
-
-										<!-- Label -->
-										<TextBlock Foreground="{StaticResource Color02Brush}"
-												   FontSize="16"
-												   Text="Mode:" />
+									<Grid Visibility="{TemplateBinding AppEnvironmentModeVisibility}"
+										  Background="{StaticResource Color02Brush}"
+										  HorizontalAlignment="Left"
+										  CornerRadius="8"
+										  Padding="8,0,8,1"
+										  Margin="0,4,0,0">
 
 										<!-- Value -->
 										<TextBlock Text="{TemplateBinding AppEnvironmentMode}"
-												   Foreground="{StaticResource Color02Brush}"
-												   FontSize="16"
-												   Margin="4,0,0,0" />
-									</StackPanel>
+												   Foreground="{StaticResource Color01Brush}"
+												   FontSize="12" />
+									</Grid>
 								</StackPanel>
 
 								<StackPanel Orientation="Horizontal"

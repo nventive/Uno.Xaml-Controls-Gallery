@@ -4,7 +4,9 @@ jobs:
   parameters:
     name: Windows
     pool:
-      vmImage: 'vs2017-win2016'
+      name: Default
+      demands:
+      - VisualStudio_Version -equals 15.9.6
 
 - template: .vsts-linux-build.yml
   parameters:

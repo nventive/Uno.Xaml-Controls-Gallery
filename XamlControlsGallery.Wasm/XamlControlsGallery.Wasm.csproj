@@ -10,8 +10,8 @@
 
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellEnableAOT Condition="$([MSBuild]::IsOsUnixLike())">true</WasmShellEnableAOT>
-    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/sdks/wasm/mono-wasm-c821964b29c.zip</MonoWasmSDKUri>
-    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/1888/label=ubuntu-1804-amd64/Azure/processDownloadRequest/1888/ubuntu-1804-amd64/wasm-release-Linux-c821964b29c4516569591ea67b24468716ad3601.zip</MonoWasmAOTSDKUri>
+    <MonoWasmSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/2025/label=ubuntu-1804-amd64/Azure/processDownloadRequest/2025/ubuntu-1804-amd64/sdks/wasm/mono-wasm-b9c611e93c7.zip</MonoWasmSDKUri>
+    <MonoWasmAOTSDKUri>https://jenkins.mono-project.com/job/test-mono-mainline-wasm/2025/label=ubuntu-1804-amd64/Azure/processDownloadRequest/2025/ubuntu-1804-amd64/wasm-release-Linux-b9c611e93c781b3a8632a9acb3584f70ca1e3f07.zip</MonoWasmAOTSDKUri>
   </PropertyGroup>
   
   <ItemGroup>
@@ -32,14 +32,14 @@
   <ItemGroup>
     <PackageReference Include="Uno.ColorCode.UWP" Version="2.0.5-gd0f1a63314" />
     <PackageReference Include="Uno.SourceGenerationTasks" Version="1.29.0-dev.241" />
-    <PackageReference Include="Uno.UI" Version="1.43.0-dev.794" />
+    <PackageReference Include="Uno.UI" Version="1.43.0-dev.802" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1-uno.28" />
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.183" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.192" />
     
-    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.145" />
+    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.192" />
 	</ItemGroup>
   <Import Project="..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems" Label="Shared" Condition="Exists('..\AppUIBasics.Shared\AppUIBasics.Shared.projitems')" />
   <Import Project="..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems" Label="Shared" />

@@ -93,7 +93,18 @@ namespace AppUIBasics
             Windows.UI.Xaml.Window.Current.SetTitleBar(AppTitleBar);
 
 #if __WASM__
-			UnoShell.AppEnvironmentMode = Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_MONO_RUNTIME_MODE");
+			switch (Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_MONO_RUNTIME_MODE"))
+			{
+				case "Interpreter": 
+					UnoShell.AppEnvironmentMode = "Interpreted";
+					break;
+				case "FullAOT": 
+					UnoShell.AppEnvironmentMode = "AOT";
+					break;
+				case "InterpreterAndAOT": 
+					UnoShell.AppEnvironmentMode = "Mixed";
+					break;
+			}
 #endif
 
 #if NETFX_CORE
