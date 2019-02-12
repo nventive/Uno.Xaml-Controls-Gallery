@@ -15,8 +15,12 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Include="ts\*.ts" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
-    <EmbeddedResource Include="WasmScripts\AppManifest.js" />
+    <EmbeddedResource Include="WasmScripts\*.js" />
   </ItemGroup>
   
   <ItemGroup>
@@ -38,7 +42,16 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.192" />
-    
+    <PackageReference Include="Microsoft.TypeScript.Compiler" Version="2.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+
+
     <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.192" />
 	</ItemGroup>
   <Import Project="..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems" Label="Shared" Condition="Exists('..\AppUIBasics.Shared\AppUIBasics.Shared.projitems')" />
