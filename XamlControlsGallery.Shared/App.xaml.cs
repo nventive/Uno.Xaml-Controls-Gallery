@@ -348,7 +348,7 @@ namespace AppUIBasics
 						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
 						   
 						//  Binder memory references tracking
-						// { "ReferenceHolder", LogLevel.Debug },
+						{ "Windows.UI.Xaml.UIElement", LogLevel.Debug },
 					}
                 )
                 .AddConsole(LogLevel.Debug);

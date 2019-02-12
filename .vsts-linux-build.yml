@@ -8,22 +8,6 @@ jobs:
   steps:
   - checkout: self
     clean: true
-
-  - bash: |
-      shopt -s nullglob
-      function join_by { local IFS="$1"; shift; echo "$*"; }
-      lib_path=$(join_by ';' $(Agent.WorkFolder)/_tasks/GitVersion*/4.0.*/lib/linux/x86_64)
-      echo LD_LIBRARY_PATH: $lib_path
-      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH]$lib_path"
-
-    displayName: Update LD_LIBRARY_PATH for GitVersion
-    
-  - task: GitVersion@4
-    # Ignore gitversion for forks, until this is fixed:
-    # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
-    condition: eq(variables['System.PullRequest.IsFork'], 'False')
-    inputs:
-      updateAssemblyInfo: false
   
   - bash: |
       sudo apt-get update
@@ -48,7 +32,7 @@ jobs:
   - bash: |
       export PATH=$PATH:$(build.sourcesdirectory)/ninja-linux
       source $(build.sourcesdirectory)/emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj "/p:PackageVersion=%GITVERSION_FullSemVer%" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
+      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Binaries'
