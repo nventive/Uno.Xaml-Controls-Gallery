@@ -154,7 +154,7 @@ namespace XamlControlsGallery
 		{
 			var myShell = d as UnoPlatformShell;
 			myShell.AppEnvironmentModeVisibility = Visibility.Visible;
-			myShell.InterpreterModeWarningVisibility = e.NewValue == "Interpreter" ? Visibility.Visible : Visibility.Collapsed;
+			myShell.InterpreterModeWarningVisibility = e.NewValue == "Interpreted" ? Visibility.Visible : Visibility.Collapsed;
 		}
 
 		// AppEnvironmentModeVisibility
