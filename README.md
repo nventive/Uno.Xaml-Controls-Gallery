@@ -1,11 +1,6 @@
----
-topic: sample
-languages:
-- csharp
-products:
-- windows
-- uwp
----
+# XAML Controls Gallery port for Uno Platform
+
+This repository is a port of the [Xaml Controls Gallery](https://github.com/Microsoft/Xaml-Controls-Gallery) running on the [Uno-based apps](http://platform.uno) on Windows, iOS, Android and WebAssembly.
 
 # XAML Controls Gallery
 
