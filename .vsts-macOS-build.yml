@@ -40,7 +40,7 @@ jobs:
       msbuildLocationMethod: version
       msbuildVersion: latest
       msbuildArchitecture: x86
-      msbuildArguments: '/r /p:Configuration=Release /p:Platform=iPhone /detailedsummary /m:16 /nr:false'
+      msbuildArguments: /r /p:Configuration=Release /p:Platform=iPhone /detailedsummary /m:16 /nr:false  "/p:PackageVersion=%GITVERSION_FullSemVer%" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
       clean: false
       maximumCpuCount: true
       restoreNugetPackages: false

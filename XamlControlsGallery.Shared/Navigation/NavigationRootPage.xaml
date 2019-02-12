@@ -36,8 +36,7 @@
 						  AppAuthor="Microsoft"
 						  LinkToOriginalApp="https://github.com/Microsoft/Xaml-Controls-Gallery"
 						  LinkToAppAuthor="https://github.com/Microsoft"
-						  LinkToUnoPlatformApp="https://github.com/nventive/Uno.Xaml-Controls-Gallery"
-						  VersionNumber="buildVersion">
+						  LinkToUnoPlatformApp="https://github.com/nventive/Uno.Xaml-Controls-Gallery">
 
 		<!-- About Content -->
 		<uno:UnoPlatformShell.AboutContent>

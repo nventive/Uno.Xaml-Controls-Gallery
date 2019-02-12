@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -185,7 +186,13 @@ namespace XamlControlsGallery
 		}
 
 		public static readonly DependencyProperty VersionNumberProperty =
-			DependencyProperty.Register("VersionNumber", typeof(string), typeof(UnoPlatformShell), new PropertyMetadata(null));
+			DependencyProperty.Register(
+                "VersionNumber", 
+                typeof(string),
+                typeof(UnoPlatformShell),
+                new PropertyMetadata(
+                    typeof(UnoPlatformShell).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unkown")
+            );
 
 		// About Content
 		public object AboutContent
