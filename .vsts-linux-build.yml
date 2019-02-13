@@ -5,6 +5,9 @@ jobs:
 - job: linux
   pool: ${{ parameters.pool }}
 
+  variables:
+    NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+
   steps:
   - checkout: self
     clean: true
@@ -15,7 +18,7 @@ jobs:
       cd $(build.sourcesdirectory)
       wget https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
       unzip -o ninja-linux.zip -d ninja-linux
-     
+
     displayName: 'Install Ninja'
 
   - bash: |
@@ -32,7 +35,7 @@ jobs:
   - bash: |
       export PATH=$PATH:$(build.sourcesdirectory)/ninja-linux
       source $(build.sourcesdirectory)/emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj
+      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Binaries'
