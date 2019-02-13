@@ -35,7 +35,7 @@ jobs:
   - bash: |
       export PATH=$PATH:$(build.sourcesdirectory)/ninja-linux
       source $(build.sourcesdirectory)/emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj
+      msbuild /r /p:Configuration=Release $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Binaries'
