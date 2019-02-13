@@ -5,6 +5,9 @@ jobs:
 - job: linux
   pool: ${{ parameters.pool }}
 
+  variables:
+    NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+
   steps:
   - checkout: self
     clean: true
