@@ -250,24 +250,36 @@ namespace AppUIBasics
             {
                 var suggestions = new List<ControlInfoDataItem>();
 
-                foreach (var group in ControlInfoDataSource.Instance.Groups)
+#if __WASM___
+                // Limit is temporary to improve the user experience
+                if (sender.Text?.Length > 3)
+#endif
                 {
-                    var matchingItems = group.Items.Where(
-                        item => item.Title.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
-
-                    foreach (var item in matchingItems)
+                    foreach (var group in ControlInfoDataSource.Instance.Groups)
                     {
-                        suggestions.Add(item);
+                        var matchingItems = group.Items.Where(
+                            item => item.Title.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
+
+                        foreach (var item in matchingItems)
+                        {
+                            suggestions.Add(item);
+                        }
+                    }
+                    if (suggestions.Count > 0)
+                    {
+                        controlsSearchBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title);
+                    }
+                    else
+                    {
+                        controlsSearchBox.ItemsSource = new string[] { "No results found" };
                     }
                 }
-                if (suggestions.Count > 0)
-                {
-                    controlsSearchBox.ItemsSource = suggestions.OrderByDescending(i => i.Title.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).ThenBy(i => i.Title);
-                }
+#if __WASM___
                 else
                 {
-                    controlsSearchBox.ItemsSource = new string[] { "No results found" };
+                    controlsSearchBox.ItemsSource = new string[] { "Type more characters" };
                 }
+#endif
             }
         }
 

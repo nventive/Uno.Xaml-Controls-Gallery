@@ -83,7 +83,8 @@
     </Style>
 
     <Style x:Key="GridViewItemStyleSmall" TargetType="GridViewItem" xamarin:BasedOn="{StaticResource GridViewItemExpanded}">
-        <Setter Property="Margin" Value="0,0,0,14" />
+        <win:Setter Property="Margin" Value="0,0,0,14" />
+        <xamarin:Setter Property="Margin" Value="0,0,20,20" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 

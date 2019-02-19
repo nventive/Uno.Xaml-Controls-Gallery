@@ -1,6 +1,6 @@
 ﻿var UnoAppManifest = {
 
     splashScreenImage: "Assets/Tiles/splash-sdk.scale-400.png",
-    splashScreenColor: "#242424",
+    splashScreenColor: "#fff",
     displayName: "Xaml Controls Gallery"
 };
