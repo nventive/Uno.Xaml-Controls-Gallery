@@ -32,7 +32,7 @@
 
 	<!-- UnoPlatformShell -->
 	<uno:UnoPlatformShell x:Name="UnoShell" 
-						  AppName="Xaml Controls Gallery"
+						  AppName="XAML Controls Gallery"
 						  AppAuthor="Microsoft"
 						  LinkToOriginalApp="https://github.com/Microsoft/Xaml-Controls-Gallery"
 						  LinkToAppAuthor="https://github.com/Microsoft"
