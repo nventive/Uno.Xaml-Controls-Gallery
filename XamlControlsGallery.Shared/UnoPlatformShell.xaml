@@ -377,17 +377,17 @@
 											Welcome to
 											
 											<!-- Link to Original Fork -->
-											<Hyperlink NavigateUri="{TemplateBinding LinkToOriginalApp}"
+											<Hyperlink NavigateUri="{TemplateBinding LinkToUnoPlatformApp}"
 													   Foreground="{StaticResource Color02Brush}">
 												<Underline>
 													<Run Text="{TemplateBinding AppName}" />
 												</Underline>
 											</Hyperlink> 
 					
-											by the
+											by
 											
 											<!-- Link to Uno Fork -->
-											<Hyperlink NavigateUri="{TemplateBinding LinkToUnoPlatformApp}"
+											<Hyperlink NavigateUri="{TemplateBinding LinkToOriginalApp}"
 													   Foreground="{StaticResource Color02Brush}">
 												<Underline>
 													<Run Text="{TemplateBinding AppAuthor}" />

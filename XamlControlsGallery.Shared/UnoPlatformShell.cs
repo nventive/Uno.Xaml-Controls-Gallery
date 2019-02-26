@@ -25,12 +25,12 @@ namespace XamlControlsGallery
 			_UnoButton.Click += openUnoWebsite;
 
 			_appButton = GetTemplateChild("appButton") as Button;
-			_appButton.Click += openOriginalGitHubProject;
+			_appButton.Click += openUnoGitHubProject;
 
 			_authorButton = GetTemplateChild("authorButton") as Button;
-			_authorButton.Click += openAuthorGitHubProfile;
+			_authorButton.Click += openOriginalGitHubProject; 
 
-			_TwitterButton = GetTemplateChild("TwitterButton") as Button;
+			 _TwitterButton = GetTemplateChild("TwitterButton") as Button;
 			_TwitterButton.Click += openTwitterLink;
 
 			_GithubButton = GetTemplateChild("GithubButton") as Button;
