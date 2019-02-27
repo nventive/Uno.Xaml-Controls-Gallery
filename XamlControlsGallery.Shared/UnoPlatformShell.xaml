@@ -161,6 +161,12 @@
 										<AdaptiveTrigger MinWindowWidth="0" />
 									</VisualState.StateTriggers>
 									<VisualState.Setters>
+										<Setter Target="AppNameTitle.FontSize"
+												Value="14" />
+										<Setter Target="AppAuthorTitle_1.FontSize"
+												Value="14" />
+										<Setter Target="AppAuthorTitle_2.FontSize"
+												Value="14" />
 										<Setter Target="RegularUnoPlatformLogo.Visibility"
 												Value="Collapsed" />
 										<Setter Target="SmallUnoPlatformLogo.Visibility"
@@ -173,6 +179,12 @@
 										<AdaptiveTrigger MinWindowWidth="600" />
 									</VisualState.StateTriggers>
 									<VisualState.Setters>
+										<Setter Target="AppNameTitle.FontSize"
+												Value="16" />
+										<Setter Target="AppAuthorTitle_1.FontSize"
+												Value="16" />
+										<Setter Target="AppAuthorTitle_2.FontSize"
+												Value="16" />
 										<Setter Target="RegularUnoPlatformLogo.Visibility"
 												Value="Visible" />
 										<Setter Target="SmallUnoPlatformLogo.Visibility"
@@ -214,7 +226,7 @@
 								<Button x:Name="UnoButton"
 										Style="{StaticResource BasicEmptyButtonStyle}"
 										VerticalAlignment="Center"
-										Margin="23,0,0,0"
+										Margin="20,0,0,0"
 										Grid.Column="0">
 
 									<Grid>
@@ -246,7 +258,8 @@
 												Margin="0,0,4,0">
                       
 											<!-- App Name -->
-											<TextBlock Text="{TemplateBinding AppName}"
+											<TextBlock x:Name="AppNameTitle" 
+													   Text="{TemplateBinding AppName}"
 													   Foreground="{StaticResource Color02Brush}"
 													   TextTrimming="CharacterEllipsis"
 													   TextWrapping="NoWrap"
@@ -261,13 +274,15 @@
 											<StackPanel Orientation="Horizontal">
 
 												<!-- by -->
-												<TextBlock Text="by"
+												<TextBlock x:Name="AppAuthorTitle_1"
+														   Text="by"
 														   Foreground="{StaticResource Color02Brush}"
 														   FontSize="16"
 														   Margin="0,0,4,0" />
 
 												<!-- App Author -->
-												<TextBlock Text="{TemplateBinding AppAuthor}"
+												<TextBlock x:Name="AppAuthorTitle_2"
+														   Text="{TemplateBinding AppAuthor}"
 														   Foreground="{StaticResource Color02Brush}"
 														   FontSize="16" />
 											</StackPanel>
@@ -291,24 +306,29 @@
 
 								<StackPanel Orientation="Horizontal"
 											VerticalAlignment="Center"
-											Margin="0,0,20,0"
+											Margin="0,0,16,0"
 											Grid.Column="2">
 
 									<!-- About Button -->
 									<Button x:Name="openAboutButton"
-											Content="ABOUT"
-											Style="{StaticResource PrimaryButtonStyle}"
-											Click="OnAbout" />
+											Style="{StaticResource BasicEmptyButtonStyle}"
+											Click="OnAbout">
+										<TextBlock Text="i"
+												   Foreground="{StaticResource Color03Brush}"
+												   FontSize="28"
+												   FontWeight="Bold" 
+												   Margin="0,0,0,4"/>
+									</Button>
 
 									<!-- GitHub Button -->
 									<Button x:Name="GithubButton"
 											Style="{StaticResource BasicEmptyButtonStyle}"
 											VerticalAlignment="Center"
-											Margin="14,0,0,0">
+											Margin="22,0,0,0">
 
 										<!-- Icon -->
 										<Image Source="ms-appx:///Assets/GithubLogo.png"
-											   Height="24"
+											   Height="22"
 											   Width="25" />
 									</Button>
 
@@ -316,7 +336,7 @@
 									<Button x:Name="TwitterButton"
 											Style="{StaticResource BasicEmptyButtonStyle}"
 											VerticalAlignment="Center"
-											Margin="26,0,0,0">
+											Margin="20,0,0,0">
 
 										<!-- Icon -->
 										<Image Source="ms-appx:///Assets/TwitterLogo.png"
