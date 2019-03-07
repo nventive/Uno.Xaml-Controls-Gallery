@@ -44,7 +44,7 @@
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.206" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.0.0-dev.214" />
     <PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -55,7 +55,7 @@
     </PackageReference>
 
 
-    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.206" />
+    <DotNetCliToolReference Include="Uno.Wasm.Bootstrap.Cli" Version="1.0.0-dev.214" />
 	</ItemGroup>
   <Target Name="RemoveTSContent" BeforeTargets="BuildDist">
     <ItemGroup>
