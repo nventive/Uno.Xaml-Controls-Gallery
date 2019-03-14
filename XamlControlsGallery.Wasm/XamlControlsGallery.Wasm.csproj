@@ -10,6 +10,7 @@
     <!--<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>-->
 
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
+    <WasmShellMonoRuntimeExecutionMode Condition="$([MSBuild]::IsOsUnixLike()) and '$(MixedModeBuild)'!='True'">FullAOT</WasmShellMonoRuntimeExecutionMode>
     <WasmShellMonoRuntimeExecutionMode Condition="$([MSBuild]::IsOsUnixLike()) and '$(MixedModeBuild)'=='True'">InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
     <WasmShellIndexHtmlPath>$(MSBuildThisFileDirectory)index.html</WasmShellIndexHtmlPath>
 
@@ -21,8 +22,8 @@
     <MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI" />
     <MonoRuntimeMixedModeExcludedAssembly Include="Uno.Foundation" />
     <MonoRuntimeMixedModeExcludedAssembly Include="System.Xml" />
-    <MonoRuntimeMixedModeExcludedAssembly Include="System.Core" />
-    <MonoRuntimeMixedModeExcludedAssembly Include="System" />
+    <monoruntimemixedmodeexcludedassembly include="System.Core" />
+    <monoruntimemixedmodeexcludedassembly include="System" />
     <MonoRuntimeMixedModeExcludedAssembly Include="System.Runtime.Serialization" />
     <MonoRuntimeMixedModeExcludedAssembly Include="XamlControlsGallery.Wasm" />
   </ItemGroup>
