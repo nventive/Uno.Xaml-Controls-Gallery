@@ -266,6 +266,11 @@ namespace AppUIBasics
 
             // Ensure the current window is active
             Windows.UI.Xaml.Window.Current.Activate();
+
+#if __WASM__
+            // Workaround for iOS safe area support with title bar color. See https://github.com/nventive/Uno/issues/687
+            Uno.Foundation.WebAssemblyRuntime.InvokeJS("document.getElementsByTagName(\"body\")[0].style.backgroundColor = \"#000\"");
+#endif
         }
 
         private Frame GetRootFrame()
