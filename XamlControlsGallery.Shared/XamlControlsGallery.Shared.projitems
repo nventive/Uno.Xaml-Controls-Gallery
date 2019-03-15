@@ -31,6 +31,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\ConnectedAnimations.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\GithubLogo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Tiles\splash-sdk-web.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\TwitterLogo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_small.png" />
