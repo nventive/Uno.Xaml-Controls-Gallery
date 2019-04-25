@@ -8,8 +8,8 @@ jobs:
   pool:
     vmImage: 'ubuntu-16.04'
 
+
   strategy:
-    maxParallel: 1 # One build machine at the time of writing this
     matrix:
       FullAOT:
         RuntimeMode: FullAOT
