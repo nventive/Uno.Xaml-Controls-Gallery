@@ -2,11 +2,14 @@ parameters:
   pool: ''
 
 jobs:
-- job: linux
-  pool: ${{ parameters.pool }}
-  
+- job: Linux
+  container: nv-bionic-wasm
+
+  pool:
+    vmImage: 'ubuntu-16.04'
+
+
   strategy:
-    maxParallel: 1 # One build machine at the time of writing this
     matrix:
       FullAOT:
         RuntimeMode: FullAOT
@@ -22,27 +25,16 @@ jobs:
   - checkout: self
     clean: true
   
+  
   - bash: |
-      sudo apt-get update
-      sudo apt-get install libc6
-      cd $(build.sourcesdirectory)
-      wget https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
-      unzip -o ninja-linux.zip -d ninja-linux
+      sudo chmod -R 777 /emsdk
+      cd /emsdk
+      sudo ./emsdk activate sdk-1.38.28-64bit
 
-    displayName: 'Install Ninja'
-
-  - bash: |
-      cd $(build.sourcesdirectory)
-      git clone https://github.com/juj/emsdk.git
-      cd emsdk
-      ./emsdk install sdk-1.38.28-64bit
-      ./emsdk activate sdk-1.38.28-64bit
-
-    displayName: 'Install Emscripten'
+    displayName: 'Setup Enscripten'
 
   - bash: |
-      export PATH=$PATH:$(build.sourcesdirectory)/ninja-linux
-      source $(build.sourcesdirectory)/emsdk/emsdk_env.sh
+      source /emsdk/emsdk_env.sh
       msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
 
   - task: CopyFiles@2
