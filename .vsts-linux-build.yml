@@ -42,9 +42,12 @@ jobs:
     inputs:
       updateAssemblyInfo: false
 
-  - bash: |
+  - script: |
       source /emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) "/p:InformationalVersion=%GITVERSION_InformationalVersion%" $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
+      msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
+
+    env:
+      GITVERSION_INFORMATIONALVERSION: $(GITVERSION_INFORMATIONALVERSION)
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Binaries'
