@@ -25,17 +25,26 @@ jobs:
   - checkout: self
     clean: true
   
-  
   - bash: |
       sudo chmod -R 777 /emsdk
       cd /emsdk
       sudo ./emsdk activate sdk-1.38.28-64bit
 
-    displayName: 'Setup Enscripten'
+    displayName: 'Setup Emscripten'
+  
+  - bash: |
+      sudo apt-get install -y libgit2-dev libgit2-26
+      sudo ln -s /usr/lib/x86_64-linux-gnu/libgit2.so /lib/x86_64-linux-gnu/libgit2-15e1193.so
+
+    displayName: 'GitVersion workaround'
+
+  - task: GitVersion@4
+    inputs:
+      updateAssemblyInfo: false
 
   - bash: |
       source /emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
+      msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) "/p:InformationalVersion=%GITVERSION_InformationalVersion%" $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Binaries'
