@@ -4,12 +4,13 @@
     xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppUIBasics"
+    xmlns:xamarin="http://uno.ui/xamarin"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="headerControl"
     Padding="14,0,12,0"
     Background="Transparent"
-    mc:Ignorable="d" 
+    mc:Ignorable="d xamarin" 
     win:Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
     win:FontSize="24">
     <!-- UNO TODO UserControl is not part of the VisualTree -->
@@ -103,25 +104,28 @@
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
             </Grid>
-            <Border x:Name="commandBarBorder" Grid.Column="1">
-                <CommandBar
-                    x:Name="topCommandBar"
-                    Margin="0,0,12,0"
-                    Background="Transparent"
-                    ClosedDisplayMode="Compact"
-                    DefaultLabelPosition="Right"
-                    IsOpen="False"
-                    IsSticky="False"
-                    Visibility="Collapsed">
-                    <AppBarButton
-                        x:Name="ThemeButton"
-                        Click="OnThemeButtonClick"
-                        Label="Toggle Theme">
-                        <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE771;" Margin="0,-2,0,0" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </CommandBar>
+            <Border x:Name="commandBarBorder" 
+                    Grid.Column="1">
+                <Border xamarin:Visibility="Collapsed">
+                    <CommandBar
+                        x:Name="topCommandBar"
+                        Margin="0,0,12,0"
+                        Background="Transparent"
+                        ClosedDisplayMode="Compact"
+                        DefaultLabelPosition="Right"
+                        IsOpen="False"
+                        IsSticky="False"
+                        Visibility="Collapsed">
+                        <AppBarButton
+                            x:Name="ThemeButton"
+                            Click="OnThemeButtonClick"
+                            Label="Toggle Theme">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE771;" Margin="0,-2,0,0" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </CommandBar>
+                </Border>
             </Border>
         </Grid>
     </Grid>
