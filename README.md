@@ -1,6 +1,7 @@
 # XAML Controls Gallery port for Uno Platform
 
 This repository is a port of the [Xaml Controls Gallery](https://github.com/Microsoft/Xaml-Controls-Gallery) running on the [Uno-based apps](http://platform.uno) on Windows, iOS, Android and WebAssembly.
+You can checkout the WASM target of the gallery live on [this](https://xamlcontrolsgallery.platform.uno) address.
 
 # XAML Controls Gallery
 
