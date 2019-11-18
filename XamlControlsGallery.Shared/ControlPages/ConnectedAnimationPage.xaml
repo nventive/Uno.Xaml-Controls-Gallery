@@ -3,8 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:AppUIBasics"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+      xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       mc:Ignorable="d">
+      <!-- UNO TODO
+        https://github.com/unoplatform/uno/issues/789
+        xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+      -->
     <StackPanel>
         <local:ControlExample HeaderText="A connected animation between a list page and a detail page">
             <Frame x:Name="CollectionContentFrame" MinWidth="500" Height="750" />
