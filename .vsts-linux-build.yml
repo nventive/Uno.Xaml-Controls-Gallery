@@ -28,17 +28,11 @@ jobs:
   - bash: |
       sudo chmod -R 777 /emsdk
       cd /emsdk
-      sudo ./emsdk activate sdk-1.38.28-64bit
+      sudo ./emsdk activate sdk-1.38.31-64bit
 
     displayName: 'Setup Emscripten'
-  
-  - bash: |
-      sudo apt-get install -y libgit2-dev libgit2-26
-      sudo ln -s /usr/lib/x86_64-linux-gnu/libgit2.so /lib/x86_64-linux-gnu/libgit2-15e1193.so
 
-    displayName: 'GitVersion workaround'
-
-  - task: GitVersion@4
+  - task: GitVersion@5
     inputs:
       updateAssemblyInfo: false
 
