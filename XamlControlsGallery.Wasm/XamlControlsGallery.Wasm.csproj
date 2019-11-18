@@ -6,9 +6,8 @@
     <WasmHead>true</WasmHead>
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
     <NoWarn>NU1701,Uno0001</NoWarn>
- 		<WasmPWAManifestFile>manifest.json</WasmPWAManifestFile>
-    <!--<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>-->
-
+ 		<WasmPWAManifestFile Condition="'$(Configuration)'=='Release'">manifest.json</WasmPWAManifestFile>
+    <MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellMonoRuntimeExecutionMode Condition="$([MSBuild]::IsOsUnixLike()) and '$(MixedModeBuild)'!='True'">FullAOT</WasmShellMonoRuntimeExecutionMode>
     <WasmShellMonoRuntimeExecutionMode Condition="$([MSBuild]::IsOsUnixLike()) and '$(MixedModeBuild)'=='True'">InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
