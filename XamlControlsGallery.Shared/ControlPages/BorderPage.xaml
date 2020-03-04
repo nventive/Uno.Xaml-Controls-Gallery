@@ -12,6 +12,7 @@
 <Page
     x:Class="AppUIBasics.ControlPages.BorderPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:AppUIBasics.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -104,14 +105,16 @@
             </local:ControlExample.Options>
 
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>
-                        &lt;Border BorderThickness=&quot;<Run Text="{x:Bind Control1.BorderThickness.Top, Mode=OneWay}" />&quot;
-                        BorderBrush=&quot;<Run Text="{x:Bind Control1.BorderBrush.(SolidColorBrush.Color), Converter={StaticResource colorStringConverter}, Mode=OneWay}" />&quot;
-                        Background=&quot;<Run Text="{x:Bind Control1.Background.(SolidColorBrush.Color), Converter={StaticResource colorStringConverter}, Mode=OneWay}" />&quot;&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;TextBlock Text=&quot;Text inside a border&quot; FontSize=&quot;18&quot; Foreground=&quot;Black&quot; /&gt;</Paragraph>
-                    <Paragraph>&lt;/Border&gt;</Paragraph>
-                </RichTextBlock>
+				<Border>
+                <win:RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
+                        <Paragraph>
+                            &lt;Border BorderThickness=&quot;<Run Text="{x:Bind Control1.BorderThickness.Top, Mode=OneWay}" />&quot;
+                            BorderBrush=&quot;<Run Text="{x:Bind Control1.BorderBrush.(SolidColorBrush.Color), Converter={StaticResource colorStringConverter}, Mode=OneWay}" />&quot;
+                            Background=&quot;<Run Text="{x:Bind Control1.Background.(SolidColorBrush.Color), Converter={StaticResource colorStringConverter}, Mode=OneWay}" />&quot;&gt;</Paragraph>
+                        <Paragraph TextIndent="24">&lt;TextBlock Text=&quot;Text inside a border&quot; FontSize=&quot;18&quot; Foreground=&quot;Black&quot; /&gt;</Paragraph>
+                        <Paragraph>&lt;/Border&gt;</Paragraph>
+                    </win:RichTextBlock>
+				</Border>
             </local:ControlExample.Xaml>
         </local:ControlExample>
     </StackPanel>

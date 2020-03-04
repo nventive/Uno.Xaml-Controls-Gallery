@@ -29,8 +29,8 @@ jobs:
       cd ~
       git clone https://github.com/emscripten-core/emsdk
       cd emsdk
-      ./emsdk install sdk-1.38.31-64bit
-      ./emsdk activate sdk-1.38.31-64bit
+      ./emsdk install 1.38.31
+      ./emsdk activate 1.38.31
 
     displayName: 'Setup Emscripten'
 
