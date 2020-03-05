@@ -16,11 +16,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateThumbprint>FA5B68BB8F9FEF8640DED129022F91E2666FB3CC</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>147385A28E48D3EF4D4377309C88A1DD5D609F4F</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>XamlControlsGallery_TemporaryKey.pfx</PackageCertificateKeyFile>
-    
     <!-- Required for .NET Core builds -->
     <SkipAppxManifestValidation>true</SkipAppxManifestValidation>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup>
     <EnableTypeInfoReflection>false</EnableTypeInfoReflection>
