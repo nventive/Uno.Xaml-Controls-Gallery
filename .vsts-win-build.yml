@@ -49,7 +49,7 @@ jobs:
       msbuildLocationMethod: version
       msbuildVersion: latest
       msbuildArchitecture: x86
-      msbuildArguments: /r /p:Configuration=Release /detailedsummary /m:16 /nr:false "/p:AndroidSigningStorePass=$(nventivekeystore_pwd)" "/p:AndroidSigningKeyAlias=$(nventivekeystore_alias)" "/p:AndroidSigningKeyPass=$(nventivekeystore_aliaspwd)"  "/p:PackageVersion=%GITVERSION_FullSemVer%" "/p:InformationalVersion=%GITVERSION_InformationalVersion%" # /bl:$(build.artifactstagingdirectory)\build.binlog
+      msbuildArguments: /r /p:Configuration=Release /detailedsummary /m:16 /nr:false "/p:AndroidSigningStorePass=$(nventivekeystore_pwd)" "/p:AndroidSigningKeyAlias=$(nventivekeystore_alias)" "/p:AndroidSigningKeyPass=$(nventivekeystore_aliaspwd)"  "/p:PackageVersion=%GITVERSION_FullSemVer%" "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)\build.binlog
       clean: false
       maximumCpuCount: true
       restoreNugetPackages: false
