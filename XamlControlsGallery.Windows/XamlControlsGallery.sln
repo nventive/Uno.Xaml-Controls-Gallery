@@ -18,6 +18,7 @@ Global
 		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{1b455fb3-fd09-4586-a242-10a4c4cf2c0b}*SharedItemsImports = 4
 		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{21a6ddab-f557-4753-8048-4e770b8bd0db}*SharedItemsImports = 13
 		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{3f68773a-31a5-59fe-926c-0569e415c9d9}*SharedItemsImports = 4
+		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{73f25f1f-59ed-4f92-b199-473b40cf63c7}*SharedItemsImports = 5
 		..\XamlControlsGallery.Shared\XamlControlsGallery.Shared.projitems*{d70fb368-e8e1-4f11-9292-be8508b08495}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
