@@ -8,6 +8,34 @@ jobs:
   steps:
   - checkout: self
     clean: true
+
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'runtime'
+      version: '2.2.0'
+
+  - task: nventiveCanaryUpdater@5
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    inputs:
+      solution: 'XamlControlsGallery.Windows/XamlControlsGallery.sln'
+      usePrivateFeed: false
+      useNuGetOrg: true
+      mergeBranch: true
+      branchToMerge: 'master'
+      nugetUpdaterVersion: '2.0.6'
+      allowDowngrade: true
+      packageAuthor: 'nventive'
+      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+      resultFile: '$(Build.ArtifactStagingDirectory)/update_result.json'
+
+  - bash: |
+      shopt -s nullglob
+      function join_by { local IFS="$1"; shift; echo "$*"; }
+      lib_path=$(join_by ';' $(Agent.WorkFolder)/_tasks/GitVersion*/4.0.*/lib/linux/x86_64)
+      echo LD_LIBRARY_PATH: $lib_path
+      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH]$lib_path"
+
+    displayName: Update LD_LIBRARY_PATH for GitVersion
     
   - task: GitVersion@5
     # Ignore gitversion for forks, until this is fixed:

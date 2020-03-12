@@ -14,6 +14,25 @@ jobs:
   steps:
   - checkout: self
     clean: true
+
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'runtime'
+      version: '2.2.0'
+
+  - task: nventiveCanaryUpdater@5
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    inputs:
+      solution: 'XamlControlsGallery.Windows/XamlControlsGallery.sln'
+      usePrivateFeed: false
+      useNuGetOrg: true
+      mergeBranch: true
+      branchToMerge: 'master'
+      nugetUpdaterVersion: '2.0.6'
+      allowDowngrade: true
+      packageAuthor: 'nventive'
+      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+      resultFile: '$(Build.ArtifactStagingDirectory)/update_result.json'
     
   - task: GitVersion@4
     # Ignore gitversion for forks, until this is fixed:
