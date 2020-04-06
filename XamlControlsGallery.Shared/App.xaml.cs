@@ -281,6 +281,11 @@ namespace AppUIBasics
             {
                 rootPage = new NavigationRootPage();
                 rootFrame = (Frame)rootPage.FindName("rootFrame");
+
+#if HAS_UNO // UNO TODO FindName does not materialize the ContentControl content. https://github.com/unoplatform/uno/issues/2950
+                rootFrame = rootFrame ?? NavigationRootPage.RootFrame;
+#endif
+
                 if (rootFrame == null)
                 {
                     throw new Exception("Root frame not found");
