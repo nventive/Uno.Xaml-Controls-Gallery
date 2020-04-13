@@ -1,5 +1,5 @@
 jobs:
-- template: .vsts-macOS-build.yml
+- template: .vsts-iOS-build.yml
   parameters:
     name: macOS
     pool:

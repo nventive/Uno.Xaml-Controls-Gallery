@@ -14,3 +14,5 @@ jobs:
 - template: .vsts-linux-build.yml
   parameters:
     name: Linux
+
+- template: .vsts-macOS-build.yml
