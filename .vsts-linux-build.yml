@@ -3,10 +3,10 @@ parameters:
 
 jobs:
 - job: Linux
-  container: nv-bionic-wasm
+  container: unoplatform/wasm-build:2.1
 
   pool:
-    vmImage: 'ubuntu-18.04'
+    vmImage: 'ubuntu-latest'
 
 
   strategy:
@@ -20,6 +20,7 @@ jobs:
 
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+    DOTNET_ROOT: $(Agent.ToolsDirectory)/dotnet
 
   steps:
   - checkout: self
@@ -28,7 +29,7 @@ jobs:
   - task: UseDotNet@2
     inputs:
       packageType: 'runtime'
-      version: '2.2.0'
+      version: '2.2.x'
 
   - task: nventiveCanaryUpdater@5
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
@@ -44,15 +45,15 @@ jobs:
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
       resultFile: '$(Build.ArtifactStagingDirectory)/update_result.json'
   
-  
   - bash: |
       cd ~
       git clone https://github.com/emscripten-core/emsdk
       cd emsdk
-      ./emsdk install sdk-1.39.9
-      ./emsdk activate sdk-1.39.9
+      ./emsdk install sdk-1.39.11
+      ./emsdk activate sdk-1.39.11
 
     displayName: 'Setup Emscripten'
+
 
   - bash: |
       cd ~/emsdk
@@ -64,8 +65,14 @@ jobs:
 
     displayName: 'Apply Emscripten Mono patches'
 
-  - task: GitVersion@5
+  - task: UseDotNet@2
     inputs:
+      packageType: 'runtime'
+      version: '2.1.x'
+
+  - task: UseGitVersion@5
+    inputs:
+      versionSpec: '5.x'
       updateAssemblyInfo: false
 
   - script: |
