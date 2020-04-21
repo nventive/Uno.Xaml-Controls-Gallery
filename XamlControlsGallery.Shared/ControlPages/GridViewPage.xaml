@@ -87,6 +87,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
+				<!-- UNO TODO https://github.com/unoplatform/uno/issues/2666 -->
                 <GridView
                     x:Name="Control1"
                     CanDragItems="{x:Bind DragCheckBox.IsChecked.Value, Mode=OneWay}"
@@ -94,7 +95,7 @@
                     IsSwipeEnabled="{x:Bind SwipeCheckBox.IsChecked.Value, Mode=OneWay}"
                     ItemClick="Control1_ItemClick"
                     ItemTemplate="{StaticResource ImageOverlayTemplate}"
-                    ItemsSource="{x:Bind Items}"
+                    ItemsSource="{x:Bind Items, Mode=OneWay}"
                     SelectionChanged="Control1_SelectionChanged" />
 
                 <StackPanel Grid.Row="1">
