@@ -183,6 +183,7 @@
           "Description": "The Menubar simplifies the creation of basic applications by providing a set of menus at the top of the app or window",
           "Content": "",
           "IsNew": true,
+          "IsUno": true,
           "Docs": [
             {
               "Title": "MenuBar - API",
@@ -631,6 +632,7 @@
           "Description": "A control that drops down a flyout of choices from which one can be chosen.",
           "Content": "",
           "IsNew": true,
+          "IsUno": true,
           "Docs": [
             {
               "Title": "DropDownButton - API",
@@ -685,6 +687,7 @@
           "Description": "The RepeatButton control is like a standard Button, except that the Click event occurs continuously while the user presses the RepeatButton.",
           "Content": "<p>A <b>RepeatButton</b> looks just like a regular <b>Button</b>, but it's <b>Click</b> event occurs continuously while the button is pressed.</p><p>Look at the <i>RepeatButtonPage.xaml</i> file in Visual Studio to see the full code for this page.</p>",
           "IsNew": false,
+          "IsUno": true,
           "Docs": [
             {
               "Title": "RepeatButton - API",
@@ -1026,6 +1029,7 @@
           "Description": "A ToolTip shows more information about a UI element. You might show information about what the element does, or what the user should do. The ToolTip is shown when a user hovers over or presses and holds the UI element.",
           "Content": "<p>Look at the <i>ToolTipPage.xaml</i> file in Visual Studio to see the full code for this page.</p>",
           "IsNew": false,
+          "IsUno": true,
           "Docs": [
             {
               "Title": "ToolTip - API",
