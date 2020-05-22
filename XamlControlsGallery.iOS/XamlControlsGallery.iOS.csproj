@@ -123,7 +123,7 @@
     <PackageReference Include="Uno.ColorCode.UWP">
       <Version>2.0.5-gd0f1a63314</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI" Version="2.2.0-dev.333" />
+    <PackageReference Include="Uno.UI" Version="2.2.0-feature.styles-compat.205" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1-uno.28" />
     <PackageReference Include="System.Json" Version="4.5.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
