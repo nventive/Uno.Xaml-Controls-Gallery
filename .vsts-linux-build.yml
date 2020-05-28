@@ -7,17 +7,6 @@ jobs:
 
   pool:
     vmImage: 'ubuntu-latest'
-
-
-  strategy:
-    matrix:
-      FullAOT:
-        RuntimeMode: FullAOT
-        MixedModeBuild: False
-      Mixed:
-       RuntimeMode: Mixed
-       MixedModeBuild: True
-
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
     DOTNET_ROOT: $(Agent.ToolsDirectory)/dotnet
@@ -77,7 +66,7 @@ jobs:
 
   - script: |
       source ~/emsdk/emsdk_env.sh
-      msbuild /r /p:Configuration=Release /p:MixedModeBuild=$(MixedModeBuild) "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
+      msbuild /r /p:Configuration=Release "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" $(build.sourcesdirectory)/XamlControlsGallery.Wasm/XamlControlsGallery.Wasm.csproj /bl:$(build.artifactstagingdirectory)\build.binlog
 
     env:
       GITVERSION_INFORMATIONALVERSION: $(GITVERSION_INFORMATIONALVERSION)
@@ -87,7 +76,7 @@ jobs:
     inputs:
       SourceFolder: $(build.sourcesdirectory)/XamlControlsGallery.Wasm/bin/Release/netstandard2.0/dist
       Contents: '**/*.*'
-      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-wasm/$(RuntimeMode)
+      TargetFolder: $(build.artifactstagingdirectory)/XamlUIBasics-wasm/FullAOT
       CleanTargetFolder: false
       OverWrite: false
       flattenFolders: false

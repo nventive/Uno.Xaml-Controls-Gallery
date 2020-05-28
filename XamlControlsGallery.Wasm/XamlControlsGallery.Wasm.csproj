@@ -29,10 +29,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="WasmScripts\interp-redirect.js" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <LinkerDescriptor Include="LinkerConfig.xml" />
   </ItemGroup>
   
