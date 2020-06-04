@@ -21,7 +21,7 @@ jobs:
       usePrivateFeed: false
       useNuGetOrg: true
       mergeBranch: true
-      branchToMerge: 'master'
+      branchToMerge: 'uno'
       nugetUpdaterVersion: '2.0.6'
       allowDowngrade: true
       packageAuthor: 'nventive'
