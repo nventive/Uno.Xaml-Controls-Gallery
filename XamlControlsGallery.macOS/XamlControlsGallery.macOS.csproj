@@ -75,10 +75,10 @@
     <PackageReference Include="Uno.ColorCode.UWP">
       <Version>2.0.8-gd42a883502</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI" Version="3.0.0-dev.899" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.2-uno.74" />
     <PackageReference Include="Uno.UI" Version="2.0.512-dev.4178" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.899" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1549" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
   </ItemGroup>
