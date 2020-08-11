@@ -9,13 +9,16 @@
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellIndexHtmlPath>$(MSBuildThisFileDirectory)index.html</WasmShellIndexHtmlPath>
 		<UseAOT Condition="'$(Configuration)' == 'Release' and ($([MSBuild]::IsOsPlatform('Linux')) or ( $([MSBuild]::IsOsPlatform('Windows')) and '$(SkipWasmBuild)'=='' ))">true</UseAOT>
-		<WasmShellMonoRuntimeExecutionMode Condition="'$(UseAOT)'!=''">InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellMonoRuntimeExecutionMode Condition="'$(UseAOT)'!=''">FullAOT</WasmShellMonoRuntimeExecutionMode>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 	</PropertyGroup>
 	
+	<!--
+	Use FullAOT until some PG-AOT issues are fixed in mono
 	<ItemGroup Condition="'$(UseAOT)'!=''">
 		<WasmShellEnableAotProfile Include="aot-full.profile" />
 	</ItemGroup>
+	-->
 
 	<ItemGroup>
     <Content Include="ts\*.ts" />
