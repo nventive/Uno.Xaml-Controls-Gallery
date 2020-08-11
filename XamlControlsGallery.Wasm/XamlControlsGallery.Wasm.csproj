@@ -9,13 +9,16 @@
     <UnoSourceGeneratorUseGenerationController>true</UnoSourceGeneratorUseGenerationController>
     <WasmShellIndexHtmlPath>$(MSBuildThisFileDirectory)index.html</WasmShellIndexHtmlPath>
 		<UseAOT Condition="'$(Configuration)' == 'Release' and ($([MSBuild]::IsOsPlatform('Linux')) or ( $([MSBuild]::IsOsPlatform('Windows')) and '$(SkipWasmBuild)'=='' ))">true</UseAOT>
-		<WasmShellMonoRuntimeExecutionMode Condition="'$(UseAOT)'!=''">InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellMonoRuntimeExecutionMode Condition="'$(UseAOT)'!=''">FullAOT</WasmShellMonoRuntimeExecutionMode>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 	</PropertyGroup>
 	
+	<!--
+	Use FullAOT until some PG-AOT issues are fixed in mono
 	<ItemGroup Condition="'$(UseAOT)'!=''">
 		<WasmShellEnableAotProfile Include="aot-full.profile" />
 	</ItemGroup>
+	-->
 
 	<ItemGroup>
     <Content Include="ts\*.ts" />
@@ -43,8 +46,8 @@
     <PackageReference Include="System.Json" Version="4.5.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.9" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.9" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.24" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.24" />
     <PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
