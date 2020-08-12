@@ -2,7 +2,7 @@
   <assembly fullname="XamlControlsGallery.Wasm" />
 	<assembly fullname="WebAssembly.Bindings" />
 	<assembly fullname="Uno.Foundation" />
-  <assembly fullname="Uno.UI">
+	<assembly fullname="Uno.UI">
     <!-- Workaround for https://github.com/nventive/Uno/pull/612 -->
     <type fullname="Windows.UI.Xaml.ObservableVectorWrapper" />
   </assembly>
