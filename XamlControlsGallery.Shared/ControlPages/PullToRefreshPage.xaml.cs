@@ -1,31 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+using AppUIBasics.Helper;
+using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.UI.Composition;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Hosting;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PullToRefreshPage : Page
     {
         private ObservableCollection<string> items1 = new ObservableCollection<string>();
@@ -62,12 +51,23 @@ namespace AppUIBasics.ControlPages
                     new TypedEventHandler<RefreshVisualizer, RefreshStateChangedEventArgs>(rv2_RefreshStateChanged);
 
                 Image ptrImage = new Image();
-                if (App.RootTheme == ElementTheme.Light || Application.Current.RequestedTheme == ApplicationTheme.Light)
+                AccessibilitySettings accessibilitySettings = new AccessibilitySettings();
+                // Checking light theme
+                if ((ThemeHelper.RootTheme == ElementTheme.Light || Application.Current.RequestedTheme == ApplicationTheme.Light) 
+                    && !accessibilitySettings.HighContrast)
                 {
-                    ptrImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/sun-100-Black.png"));
-                } else
+                    ptrImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/SunBlack.png"));
+                }
+                // Checking high contrast theme
+                else if (accessibilitySettings.HighContrast
+                          && accessibilitySettings.HighContrastScheme.Equals("High Contrast Black"))
                 {
-                    ptrImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Sun.32.scale-100-White.png"));
+                    ptrImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/SunBlack.png"));
+                }
+                else
+                {
+                    ptrImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/SunWhite.png"));
+
                 }
 
                 ptrImage.Width = 35;
@@ -78,18 +78,20 @@ namespace AppUIBasics.ControlPages
                 rc2.Visualizer = rv2;
 #endif
 
-                ListView lv2 = new ListView();
-                lv2.Width = 200;
-                lv2.Height = 200;
-                lv2.BorderThickness = new Thickness(1);
-                lv2.HorizontalAlignment = HorizontalAlignment.Center;
-                lv2.BorderBrush = (Brush)Application.Current.Resources["TextControlBorderBrush"];
+                ListView lv2 = new ListView
+                {
+                    Width = 200,
+                    Height = 200,
+                    BorderThickness = new Thickness(1),
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    BorderBrush = (Brush)Application.Current.Resources["TextControlBorderBrush"]
+                };
 
 
                 rc2.Content = lv2;
 
                 Ex2Grid.Children.Add(rc2);
-                Grid.SetRow( rc2, 1);
+                Grid.SetRow(rc2, 1);
                 Grid.SetRow(lv2, 1);
 
                 timer1.Interval = new TimeSpan(0, 0, 0, 0, 500);
@@ -196,6 +198,6 @@ namespace AppUIBasics.ControlPages
         private void rv2_RefreshStateChanged(RefreshVisualizer sender, RefreshStateChangedEventArgs args)
         {
             //visualizerContentVisual.StopAnimation("RotationAngle");
-         }
+        }
     }
 }

@@ -19,13 +19,13 @@ namespace AppUIBasics.ControlPages
             if ((sender as Windows.UI.Xaml.Controls.ToggleSplitButton).IsChecked)
             {
                 //add bulleted list
-                myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;                
+                myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
             }
             else
             {
                 //remove bulleted list
                 myRichEditBox.Document.Selection.ParagraphFormat.ListType = MarkerType.None;
-            }      
+            }
 #endif
         }
 
@@ -57,6 +57,20 @@ namespace AppUIBasics.ControlPages
 #if NETFX_CORE // UNO TODO
             myRichEditBox.Focus(FocusState.Keyboard);
 #endif
+        }
+
+        private void MyListButton_IsCheckedChanged(Microsoft.UI.Xaml.Controls.ToggleSplitButton sender, Microsoft.UI.Xaml.Controls.ToggleSplitButtonIsCheckedChangedEventArgs args)
+        {
+            if (sender.IsChecked)
+            {
+                //add bulleted list
+                myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
+            }
+            else
+            {
+                //remove bulleted list
+                myRichEditBox.Document.Selection.ParagraphFormat.ListType = MarkerType.None;
+            }
         }
     }
 }

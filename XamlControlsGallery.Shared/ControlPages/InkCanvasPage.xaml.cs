@@ -16,13 +16,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class InkCanvasPage : Page
     {
         private InkPresenter _inkPresenter;
@@ -54,12 +49,6 @@ namespace AppUIBasics.ControlPages
 
         }
 
-        private void penTipShape_Toggled(object sender, RoutedEventArgs e)
-        {
-            UpdatePen();
-
-        }
-
         private void UpdatePen()
         {
             if (_inkPresenter != null)
@@ -84,7 +73,7 @@ namespace AppUIBasics.ControlPages
 
                 defaultAttributes.Size = new Size(strokeSize.Value, strokeSize.Value);
                 defaultAttributes.DrawAsHighlighter = drawAsHighlighter.IsChecked.Value;
-                defaultAttributes.PenTip = penTipShape.IsOn ? PenTipShape.Circle : PenTipShape.Rectangle;
+                defaultAttributes.PenTip = (bool)penTipShape.IsChecked ? PenTipShape.Circle : PenTipShape.Rectangle;
 
                 _inkPresenter.UpdateDefaultDrawingAttributes(defaultAttributes);
             }
@@ -93,6 +82,11 @@ namespace AppUIBasics.ControlPages
         private void clearAll_Click(object sender, RoutedEventArgs e)
         {
             _inkPresenter.StrokeContainer.Clear();
+        }
+
+        private void PenTip_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdatePen();
         }
     }
 }

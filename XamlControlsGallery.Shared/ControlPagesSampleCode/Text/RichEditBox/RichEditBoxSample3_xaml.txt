@@ -30,12 +30,12 @@
         </Button.Content>
     </Button>
 
-    <muxcontrols:DropDownButton x:Name="fontColorButton" AutomationProperties.Name="Font color"
+    <muxc:DropDownButton x:Name="fontColorButton" AutomationProperties.Name="Font color"
                                 BorderThickness="0" ToolTipService.ToolTip="Font color"
                                 Background="Transparent" 
                                 RelativePanel.AlignRightWithPanel="True">
         <SymbolIcon Symbol="FontColor"/>
-        <muxcontrols:DropDownButton.Flyout>
+        <muxc:DropDownButton.Flyout>
             <Flyout Placement="Bottom">
                 <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3">
                     <VariableSizedWrapGrid.Resources>
@@ -90,20 +90,17 @@
                             <Rectangle Fill="Gray"/>
                         </Button.Content>
                     </Button>
-                    <Button Click="ColorButton_Click" AutomationProperties.Name="Black">
-                        <Button.Content>
-                            <Rectangle Fill="Black"/>
-                        </Button.Content>
-                    </Button>
                 </VariableSizedWrapGrid>
             </Flyout>
-        </muxcontrols:DropDownButton.Flyout>
-    </muxcontrols:DropDownButton>
+        </muxc:DropDownButton.Flyout>
+    </muxc:DropDownButton>
 
-    <RichEditBox x:Name="editor" Height="200" 
-                 RelativePanel.Below="openFileButton" 
-                 RelativePanel.AlignLeftWithPanel="True" 
-                 RelativePanel.AlignRightWithPanel="True" />
+    <RichEditBox x:Name="editor" Height="200" AutomationProperties.Name="Custom editor"
+                    RelativePanel.Below="openFileButton" 
+                    RelativePanel.AlignLeftWithPanel="True" 
+                    RelativePanel.AlignRightWithPanel="True" 
+                    TextChanged="Editor_TextChanged"
+                    GotFocus="Editor_GotFocus"/>
     <StackPanel Orientation="Horizontal" 
                 RelativePanel.Below="editor" 
                 RelativePanel.AlignLeftWith="editor" 

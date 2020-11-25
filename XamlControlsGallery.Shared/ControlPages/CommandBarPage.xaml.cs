@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -7,19 +7,37 @@
 // PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 //
 //*********************************************************
+using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class CommandBarPage : Page
+    public sealed partial class CommandBarPage : Page, INotifyPropertyChanged
     {
+        private bool multipleButtons = false;
+
+        public bool MultipleButtons
+        {
+            get
+            {
+                return multipleButtons;
+            }
+            set
+            {
+                multipleButtons = value;
+                OnPropertyChanged("MultipleButtons");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string PropertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
         public CommandBarPage()
         {
             this.InitializeComponent();
@@ -38,6 +56,12 @@ namespace AppUIBasics.ControlPages
             PrimaryCommandBar.IsSticky = false;
         }
 
+        private void OnElementClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var selectedFlyoutItem = sender as AppBarButton;
+            SelectedOptionText.Text = "You clicked: " + (sender as AppBarButton).Label;
+        }
+
         private void AddSecondaryCommands_Click(object sender, RoutedEventArgs e)
         {
             // Add compact button to the command bar. It provides functionality specific
@@ -45,18 +69,23 @@ namespace AppUIBasics.ControlPages
 
             if (PrimaryCommandBar.SecondaryCommands.Count == 1)
             {
-                var newButton = new AppBarButton();
-                newButton.Icon = new SymbolIcon(Symbol.Add);
-                newButton.Label = "Button 1";
+                var newButton = new AppBarButton
+                {
+                    Icon = new SymbolIcon(Symbol.Add),
+                    Label = "Button 1"
+                };
                 newButton.KeyboardAccelerators.Add(new Windows.UI.Xaml.Input.KeyboardAccelerator()
                 {
-                    Key = Windows.System.VirtualKey.N, Modifiers = Windows.System.VirtualKeyModifiers.Control
+                    Key = Windows.System.VirtualKey.N,
+                    Modifiers = Windows.System.VirtualKeyModifiers.Control
                 });
                 PrimaryCommandBar.SecondaryCommands.Add(newButton);
 
-                newButton = new AppBarButton();
-                newButton.Icon = new SymbolIcon(Symbol.Delete);
-                newButton.Label = "Button 2";
+                newButton = new AppBarButton
+                {
+                    Icon = new SymbolIcon(Symbol.Delete),
+                    Label = "Button 2"
+                };
                 PrimaryCommandBar.SecondaryCommands.Add(newButton);
                 newButton.KeyboardAccelerators.Add(new Windows.UI.Xaml.Input.KeyboardAccelerator()
                 {
@@ -64,9 +93,11 @@ namespace AppUIBasics.ControlPages
                 });
                 PrimaryCommandBar.SecondaryCommands.Add(new AppBarSeparator());
 
-                newButton = new AppBarButton();
-                newButton.Icon = new SymbolIcon(Symbol.FontDecrease);
-                newButton.Label = "Button 3";
+                newButton = new AppBarButton
+                {
+                    Icon = new SymbolIcon(Symbol.FontDecrease),
+                    Label = "Button 3"
+                };
                 newButton.KeyboardAccelerators.Add(new Windows.UI.Xaml.Input.KeyboardAccelerator()
                 {
                     Key = Windows.System.VirtualKey.Subtract,
@@ -74,16 +105,20 @@ namespace AppUIBasics.ControlPages
                 });
                 PrimaryCommandBar.SecondaryCommands.Add(newButton);
 
-                newButton = new AppBarButton();
-                newButton.Icon = new SymbolIcon(Symbol.FontIncrease);
-                newButton.Label = "Button 4";
+                newButton = new AppBarButton
+                {
+                    Icon = new SymbolIcon(Symbol.FontIncrease),
+                    Label = "Button 4"
+                };
                 newButton.KeyboardAccelerators.Add(new Windows.UI.Xaml.Input.KeyboardAccelerator()
                 {
                     Key = Windows.System.VirtualKey.Add,
                     Modifiers = Windows.System.VirtualKeyModifiers.Control
                 });
                 PrimaryCommandBar.SecondaryCommands.Add(newButton);
+
             }
+            MultipleButtons = true;
         }
 
         private void RemoveSecondaryCommands_Click(object sender, RoutedEventArgs e)
@@ -103,6 +138,7 @@ namespace AppUIBasics.ControlPages
             {
                 PrimaryCommandBar.SecondaryCommands.RemoveAt(PrimaryCommandBar.SecondaryCommands.Count - 1);
             }
+            MultipleButtons = false;
         }
 
 
@@ -125,11 +161,6 @@ namespace AppUIBasics.ControlPages
                 Modifiers = Windows.System.VirtualKeyModifiers.Control
             });
 
-            settingsButton.KeyboardAccelerators.Add(new Windows.UI.Xaml.Input.KeyboardAccelerator()
-            {
-                Key = Windows.System.VirtualKey.S,
-                Modifiers = Windows.System.VirtualKeyModifiers.Control
-            });
         }
 
     }

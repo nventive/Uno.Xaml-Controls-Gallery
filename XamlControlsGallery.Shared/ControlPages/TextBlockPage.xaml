@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -13,27 +13,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:AppUIBasics"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="CustomTextBlockStyle">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+    </Page.Resources>
     <StackPanel>
         <local:ControlExample x:Name="Example1" HeaderText="A simple TextBlock.">
             <local:ControlExample.Example>
                 <TextBlock Text="I am a TextBlock." />
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;TextBlock Text="I am a TextBlock"/&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String>
+                    &lt;TextBlock Text="I am a TextBlock"/&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
         <local:ControlExample x:Name="Example2" HeaderText="A TextBlock with a style applied.">
             <local:ControlExample.Example>
-                <TextBlock Text="I am a styled TextBlock." Style="{StaticResource OutputTextBlockStyle}" />
+                <TextBlock Text="I am a styled TextBlock." Style="{StaticResource CustomTextBlockStyle}" />
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;TextBlock Text="I am a styled TextBlock"
-                        <Bold>Style="{StaticResource OutputTextBlockStyle}"</Bold> /&gt;
-                    </Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;Page.Resources&gt;
+    &lt;Style TargetType="TextBlock" x:Key="CustomTextBlockStyle"&gt;
+        &lt;Setter Property="FontFamily" Value="Comic Sans MS"/&gt;
+        &lt;Setter Property="FontStyle" Value="Italic"/&gt;
+    &lt;/Style&gt;
+&lt;Page.Resources&gt;
+
+&lt;TextBlock Text="I am a styled TextBlock" Style="{StaticResource CustomTextBlockStyle}"/&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
         <local:ControlExample x:Name="Example3" HeaderText="A TextBlock with various properties set.">
@@ -42,17 +53,11 @@
                         TextWrapping="WrapWholeWords" CharacterSpacing="200" Foreground="CornflowerBlue" />
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;TextBlock Text="I am super excited to be here!"
-                        <Bold>FontFamily="Arial"</Bold>
-                    </Paragraph>
-                    <Paragraph TextIndent="12">
-                        <Bold>FontSize="24" FontStyle="Italic" TextWrapping="WrapWholeWords"</Bold>
-                    </Paragraph>
-                    <Paragraph TextIndent="12">
-                        <Bold>CharacterSpacing="200" Foreground="CornflowerBlue"</Bold> /&gt;
-                    </Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;TextBlock Text="I am super excited to be here!" FontFamily="Arial"
+    FontSize="24" FontStyle="Italic" TextWrapping="WrapWholeWords"
+    CharacterSpacing="200" Foreground="CornflowerBlue" /&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
         <local:ControlExample x:Name="Example4" HeaderText="A TextBlock with inline text elements.">
@@ -63,15 +68,15 @@
                             <Span>Text can be <Bold>bold</Bold>, <Italic>italic</Italic>, or <Underline>underlined</Underline>.</Span></TextBlock>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;TextBlock&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Run FontFamily="Times New Roman" Foreground="DarkGray"&gt;</Paragraph>
-                    <Paragraph TextIndent="24">Text in a TextBlock doesn't have to be a simple string.&lt;/Run&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;LineBreak/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Span&gt;Text can be &lt;Bold&gt;bold&lt;/Bold&gt;,</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Italic&gt;italic&lt;/Italic&gt;, or &lt;Underline&gt;underlined&lt;/Underline&gt;. &lt;/Span&gt;</Paragraph>
-                    <Paragraph>&lt;/TextBlock&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;TextBlock&gt;
+    &lt;Run FontFamily="Times New Roman" Foreground="DarkGray"&gt;
+        Text in a TextBlock doesn't have to be a simple string.&lt;/Run&gt;
+    &lt;LineBreak/&gt;
+    &lt;Span&gt;Text can be &lt;Bold&gt;bold&lt;/Bold&gt;,
+        &lt;Italic&gt;italic&lt;/Italic&gt;, or &lt;Underline&gt;underlined&lt;/Underline&gt;. &lt;/Span&gt;
+&lt;/TextBlock&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
     </StackPanel>

@@ -13,20 +13,17 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ThemeTransitionPage : Page
     {
+
+        private int _itemCount = 10;
         public ThemeTransitionPage()
         {
             this.InitializeComponent();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < _itemCount; i++)
             {
                 AddRemoveListView.Items.Add(new ListViewItem() { Content = "Item " + i });
             }
@@ -64,7 +61,8 @@ namespace AppUIBasics.ControlPages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddRemoveListView.Items.Add(new ListViewItem() { Content = "New Item" });
+            AddRemoveListView.Items.Add(new ListViewItem() { Content = "New Item " +  _itemCount.ToString()});
+            _itemCount++;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

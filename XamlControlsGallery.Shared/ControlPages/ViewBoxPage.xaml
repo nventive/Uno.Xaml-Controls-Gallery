@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -15,7 +15,8 @@
     xmlns:local="using:AppUIBasics"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      mc:Ignorable="d">
     <StackPanel>
         <local:ControlExample x:Name="Example1" HeaderText="Content inside of a Viewbox.">
             <Viewbox x:Name="Control1" Height="{x:Bind SizeSlider.Value, Mode=OneWay}"
@@ -38,39 +39,44 @@
                 <StackPanel Width="200">
                     <Slider x:Name="SizeSlider" Header="Width/Height" Maximum="300" Minimum="20" Value="200" />
 
-                    <TextBlock Text="Stretch" Margin="0,0,0,8" />
-                    <RadioButton Content="None" Tag="None" GroupName="Stretch" Checked="StretchButton_Checked" />
-                    <RadioButton Content="Fill" Tag="Fill" GroupName="Stretch" Checked="StretchButton_Checked" />
-                    <RadioButton Content="Uniform" Tag="Uniform" GroupName="Stretch" Checked="StretchButton_Checked" IsChecked="True" />
-                    <RadioButton Content="UniformToFill" Tag="UniformToFill" GroupName="Stretch" Checked="StretchButton_Checked" />
+                    <muxc:RadioButtons Header="Stretch">
+                        <RadioButton Content="None" Tag="None" Checked="StretchButton_Checked" />
+                        <RadioButton Content="Fill" Tag="Fill" Checked="StretchButton_Checked" />
+                        <RadioButton Content="Uniform" Tag="Uniform" Checked="StretchButton_Checked" IsChecked="True" />
+                        <RadioButton Content="UniformToFill" Tag="UniformToFill" Checked="StretchButton_Checked" />
+                    </muxc:RadioButtons>
 
-                    <TextBlock Text="StretchDirection" Margin="0,16,0,8" />
-                    <RadioButton Content="UpOnly" Tag="UpOnly" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" />
-                    <RadioButton Content="DownOnly" Tag="DownOnly" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" />
-                    <RadioButton Content="Both" Tag="Both" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" IsChecked="True" />
+                    <muxc:RadioButtons Header="StretchDirection">
+                        <RadioButton Content="UpOnly" Tag="UpOnly" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" />
+                        <RadioButton Content="DownOnly" Tag="DownOnly" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" />
+                        <RadioButton Content="Both" Tag="Both" GroupName="StretchDirection" Checked="StretchDirectionButton_Checked" IsChecked="True" />
+                    </muxc:RadioButtons>
                 </StackPanel>
             </local:ControlExample.Options>
 
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;Viewbox Height="<Run Text="{x:Bind SizeSlider.Value, Mode=OneWay}" />"
-                        Width="<Run Text="{x:Bind SizeSlider.Value, Mode=OneWay}" />" StretchDirection="Both"&gt;
-                    </Paragraph>
-                    <Paragraph TextIndent="12">&lt;Border BorderBrush="Gray" BorderThickness="15"&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;StackPanel Background="DarkGray"&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;StackPanel Orientation="Horizontal"&gt;</Paragraph>
-                    <Paragraph TextIndent="48">&lt;Rectangle Fill="Blue" Height="10" Width="40"/&gt;</Paragraph>
-                    <Paragraph TextIndent="48">&lt;Rectangle Fill="Green" Height="10" Width="40"/&gt;</Paragraph>
-                    <Paragraph TextIndent="48">&lt;Rectangle Fill="Red" Height="10" Width="40"/&gt;</Paragraph>
-                    <Paragraph TextIndent="48">&lt;Rectangle Fill="Yellow" Height="10" Width="40"/&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;/StackPanel&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;Image Source="ms-appx:///Assets/Slices.png"/&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;TextBlock Text="This is text." HorizontalAlignment="Center"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;/StackPanel&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Border&gt;</Paragraph>
-                    <Paragraph>&lt;/Viewbox&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;Viewbox Height="$(Size)" Width="$(Size)" Stretch="$(Stretch)" StretchDirection="$(StretchDirection)"&gt;
+    &lt;Border BorderBrush="Gray" BorderThickness="15"&gt;
+        &lt;StackPanel Background="DarkGray"&gt;
+            &lt;StackPanel Orientation="Horizontal"&gt;
+                &lt;Rectangle Fill="Blue" Height="10" Width="40"/&gt;
+                &lt;Rectangle Fill="Green" Height="10" Width="40"/&gt;
+                &lt;Rectangle Fill="Red" Height="10" Width="40"/&gt;
+                &lt;Rectangle Fill="Yellow" Height="10" Width="40"/&gt;
+            &lt;/StackPanel&gt;
+            &lt;Image Source="ms-appx:///Assets/Slices.png"/&gt;
+            &lt;TextBlock Text="This is text." HorizontalAlignment="Center"/&gt;
+        &lt;/StackPanel&gt;
+    &lt;/Border&gt;
+&lt;/Viewbox&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution Key="Size" Value="{x:Bind SizeSlider.Value, Mode=OneWay}" />
+                <local:ControlExampleSubstitution Key="Stretch" Value="{x:Bind Control1.Stretch, Mode=OneWay}" />
+                <local:ControlExampleSubstitution Key="StretchDirection" Value="{x:Bind Control1.StretchDirection, Mode=OneWay}" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
     </StackPanel>
 </Page>

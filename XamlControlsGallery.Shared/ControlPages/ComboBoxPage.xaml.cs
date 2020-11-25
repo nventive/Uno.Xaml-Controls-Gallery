@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -14,13 +14,8 @@ using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ComboBoxPage : Page
     {
         public List<Tuple<string, FontFamily>> Fonts { get; } = new List<Tuple<string, FontFamily>>()
@@ -94,7 +89,12 @@ namespace AppUIBasics.ControlPages
 
         private void Combo3_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
         {
-            if (double.TryParse(sender.Text, out double newValue) && newValue < 100 && newValue > 8)
+            bool isDouble = double.TryParse(sender.Text, out double newValue);
+
+            // Set the selected item if:
+            // - The value successfully parsed to double AND
+            // - The value is in the list of sizes OR is a custom value between 8 and 100
+            if (isDouble && (FontSizes.Contains(newValue) || (newValue < 100 && newValue > 8)))
             {
                 // Update the SelectedItem to the new value. 
                 sender.SelectedItem = newValue;
@@ -104,10 +104,12 @@ namespace AppUIBasics.ControlPages
                 // If the item is invalid, reject it and revert the text. 
                 sender.Text = sender.SelectedValue.ToString();
 
-                var dialog = new ContentDialog();
-                dialog.Content = "The font size must be a number between 8 and 100.";
-                dialog.CloseButtonText = "Close";
-                dialog.DefaultButton = ContentDialogButton.Close;
+                var dialog = new ContentDialog
+                {
+                    Content = "The font size must be a number between 8 and 100.",
+                    CloseButtonText = "Close",
+                    DefaultButton = ContentDialogButton.Close
+                };
                 var task = dialog.ShowAsync();
             }
 

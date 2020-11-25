@@ -10,13 +10,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PasswordBoxPage : Page
     {
         public PasswordBoxPage()
@@ -26,9 +21,7 @@ namespace AppUIBasics.ControlPages
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            PasswordBox pb = sender as PasswordBox;
-
-            if (pb != null)
+            if (sender is PasswordBox pb)
             {
                 if (string.IsNullOrEmpty(pb.Password) || pb.Password == "Password")
                 {

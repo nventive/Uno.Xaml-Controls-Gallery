@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -65,7 +65,7 @@ namespace AppUIBasics
 #endif
             }
 
-            this.Frame.Navigate(typeof(ItemPage), _itemId);
+            this.Frame.Navigate(typeof(ItemPage), _itemId, new DrillInNavigationTransitionInfo());
         }
 
         protected void OnItemGridViewKeyDown(object sender, KeyRoutedEventArgs e)
@@ -106,7 +106,7 @@ namespace AppUIBasics
 
                     if (animation != null)
                     {
-                        // Setup the "basic" configuration if the API is present. 
+                        // Setup the "basic" configuration if the API is present.
                         if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
                         {
                             animation.Configuration = new BasicConnectedAnimationConfiguration();
@@ -136,7 +136,7 @@ namespace AppUIBasics
             }
         }
 
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, value)) return false;
 

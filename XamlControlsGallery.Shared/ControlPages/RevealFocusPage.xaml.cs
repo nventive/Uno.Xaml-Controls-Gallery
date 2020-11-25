@@ -17,9 +17,6 @@ using Windows.UI.Xaml.Media;
 
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class RevealFocusPage : Page
     {
         public RevealFocusPage()
@@ -58,9 +55,10 @@ namespace AppUIBasics.ControlPages
             }
 
             primaryColorPickerButton.Background = new SolidColorBrush(myPrimaryColorPicker.Color);
-            primaryBrushRun.Text = "{StaticResource SystemControlFocusVisualPrimaryBrush}";
-            primaryColorRun.Text = "SystemControlFocusVisualPrimaryBrush";
+            primaryBrushText.Value = "{StaticResource SystemControlFocusVisualPrimaryBrush}";
+            primaryColorKeyText.Value = "SystemControlFocusVisualPrimaryBrush";
             Application.Current.FocusVisualKind = FocusVisualKind.HighVisibility;
+            FocusVisualKindSubstitution.Value = "HighVisibility";
         }
 
         // DEMO ONLY: Change focus visual mode to reveal focus
@@ -70,9 +68,10 @@ namespace AppUIBasics.ControlPages
             {
                 myPrimaryColorPicker.Color = (this.Resources["SystemControlRevealFocusVisualBrush"] as SolidColorBrush).Color;
                 primaryColorPickerButton.Background = new SolidColorBrush(myPrimaryColorPicker.Color);
-                primaryBrushRun.Text = "{StaticResource SystemControlRevealFocusVisualBrush}";
-                primaryColorRun.Text = "SystemControlRevealFocusVisualBrush";
+                primaryBrushText.Value = "{StaticResource SystemControlRevealFocusVisualBrush}";
+                primaryColorKeyText.Value = "SystemControlRevealFocusVisualBrush";
                 Application.Current.FocusVisualKind = FocusVisualKind.Reveal;
+                FocusVisualKindSubstitution.Value = "Reveal";
             }
         }
 
@@ -128,10 +127,15 @@ namespace AppUIBasics.ControlPages
 
     public class MyConverters
     {
-        public double UniformLength { get; set; }
         public static Thickness IntToThickness(double UniformLength)
         {
             return new Thickness(UniformLength);
         }
+
+        public static SolidColorBrush ColorToBrush(Color color)
+        {
+            return new SolidColorBrush(color);
+        }
+
     }
 }

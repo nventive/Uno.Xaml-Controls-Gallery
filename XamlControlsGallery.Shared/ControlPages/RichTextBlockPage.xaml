@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -23,11 +23,11 @@
                 </RichTextBlock>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;RichTextBlock&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Paragraph&gt;I am a RichTextBlock.&lt;/Paragraph&gt;</Paragraph>
-                    <Paragraph>&lt;/RichTextBlock&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;RichTextBlock&gt;
+    &lt;Paragraph&gt;I am a RichTextBlock.&lt;/Paragraph&gt;
+&lt;/RichTextBlock&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
         <local:ControlExample x:Name="Example2" HeaderText="A RichTextBlock with a custom selection highlight color.">
@@ -36,20 +36,20 @@
                     <Paragraph>RichTextBlock provides a rich text display container that supports
                         <Run FontStyle="Italic" FontWeight="Bold">formatted text</Run> ,
                         <Hyperlink
-                                NavigateUri="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.documents.hyperlink.aspx">hyperlinks</Hyperlink> , inline images, and other rich content.
+                                NavigateUri="https://docs.microsoft.com/uwp/api/Windows.UI.Xaml.Documents.Hyperlink">hyperlinks</Hyperlink> , inline images, and other rich content.
                     </Paragraph>
                     <Paragraph>RichTextBlock also supports a built-in overflow model.</Paragraph>
                 </RichTextBlock>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;RichTextBlock SelectionHighlightColor="Green"&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Paragraph&gt;RichTextBlock provides a rich text display container that supports</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Run FontStyle="Italic" FontWeight="Bold"&gt;formatted text&lt;/Run&gt;,</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Hyperlink NavigateUri="http://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.documents.hyperlink.aspx"&gt;hyperlinks&lt;/Hyperlink&gt;, inline images, and other rich content.&lt;/Paragraph&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Paragraph&gt;RichTextBlock also supports a built-in overflow model.&lt;/Paragraph&gt;</Paragraph>
-                    <Paragraph>&lt;/RichTextBlock&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;RichTextBlock SelectionHighlightColor="Green"&gt;
+    &lt;Paragraph&gt;RichTextBlock provides a rich text display container that supports
+        &lt;Run FontStyle="Italic" FontWeight="Bold"&gt;formatted text&lt;/Run&gt;,
+        &lt;Hyperlink NavigateUri="https://docs.microsoft.com/uwp/api/Windows.UI.Xaml.Documents.Hyperlink"&gt;hyperlinks&lt;/Hyperlink&gt;, inline images, and other rich content.&lt;/Paragraph&gt;
+    &lt;Paragraph&gt;RichTextBlock also supports a built-in overflow model.&lt;/Paragraph&gt;
+&lt;/RichTextBlock&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
         <local:ControlExample x:Name="Example3" HeaderText="A RichTextBlock with overflow."
@@ -73,28 +73,91 @@
                 </Grid>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;Grid&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Grid.ColumnDefinitions&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;ColumnDefinition/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;ColumnDefinition/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;ColumnDefinition/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Grid.ColumnDefinitions&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;RichTextBlock  Grid.Column="0"
-                        <Bold>OverflowContentTarget="{x:Bind firstOverflowContainer}"</Bold> TextAlignment="Justify" Margin="12,0"&gt;
-                    </Paragraph>
-                    <Paragraph TextIndent="24">&lt;Paragraph&gt;Linked text containers allow text which does not fit in one element to overflow into a different element on the page. Creative use of linked text containers enables basic multicolumn support and other advanced page layouts.&lt;/Paragraph&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;!-- Additional content not shown. --&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/RichTextBlock&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;RichTextBlockOverflow
-                        <Bold>x:Name="firstOverflowContainer" OverflowContentTarget="{x:Bind secondOverflowContainer}"</Bold> Grid.Column="1" Margin="12,0"/&gt;
-                    </Paragraph>
-                    <Paragraph TextIndent="12">&lt;RichTextBlockOverflow
-                        <Bold>x:Name="secondOverflowContainer"</Bold> Grid.Column="2" Margin="12,0"/&gt;
-                    </Paragraph>
-                    <Paragraph>&lt;/Grid&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;Grid&gt;
+    &lt;Grid.ColumnDefinitions&gt;
+        &lt;ColumnDefinition/&gt;
+        &lt;ColumnDefinition/&gt;
+        &lt;ColumnDefinition/&gt;
+    &lt;Grid.ColumnDefinitions&gt;
+    &lt;RichTextBlock Grid.Column="0" OverflowContentTarget="{x:Bind firstOverflowContainer}" TextAlignment="Justify" Margin="12,0"&gt;
+        &lt;Paragraph&gt;
+            Linked text containers allow text which does not fit in one element to overflow into a different element on the page.
+            Creative use of linked text containers enables basic multicolumn support and other advanced page layouts.
+        &lt;/Paragraph&gt;
+    &lt;!-- Additional content not shown. --&gt;
+    &lt;/RichTextBlock&gt;
+    &lt;RichTextBlockOverflow x:Name="firstOverflowContainer" OverflowContentTarget="{x:Bind secondOverflowContainer}" Grid.Column="1" Margin="12,0"/&gt;
+    &lt;RichTextBlockOverflow x:Name="secondOverflowContainer" Grid.Column="2" Margin="12,0"/&gt;
+&lt;/Grid&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+        </local:ControlExample>
+
+        <local:ControlExample HeaderText="RichTextBlock with custom TextHighlighting">
+            <local:ControlExample.Example>
+                <RichTextBlock x:Name="TextHighlightingRichTextBlock">
+                    <Paragraph>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                    </Paragraph>
+                </RichTextBlock>
+            </local:ControlExample.Example>
+            <local:ControlExample.Options>
+                <StackPanel>
+                    <ComboBox Header="Text highlighting color" SelectionChanged="HighlightColorCombobox_SelectionChanged">
+                        <ComboBoxItem Content="Yellow" IsSelected="True"/>
+                        <ComboBoxItem Content="Red"/>
+                        <ComboBoxItem Content="Blue"/>
+                    </ComboBox>
+                </StackPanel>
+            </local:ControlExample.Options>
+            <local:ControlExample.Xaml>
+                <x:String xml:space="preserve">
+&lt;RichTextBlock x:Name="TextHighlightingRichTextBlock"&gt;
+    &lt;Paragraph&gt;
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+    &lt;/Paragraph&gt;
+&lt;/RichTextBlock&gt;
+                </x:String>
+            </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+private void HighlightColorCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    // Get color to use
+    var selectedItem = (sender as ComboBox).SelectedItem as ComboBoxItem;
+    var color = Colors.Yellow;
+    switch (selectedItem.Content as string)
+    {
+        case "Yellow":
+            color = Colors.Yellow;
+            break;
+        case "Red":
+            color = Colors.Red;
+            break;
+        case "Blue":
+            color = Colors.Blue;
+            break;
+    }
+
+    // Get text range and highlighter
+    TextRange textRange = new TextRange()
+    {
+        StartIndex = 28,
+        Length = 11
+    };
+    TextHighlighter highlighter = new TextHighlighter()
+    {
+        Background = new SolidColorBrush(color),
+        Ranges = { textRange }
+    };
+
+    // Switch texthighlighter
+    TextHighlightingRichTextBlock.TextHighlighters.Clear();
+    TextHighlightingRichTextBlock.TextHighlighters.Add(highlighter);
+}
+                </x:String>
+            </local:ControlExample.CSharp>
         </local:ControlExample>
     </StackPanel>
 </Page>

@@ -5,34 +5,47 @@
     xmlns:local="using:AppUIBasics"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="FlyoutPresenter" x:Name="FlyoutPresenterStyle">
+            <Setter Property="IsTabStop" Value="True"/>
+            <Setter Property="TabNavigation" Value="Cycle"/>
+        </Style>
+    </Page.Resources>
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <local:ControlExample HeaderText="Automatically animate changes to Opacity" MinimumUniversalAPIContract="7">
             <Rectangle x:Name="OpacityRectangle" Width="50" Height="50" Fill="{ThemeResource SystemAccentColor}" VerticalAlignment="Center" Margin="45,5,5,5" Opacity="0.5" />
 
             <local:ControlExample.Options>
                 <StackPanel>
-                    <TextBox x:Name="OpacityTextBox" Header="Opacity (0.0 to 1.0)" Text="0.5" Margin="5" KeyDown="TextBox_KeyDown" />
+                    <muxc:NumberBox x:Name="OpacityNumberBox" Header="Opacity (0.0 to 1.0)" 
+                                    Value="0.5" Margin="5" Maximum="1" Minimum="0"  KeyDown="NumberBox_KeyDown"/>
                     <Button Content="Set Opacity" Margin="5" Click="OpacityButton_Click" HorizontalAlignment="Stretch" />
                 </StackPanel>
             </local:ControlExample.Options>
 
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;!-- Automatically animate changes to Opacity --&gt;</Paragraph>
-                    <Paragraph>&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Opacity="0.5"&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle.OpacityTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;ScalarTransition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Rectangle.OpacityTransition&gt;</Paragraph>
-                    <Paragraph>&lt;/Rectangle&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>private void button_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">rectangle.Opacity = 1.0;</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;!-- Automatically animate changes to Opacity --&gt;
+&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Opacity="0.5"&gt;
+    &lt;Rectangle.OpacityTransition&gt;
+        &lt;ScalarTransition /&gt;
+    &lt;/Rectangle.OpacityTransition&gt;
+&lt;/Rectangle&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+private void button_Click(object sender, RoutedEventArgs e)
+{
+    rectangle.Opacity = $(Opacity);
+}
+                </x:String>
+            </local:ControlExample.CSharp>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution x:Name="OpacityValue" Key="Opacity" Value="1.0" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Automatically animate changes to Rotation" MinimumUniversalAPIContract="7">
@@ -47,26 +60,33 @@
 
             <local:ControlExample.Options>
                 <StackPanel>
-                    <TextBox x:Name="RotationTextBox" Header="Rotation (0.0 to 360.0)" Text="45" Margin="5" KeyDown="TextBox_KeyDown" />
+                    <muxc:NumberBox x:Name="RotationNumberBox" Header="Rotation (0.0 to 360.0)" Value="45" Margin="5" 
+                                    Minimum="0" Maximum="360"  KeyDown="NumberBox_KeyDown"/>
                     <Button Content="Set Rotation" Margin="5" Click="RotationButton_Click" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </local:ControlExample.Options>
 
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;!-- Automatically animate changes to Rotation --&gt;</Paragraph>
-                    <Paragraph>&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Rotation="0" &gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle.RotationTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;ScalarTransition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Rectangle.RotationTransition&gt;</Paragraph>
-                    <Paragraph>&lt;/Rectangle&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>private void button_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">rectangle.Rotation = 45;  // Clockwise, in degrees</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;!-- Automatically animate changes to Rotation --&gt;
+&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Rotation="0" &gt;
+    &lt;Rectangle.RotationTransition&gt;
+        &lt;ScalarTransition /&gt;
+    &lt;/Rectangle.RotationTransition&gt;
+&lt;/Rectangle&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+private void button_Click(object sender, RoutedEventArgs e)
+{
+    rectangle.Rotation = $(Rotation);  // Clockwise, in degrees
+}
+                </x:String>
+            </local:ControlExample.CSharp>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution x:Name="RotationValue" Key="Rotation" Value="45" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Automatically animate changes to Scale" MinimumUniversalAPIContract="7">
@@ -81,26 +101,33 @@
                     <CheckBox x:Name="ScaleX" Content="Animate X" IsChecked="True" />
                     <CheckBox x:Name="ScaleY" Content="Animate Y" IsChecked="True" />
                     <CheckBox x:Name="ScaleZ" Content="Animate Z" IsChecked="True" />
-                    <TextBox x:Name="ScaleTextBox" Header="Scale (0.0 to 5.0)" Text="1" Margin="5" KeyDown="TextBox_KeyDown" />
+                    <muxc:NumberBox x:Name="ScaleNumberBox" Header="Scale (0.0 to 5.0)" Value="1" 
+                                    Minimum="0" Maximum="5" Margin="5" KeyDown="NumberBox_KeyDown" />
                     <Button Content="Set custom scale" Click="ScaleButton_Click" Margin="5" HorizontalAlignment="Stretch" />
                 </StackPanel>
             </local:ControlExample.Options>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;!-- Automatically animate changes to Scale --&gt;</Paragraph>
-                    <Paragraph>&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Scale="1,1,1" &gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle.ScaleTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Vector3Transition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Rectangle.ScaleTransition&gt;</Paragraph>
-                    <Paragraph>&lt;/Rectangle&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>// using System.Numerics;</Paragraph>
-                    <Paragraph>private void button_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">rectangle.Scale = new Vector3(2.0, 2.0, 1.0);</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;!-- Automatically animate changes to Scale --&gt;
+&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Scale="1,1,1" &gt;
+    &lt;Rectangle.ScaleTransition&gt;
+        &lt;Vector3Transition /&gt;
+    &lt;/Rectangle.ScaleTransition&gt;
+&lt;/Rectangle&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+using System.Numerics;
+private void button_Click(object sender, RoutedEventArgs e)
+{
+    rectangle.Scale = new Vector3($(Scale), $(Scale), $(Scale));
+}
+                </x:String>
+            </local:ControlExample.CSharp>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution x:Name="ScaleValue" Key="Scale" Value="1" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Automatically animate changes to Translation" MinimumUniversalAPIContract="7">
@@ -116,26 +143,33 @@
                     <CheckBox x:Name="TranslateX" Content="Animate X" IsChecked="True" />
                     <CheckBox x:Name="TranslateY" Content="Animate Y" IsChecked="True" />
                     <CheckBox x:Name="TranslateZ" Content="Animate Z" IsChecked="True" />
-                    <TextBox x:Name="TranslationTextBox" Header="Translation (0.0 to 200.0)" Text="1" Margin="5" KeyDown="TextBox_KeyDown" />
+                    <muxc:NumberBox x:Name="TranslationNumberBox" Header="Translation (0.0 to 200.0)" Value="1"
+                                    Minimum="0" Maximum="200" Margin="5" KeyDown="NumberBox_KeyDown" />
                     <Button Content="Set custom Translation" Margin="5" Click="TranslateButton_Click" HorizontalAlignment="Stretch" />
                 </StackPanel>
             </local:ControlExample.Options>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;!-- Automatically animate changes to Translation --&gt;</Paragraph>
-                    <Paragraph>&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Translation="0,0,0" &gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Rectangle.TranslationTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Vector3Transition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Rectangle.TranslationTransition&gt;</Paragraph>
-                    <Paragraph>&lt;/Rectangle&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>// using System.Numerics;</Paragraph>
-                    <Paragraph>private void button_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">rectangle.Translation = new Vector3(100, 100, 0);</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;!-- Automatically animate changes to Translation --&gt;
+&lt;Rectangle x:Name="rectangle" Width="50" Height="50" Translation="0,0,0" &gt;
+    &lt;Rectangle.TranslationTransition&gt;
+        &lt;Vector3Transition /&gt;
+    &lt;/Rectangle.TranslationTransition&gt;
+&lt;/Rectangle&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+using System.Numerics;
+private void button_Click(object sender, RoutedEventArgs e)
+{
+    rectangle.Translation = new Vector3($(Translation), $(Translation), $(Translation));
+}
+                </x:String>
+            </local:ControlExample.CSharp>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution x:Name="TranslationValue" Key="Translation" Value="1" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Implicitly animate when the Background changes" MinimumUniversalAPIContract="7">
@@ -144,29 +178,31 @@
                 <Button Content="Change Background Color" Click="BackgroundButton_Click"  />
             </local:ControlExample.Options>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;ContentPresenter x:Name="BrushPresenter" Background="Blue" Width="50" Height="50"&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;ContentPresenter.BackgroundTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;BrushTransition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/ContentPresenter.BackgroundTransition&gt;</Paragraph>
-                    <Paragraph>&lt;/ContentPresenter&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>private void button_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">// Note that this is a new brush instance, not a new color on the same brush.</Paragraph>
-                    <Paragraph TextIndent="12">if (HasBlueBackground(BrushPresenter))</Paragraph>
-                    <Paragraph TextIndent="12">{</Paragraph>
-                    <Paragraph TextIndent="24">BrushPresenter.Background = new SolidColorBrush(Yellow);</Paragraph>
-                    <Paragraph TextIndent="12">}</Paragraph>
-                    <Paragraph TextIndent="12">else</Paragraph>
-                    <Paragraph TextIndent="12">{</Paragraph>
-                    <Paragraph TextIndent="24">BrushPresenter.Background = new SolidColorBrush(Blue);</Paragraph>
-                    <Paragraph TextIndent="12">}</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;ContentPresenter x:Name="BrushPresenter" Background="Blue" Width="50" Height="50"&gt;
+    &lt;ContentPresenter.BackgroundTransition&gt;
+        &lt;BrushTransition /&gt;
+    &lt;/ContentPresenter.BackgroundTransition&gt;
+&lt;/ContentPresenter&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+private void button_Click(object sender, RoutedEventArgs e)
+{
+    // Note that this is a new brush instance, not a new color on the same brush.
+    if (HasBlueBackground(BrushPresenter))
+    {
+        BrushPresenter.Background = new SolidColorBrush(Yellow);
+    }
+    else
+    {
+        BrushPresenter.Background = new SolidColorBrush(Blue);
+    }
+}
+                </x:String>
+            </local:ControlExample.CSharp>
         </local:ControlExample>
-
 
         <local:ControlExample HeaderText="Implicitly animate when the Grid's theme changes" MinimumUniversalAPIContract="7">
             <Grid x:Name="ThemeExampleGrid" 
@@ -188,26 +224,28 @@
                 <Button Content="Change Theme" Click="ThemeButton_Click" VerticalAlignment="Top"  />
             </local:ControlExample.Options>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;Grid x:Name="ThemeExampleGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" &gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;Grid.BackgroundTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;BrushTransition /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/Grid.BackgroundTransition&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;StackPanel Margin="12" Spacing="6"&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;TextBlock Text="Lorem Ipsum" Style="{ThemeResource SubheaderTextBlockStyle}" /&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;TextBlock Text="The background of this grid animates when the theme changes." TextWrapping="WrapWholeWords" /&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;Button Content="Button" /&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;CheckBox Content="CheckBox" /&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/StackPanel&gt;</Paragraph>
-                    <Paragraph>&lt;/Grid&gt;</Paragraph>
-                    <Paragraph />
-                    <Paragraph>private void ThemeButton_Click(object sender, RoutedEventArgs e)</Paragraph>
-                    <Paragraph>{</Paragraph>
-                    <Paragraph TextIndent="12">ThemeExampleGrid.RequestedTheme = ThemeExampleGrid.RequestedTheme == ElementTheme.Dark ? ElementTheme.Light : ElementTheme.Dark;</Paragraph>
-                    <Paragraph>}</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;Grid x:Name="ThemeExampleGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" &gt;
+    &lt;Grid.BackgroundTransition&gt;
+        &lt;BrushTransition /&gt;
+    &lt;/Grid.BackgroundTransition&gt;
+    &lt;StackPanel Margin="12" Spacing="6"&gt;
+        &lt;TextBlock Text="Lorem Ipsum" Style="{ThemeResource SubheaderTextBlockStyle}" /&gt;
+        &lt;TextBlock Text="The background of this grid animates when the theme changes." TextWrapping="WrapWholeWords" /&gt;
+        &lt;Button Content="Button" /&gt;
+        &lt;CheckBox Content="CheckBox" /&gt;
+    &lt;/StackPanel&gt;
+&lt;/Grid&gt;
+                </x:String>
             </local:ControlExample.Xaml>
+            <local:ControlExample.CSharp>
+                <x:String xml:space="preserve">
+private void ThemeButton_Click(object sender, RoutedEventArgs e)
+{
+    ThemeExampleGrid.RequestedTheme = ThemeExampleGrid.RequestedTheme == ElementTheme.Dark ? ElementTheme.Light : ElementTheme.Dark;
+}
+</x:String>
+            </local:ControlExample.CSharp>
         </local:ControlExample>
-
     </StackPanel>
 </Page>

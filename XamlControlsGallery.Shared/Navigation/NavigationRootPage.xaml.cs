@@ -1,4 +1,4 @@
-﻿//*********************************************************
+﻿﻿//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -27,6 +27,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using muxc = Microsoft.UI.Xaml.Controls;
+using AppUIBasics.ControlPages;
+using AppUIBasics.Helper;
 
 namespace AppUIBasics
 {
@@ -71,6 +76,10 @@ namespace AppUIBasics
         {
             this.InitializeComponent();
 
+            // Workaround for VisualState issue that should be fixed
+            // by https://github.com/microsoft/microsoft-ui-xaml/pull/2271
+            NavigationViewControl.PaneDisplayMode = muxc.NavigationViewPaneDisplayMode.Left;
+
             _navHelper = new RootFrameNavigationHelper(rootFrame, NavigationViewControl);
 
             SetDeviceFamily();
@@ -95,13 +104,13 @@ namespace AppUIBasics
 #if __WASM__
 			switch (Environment.GetEnvironmentVariable("UNO_BOOTSTRAP_MONO_RUNTIME_MODE"))
 			{
-				case "Interpreter": 
+				case "Interpreter":
 					UnoShell.AppEnvironmentMode = "Interpreted";
 					break;
-				case "FullAOT": 
+				case "FullAOT":
 					UnoShell.AppEnvironmentMode = "AOT";
 					break;
-				case "InterpreterAndAOT": 
+				case "InterpreterAndAOT":
 					UnoShell.AppEnvironmentMode = "Mixed";
 					break;
 			}
@@ -112,7 +121,22 @@ namespace AppUIBasics
 
             _isKeyboardConnected = Convert.ToBoolean(new KeyboardCapabilities().KeyboardPresent);
 #endif
+
+            // remove the solid-colored backgrounds behind the caption controls and system back button if we are in left mode
+            // This is done when the app is loaded since before that the actual theme that is used is not "determined" yet
+            Loaded += delegate (object sender, RoutedEventArgs e)
+            {
+                NavigationOrientationHelper.UpdateTitleBar(NavigationOrientationHelper.IsLeftMode);
+            };
+
+            NavigationViewControl.RegisterPropertyChangedCallback(muxc.NavigationView.PaneDisplayModeProperty, new DependencyPropertyChangedCallback(OnPaneDisplayModeChanged));
 		}
+
+        private void OnPaneDisplayModeChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            var navigationView = sender as muxc.NavigationView;
+            NavigationRootPage.Current.AppTitleBar.Visibility = navigationView.PaneDisplayMode == muxc.NavigationViewPaneDisplayMode.Top ? Visibility.Collapsed : Visibility.Visible;
+        }
 
 		void UpdateAppTitle(CoreApplicationViewTitleBar coreTitleBar)
         {
@@ -120,6 +144,11 @@ namespace AppUIBasics
             var left = 12 + (full ? 0 : coreTitleBar.SystemOverlayLeftInset);
             AppTitle.Margin = new Thickness(left, 8, 0, 0);
             AppTitleBar.Height = coreTitleBar.Height;
+        }
+
+        public string GetAppTitleFromSystem()
+        {
+            return Windows.ApplicationModel.Package.Current.DisplayName;
         }
 
         public bool CheckNewControlSelected()
@@ -133,6 +162,19 @@ namespace AppUIBasics
             {
                 var item = new Windows.UI.Xaml.Controls.NavigationViewItem() { Content = group.Title, Tag = group.UniqueId, DataContext = group };
                 AutomationProperties.SetName(item, group.Title);
+
+                foreach (var groupItem in group.Items)
+                {
+                    var itemInGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = groupItem.Title, Tag = groupItem.UniqueId, DataContext = groupItem};
+
+                    //TODO: APM
+                    itemInGroup.Icon = GetIcon(item.ImagePath)
+
+                    item.MenuItems.Add(itemInGroup);
+                    AutomationProperties.SetName(itemInGroup, groupItem.Title);
+                }
+
+
                 if (group.ImagePath.ToLowerInvariant().EndsWith(".png"))
                 {
                     item.Icon = new BitmapIcon() { UriSource = new Uri(group.ImagePath, UriKind.RelativeOrAbsolute) };
@@ -145,6 +187,7 @@ namespace AppUIBasics
                         Glyph = group.ImagePath
                     };
                 }
+
                 NavigationViewControl.MenuItems.Add(item);
 
                 if (group.UniqueId == "AllControls")
@@ -169,6 +212,17 @@ namespace AppUIBasics
             _newControlsMenuItem.Loaded += OnNewControlsMenuItemLoaded;
         }
 
+        private static IconElement GetIcon(string imagePath)
+        {
+            return imagePath.ToLowerInvariant().EndsWith(".png") ?
+                        (IconElement)new BitmapIcon() { UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute) , ShowAsMonochrome = false} :
+                        (IconElement)new FontIcon()
+                        {
+                            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                            Glyph = imagePath
+                        };
+        }
+
         private void SetDeviceFamily()
         {
 #if NETFX_CORE
@@ -185,7 +239,7 @@ namespace AppUIBasics
 
         private void OnNewControlsMenuItemLoaded(object sender, RoutedEventArgs e)
         {
-            if (IsFocusSupported)
+            if (IsFocusSupported && NavigationViewControl.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
             {
                 _newControlsMenuItem.Focus(FocusState.Keyboard);
             }
@@ -222,8 +276,16 @@ namespace AppUIBasics
                 }
                 else
                 {
-                    var itemId = ((ControlInfoDataGroup)invokedItem.DataContext).UniqueId;
-                    rootFrame.Navigate(typeof(SectionPage), itemId);
+                    if (invokedItem.DataContext is ControlInfoDataGroup)
+                    {
+                        var itemId = ((ControlInfoDataGroup)invokedItem.DataContext).UniqueId;
+                        rootFrame.Navigate(typeof(SectionPage), itemId);
+                    }
+                    else if (invokedItem.DataContext is ControlInfoDataItem)
+                    {
+                        var item = (ControlInfoDataItem)invokedItem.DataContext;
+                        rootFrame.Navigate(typeof(ItemPage), item.UniqueId);
+                    }
                 }
             }
         }
@@ -255,10 +317,28 @@ namespace AppUIBasics
                 if (sender.Text?.Length > 3)
 #endif
                 {
+                    var querySplit = sender.Text.Split(" ");
                     foreach (var group in ControlInfoDataSource.Instance.Groups)
                     {
+
                         var matchingItems = group.Items.Where(
-                            item => item.Title.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
+                            item =>
+                            {
+                                // Idea: check for every word entered (separated by space) if it is in the name,
+                                // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button"
+                                // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words
+                                bool flag = true;
+                                foreach (string queryToken in querySplit)
+                                {
+                                    // Check if token is not in string
+                                    if (item.Title.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
+                                    {
+                                        // Token is not in string, so we ignore this item.
+                                        flag = false;
+                                    }
+                                }
+                                return flag;
+                            });
 
                         foreach (var item in matchingItems)
                         {
@@ -287,7 +367,70 @@ namespace AppUIBasics
         {
             if (args.ChosenSuggestion != null && args.ChosenSuggestion is ControlInfoDataItem)
             {
-                var itemId = (args.ChosenSuggestion as ControlInfoDataItem).UniqueId;
+                var infoDataItem = args.ChosenSuggestion as ControlInfoDataItem;
+                var itemId = infoDataItem.UniqueId;
+                bool changedSelection = false;
+                foreach(object rawItem in NavigationView.MenuItems)
+                {
+                    // Check if we encountered the separator
+                    if(!(rawItem is muxc.NavigationViewItem))
+                    {
+                        // Skipping this item
+                        continue;
+                    }
+
+                    var item = rawItem as muxc.NavigationViewItem;
+
+                    // Check if we are this category
+                    if((string)item.Content == infoDataItem.Title)
+                    {
+                        NavigationView.SelectedItem = item;
+                        changedSelection = true;
+                    }
+                    // We are not :(
+                    else
+                    {
+                        // Maybe one of our items is? ಠಿ_ಠ
+                        if(item.MenuItems.Count != 0)
+                        {
+                            foreach(muxc.NavigationViewItem child in item.MenuItems)
+                            {
+                                if((string)child.Content == infoDataItem.Title)
+                                {
+                                    // We are the item corresponding to the selected one, update selection!
+
+                                    // Deal with differences in displaymodes
+                                    if(NavigationView.PaneDisplayMode == muxc.NavigationViewPaneDisplayMode.Top)
+                                    {
+                                        // In Topmode, the child is not visible, so set parent as selected
+                                        // Everything else does not work unfortunately
+                                        NavigationView.SelectedItem = item;
+                                        item.StartBringIntoView();
+                                    }
+                                    else
+                                    {
+                                        // Expand so we animate
+                                        item.IsExpanded = true;
+                                        // Ensure parent is expanded so we actually show the selection indicator
+                                        NavigationView.UpdateLayout();
+                                        // Set selected item
+                                        NavigationView.SelectedItem = child;
+                                        child.StartBringIntoView();
+                                    }
+                                    // Set to true to also skip out of outer for loop
+                                    changedSelection = true;
+                                    // Break out of child iteration for loop
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    // We updated selection, break here!
+                    if(changedSelection)
+                    {
+                        break;
+                    }
+                }
                 NavigationRootPage.RootFrame.Navigate(typeof(ItemPage), itemId);
             }
             else if (!string.IsNullOrEmpty(args.QueryText))
@@ -317,6 +460,77 @@ namespace AppUIBasics
             {
                 AppTitleBar.Margin = new Thickness();
             }
+        }
+
+        private void NavigationViewControl_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
+        {
+            Thickness currMargin = AppTitleBar.Margin;
+            if (sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+            {
+                AppTitleBar.Margin = new Thickness((sender.CompactPaneLength * 2), currMargin.Top, currMargin.Right, currMargin.Bottom);
+
+            }
+            else
+            {
+                AppTitleBar.Margin = new Thickness(sender.CompactPaneLength, currMargin.Top, currMargin.Right, currMargin.Bottom);
+            }
+
+            UpdateAppTitleMargin(sender);
+            UpdateHeaderMargin(sender);
+        }
+
+        private void UpdateAppTitleMargin(Microsoft.UI.Xaml.Controls.NavigationView sender)
+        {
+            const int smallLeftIndent = 4, largeLeftIndent = 24;
+
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
+            {
+                AppTitle.TranslationTransition = new Vector3Transition();
+
+                if ((sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded && sender.IsPaneOpen) ||
+                         sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+                {
+                    AppTitle.Translation = new System.Numerics.Vector3(smallLeftIndent, 0, 0);
+                }
+                else
+                {
+                    AppTitle.Translation = new System.Numerics.Vector3(largeLeftIndent, 0, 0);
+                }
+            }
+            else
+            {
+                Thickness currMargin = AppTitle.Margin;
+
+                if ((sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded && sender.IsPaneOpen) ||
+                         sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+                {
+                    AppTitle.Margin = new Thickness(smallLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
+                }
+                else
+                {
+                    AppTitle.Margin = new Thickness(largeLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
+                }
+            }
+        }
+
+        private void UpdateHeaderMargin(Microsoft.UI.Xaml.Controls.NavigationView sender)
+        {
+            if (PageHeader != null)
+            {
+                if (sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+                {
+                    Current.PageHeader.HeaderPadding = (Thickness)App.Current.Resources["PageHeaderMinimalPadding"];
+                }
+                else
+                {
+                    Current.PageHeader.HeaderPadding = (Thickness)App.Current.Resources["PageHeaderDefaultPadding"];
+                }
+            }
+        }
+
+        private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            controlsSearchBox.Focus(FocusState.Programmatic);
         }
     }
 

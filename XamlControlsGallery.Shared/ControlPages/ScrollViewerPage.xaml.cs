@@ -12,13 +12,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ScrollViewerPage : Page
     {
         public ScrollViewerPage()
@@ -30,8 +25,7 @@ namespace AppUIBasics.ControlPages
         {
             if (Control1 != null && ZoomSlider != null)
             {
-                ComboBox cb = sender as ComboBox;
-                if (cb != null)
+                if (sender is ComboBox cb)
                 {
                     switch (cb.SelectedIndex)
                     {
@@ -68,8 +62,7 @@ namespace AppUIBasics.ControlPages
         {
             if (Control1 != null)
             {
-                ComboBox cb = sender as ComboBox;
-                if (cb != null)
+                if (sender is ComboBox cb)
                 {
                     switch (cb.SelectedIndex)
                     {
@@ -94,8 +87,7 @@ namespace AppUIBasics.ControlPages
         {
             if (Control1 != null)
             {
-                ComboBox cb = sender as ComboBox;
-                if (cb != null)
+                if (sender is ComboBox cb)
                 {
                     switch (cb.SelectedIndex)
                     {
@@ -123,8 +115,7 @@ namespace AppUIBasics.ControlPages
         {
             if (Control1 != null)
             {
-                ComboBox cb = sender as ComboBox;
-                if (cb != null)
+                if (sender is ComboBox cb)
                 {
                     switch (cb.SelectedIndex)
                     {
@@ -149,8 +140,7 @@ namespace AppUIBasics.ControlPages
         {
             if (Control1 != null)
             {
-                ComboBox cb = sender as ComboBox;
-                if (cb != null)
+                if (sender is ComboBox cb)
                 {
                     switch (cb.SelectedIndex)
                     {

@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -9,6 +9,7 @@
 //*********************************************************
 using AppUIBasics.Common;
 using AppUIBasics.Data;
+using AppUIBasics.Helper;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -182,7 +183,7 @@ namespace AppUIBasics
 
         private void DebugSettings_BindingFailed(object sender, BindingFailedEventArgs e)
         {
-            
+
         }
 
         protected async override void OnActivated(IActivatedEventArgs args)
@@ -200,12 +201,7 @@ namespace AppUIBasics
 
             Frame rootFrame = GetRootFrame();
 
-            string savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
-
-            if (savedTheme != null)
-            {
-                RootTheme = GetEnum<ElementTheme>(savedTheme);
-            }
+            ThemeHelper.Initialize();
 
             Type targetPageType = typeof(NewControlsPage);
             string targetPageArguments = string.Empty;
@@ -339,7 +335,7 @@ namespace AppUIBasics
                     {
                         { "Uno", LogLevel.Warning },
                         { "Windows", LogLevel.Warning },
-						
+
 						// Generic Xaml events
 						//{ "Windows.UI.Xaml", LogLevel.Debug },
 						// { "Windows.UI.Xaml.Shapes", LogLevel.Debug },
@@ -347,16 +343,16 @@ namespace AppUIBasics
 						//{ "Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug },
 						// { "Windows.UI.Xaml.UIElement", LogLevel.Debug },
 						// { "Windows.UI.Xaml.Setter", LogLevel.Debug },
-						   
+
 						// Layouter specific messages
 						// { "Windows.UI.Xaml.Controls", LogLevel.Debug },
 						//{ "Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug },
 						//{ "Windows.UI.Xaml.Controls.Panel", LogLevel.Debug },
-						   
+
 						// Binding related messages
 						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
 						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
-						   
+
 						//  Binder memory references tracking
 						//{ "Windows.UI.Xaml.UIElement", LogLevel.Debug },
 					}

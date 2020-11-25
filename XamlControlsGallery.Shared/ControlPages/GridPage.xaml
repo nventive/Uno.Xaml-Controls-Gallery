@@ -13,9 +13,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:AppUIBasics"
         xmlns:common="using:AppUIBasics.Common" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
-    <Page.Resources>
-        <common:ColorStringConverter x:Key="colorStringConverter" />
-    </Page.Resources>
     <StackPanel>
         <local:ControlExample x:Name="Example1" HeaderText="A 3x3 Grid control.">
             <Grid x:Name="Control1" Width="240" Height="160" Background="Gray">
@@ -84,6 +81,10 @@
                     <Paragraph>&lt;/Grid&gt;</Paragraph>
                 </RichTextBlock>
             </local:ControlExample.Xaml>
+            <local:ControlExample.Substitutions>
+                <local:ControlExampleSubstitution Key="Column" Value="{x:Bind ColumnSlider.Value, Mode=OneWay}" />
+                <local:ControlExampleSubstitution Key="Row" Value="{x:Bind RowSlider.Value, Mode=OneWay}" />
+            </local:ControlExample.Substitutions>
         </local:ControlExample>
     </StackPanel>
 </Page>

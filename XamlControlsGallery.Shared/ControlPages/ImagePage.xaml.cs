@@ -14,13 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Documents;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ImagePage : Page
     {
         public ImagePage()
@@ -35,11 +30,6 @@ namespace AppUIBasics.ControlPages
                 var strStretch = (sender as RadioButton).Content.ToString();
                 var stretch = (Stretch)Enum.Parse(typeof(Stretch), strStretch);
                 StretchImage.Stretch = stretch;
-
-                if (StretchLabel != null)
-                {
-                    StretchLabel.Text = strStretch;
-                }
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using AppUIBasics.SamplePages;
+using AppUIBasics.SamplePages;
 using AppUIBasics.Common;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
@@ -18,18 +18,13 @@ using Windows.UI.Core;
 using AppUIBasics.Data;
 using Windows.UI.Xaml.Automation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class NavigationViewPage : Page
     {
-        public static Boolean CameFromToggle = false;
+        public static bool CameFromToggle = false;
 
-        public static Boolean CameFromGridChange = false;
+        public static bool CameFromGridChange = false;
 
         public VirtualKey ArrowKey;
 
@@ -39,10 +34,12 @@ namespace AppUIBasics.ControlPages
         {
             this.InitializeComponent();
 
-            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample8.SelectedItem = nvSample8.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample9.SelectedItem = nvSample9.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
 
             Categories = new ObservableCollection<CategoryBase>();
             Category firstCategory = new Category { Name = "Category 1", Glyph = Symbol.Home, Tooltip = "This is category 1" };
@@ -51,9 +48,14 @@ namespace AppUIBasics.ControlPages
             Categories.Add(new Category { Name = "Category 3", Glyph = Symbol.Library, Tooltip = "This is category 3" });
             Categories.Add(new Category { Name = "Category 4", Glyph = Symbol.Mail, Tooltip = "This is category 4" });
             nvSample4.SelectedItem = firstCategory;
+
+            setASBSubstitutionString();
+
+            // Fixes #218
+            nvSample2.UpdateLayout();
         }
 
-        public Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode ChoosePanePosition(Boolean toggleOn)
+        public Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode ChoosePanePosition(bool toggleOn)
         {
             if (toggleOn)
             {
@@ -101,7 +103,7 @@ namespace AppUIBasics.ControlPages
                     contentFrame2.Navigate(pageType);
                 }
             }
-            
+
             CameFromGridChange = false;
         }
 
@@ -171,7 +173,40 @@ namespace AppUIBasics.ControlPages
                 contentFrame7.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
             }
         }
- 
+
+        private void NavigationView_SelectionChanged8(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        {
+            /* NOTE: for this function to work, every NavigationView must follow the same naming convention: nvSample# (i.e. nvSample3),
+            and every corresponding content frame must follow the same naming convention: contentFrame# (i.e. contentFrame3) */
+
+            // Get the sample number
+            string sampleNum = (sender.Name).Substring(8);
+            Debug.Print("num: " + sampleNum + "\n");
+
+            if (args.IsSettingsSelected)
+            {
+                contentFrame8.Navigate(typeof(SampleSettingsPage));
+            }
+            else
+            {
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                string selectedItemTag = ((string)selectedItem.Tag);
+                sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
+                string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
+                Type pageType = Type.GetType(pageName);
+                contentFrame8.Navigate(pageType);
+            }
+        }
+
+        private void NavigationView_SelectionChanged9(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        {
+            var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+            string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
+            Type pageType = Type.GetType(pageName);
+
+            contentFrame9.Navigate(pageType, null, args.RecommendedNavigationTransitionInfo);
+        }
+
         private void databindHeader_Checked(object sender, RoutedEventArgs e)
         {
             Categories = new ObservableCollection<CategoryBase>()
@@ -237,11 +272,19 @@ namespace AppUIBasics.ControlPages
                 AutoSuggestBox asb = new AutoSuggestBox() { QueryIcon = new SymbolIcon(Symbol.Find) };
                 asb.SetValue(AutomationProperties.NameProperty, "search");
                 nvSample.AutoSuggestBox = asb;
+
+                setASBSubstitutionString();
             }
             else
             {
                 nvSample.AutoSuggestBox = null;
+                navViewASB.Value = null;
             }
+        }
+
+        private void setASBSubstitutionString()
+        {
+            navViewASB.Value = "\r\n    <muxc:NavigationView.AutoSuggestBox> \r\n        <AutoSuggestBox QueryIcon=\"Find\" AutomationProperties.Name=\"Search\" /> \r\n    <" + "/" + "muxc:NavigationView.AutoSuggestBox> \r\n";
         }
 
         private void panemc_Check_Click(object sender, RoutedEventArgs e)
@@ -270,22 +313,60 @@ namespace AppUIBasics.ControlPages
 
         private void panePositionLeft_Checked(object sender, RoutedEventArgs e)
         {
-            if ((sender as RadioButton).IsChecked == true && nvSample != null)
+            if ((sender as RadioButton).IsChecked == true)
             {
-                nvSample.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
-                nvSample.IsPaneOpen = true;
-                FooterStackPanel.Orientation = Orientation.Vertical;
+                if ((sender as RadioButton).Name == "nvSampleLeft" && nvSample != null)
+                {
+                    nvSample.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+                    nvSample.IsPaneOpen = true;
+                    FooterStackPanel.Orientation = Orientation.Vertical;
+                }
+                else if ((sender as RadioButton).Name == "nvSample8Left" && nvSample8 != null)
+                {
+                    nvSample8.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+                    nvSample8.IsPaneOpen = true;
+                }
+                else if ((sender as RadioButton).Name == "nvSample9Left" && nvSample9 != null)
+                {
+                    nvSample9.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+                    nvSample9.IsPaneOpen = true;
+                }
             }
         }
 
 
         private void panePositionTop_Checked(object sender, RoutedEventArgs e)
         {
-            if ((sender as RadioButton).IsChecked == true && nvSample != null)
+            if ((sender as RadioButton).IsChecked == true)
             {
-                nvSample.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
-                nvSample.IsPaneOpen = false;
-                FooterStackPanel.Orientation = Orientation.Horizontal;
+                if ((sender as RadioButton).Name == "nvSampleTop" && nvSample != null)
+                {
+                    nvSample.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                    nvSample.IsPaneOpen = false;
+                    FooterStackPanel.Orientation = Orientation.Horizontal;
+                }
+                else if ((sender as RadioButton).Name == "nvSample8Top" && nvSample8 != null)
+                {
+                    nvSample8.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                    nvSample8.IsPaneOpen = false;
+                }
+                else if ((sender as RadioButton).Name == "nvSample9Top" && nvSample9 != null)
+                {
+                    nvSample9.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                    nvSample9.IsPaneOpen = false;
+                }
+            }
+        }
+
+        private void panePositionLeftCompact_Checked(object sender, RoutedEventArgs e)
+        {
+            if ((sender as RadioButton).IsChecked == true)
+            {
+                if ((sender as RadioButton).Name == "nvSample8LeftCompact" && nvSample8 != null)
+                {
+                    nvSample8.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
+                    nvSample8.IsPaneOpen = false;
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-﻿//*********************************************************
+﻿﻿//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -43,6 +43,18 @@ namespace AppUIBasics
                 soundToggle.IsOn = true;
             if (ElementSoundPlayer.SpatialAudioMode == ElementSpatialAudioMode.On)
                 spatialSoundBox.IsChecked = true;
+
+            if (NavigationRootPage.Current.NavigationView.PaneDisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto)
+            {
+                navigationLocation.SelectedIndex = 0;
+            }
+            else
+            {
+                navigationLocation.SelectedIndex = 1;
+            }
+
+            screenshotModeToggle.IsOn = UIHelper.IsScreenshotMode;
+            screenshotFolderLink.Content = UIHelper.ScreenshotStorageFolder.Path;
 #endif
         }
 
@@ -125,9 +137,19 @@ namespace AppUIBasics
                 spatialSoundBox.IsChecked = false;
 
                 ElementSoundPlayer.State = ElementSoundPlayerState.Off;
-                ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;                
+                ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;
             }
 #endif
+        }
+
+        private void navigationToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            NavigationOrientationHelper.IsLeftMode = navigationLocation.SelectedIndex == 0;
+        }
+
+        private void screenshotModeToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            UIHelper.IsScreenshotMode = screenshotModeToggle.IsOn;
         }
 
         private void spatialSoundBox_Unchecked(object sender, RoutedEventArgs e)
@@ -138,6 +160,30 @@ namespace AppUIBasics
                 ElementSoundPlayer.SpatialAudioMode = ElementSpatialAudioMode.Off;
             }
 #endif
+        }
+
+        private void navigationLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavigationOrientationHelper.IsLeftMode = navigationLocation.SelectedIndex == 0;
+        }
+
+        private async void FolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            folderPicker.FileTypeFilter.Add(".png"); // meaningless, but you have to have something
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+
+            if (folder != null)
+            {
+                UIHelper.ScreenshotStorageFolder = folder;
+                screenshotFolderLink.Content = UIHelper.ScreenshotStorageFolder.Path;
+            }
+        }
+
+        private async void screenshotFolderLink_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchFolderAsync(UIHelper.ScreenshotStorageFolder);
         }
     }
 }

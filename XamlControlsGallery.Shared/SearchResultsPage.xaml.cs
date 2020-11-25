@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -9,6 +9,7 @@
 //*********************************************************
 using AppUIBasics.Common;
 using AppUIBasics.Data;
+using AppUIBasics.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,14 +77,28 @@ namespace AppUIBasics
                 // creating a list of user-selectable result categories:
                 var filterList = new List<Filter>();
 
+                // Query is already lowercase
+                var querySplit = queryText.ToLower().Split(" ");
                 foreach (var group in ControlInfoDataSource.Instance.Groups)
                 {
                     var matchingItems =
                         group.Items.Where(item =>
-                            item.Title.ToLower().Contains(queryText) ||
-                            item.Subtitle.ToLower().Contains(queryText))
-                        .ToList();
-
+                        {
+                            // Idea: check for every word entered (separated by space) if it is in the name, 
+                            // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button"
+                            // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words
+                            bool flag = true;
+                            foreach (string queryToken in querySplit)
+                            {
+                                // Check if token is in title or subtitle
+                                if (!item.Title.ToLower().Contains(queryToken) && !item.Subtitle.ToLower().Contains(queryToken))
+                                {
+                                    // Neither title nor sub title contain one of the tokens so we discard this item!
+                                    flag = false;
+                                }
+                            }
+                            return flag;
+                        }).ToList();
                     int numberOfMatchingItems = matchingItems.Count();
 
                     if (numberOfMatchingItems > 0)
@@ -138,12 +153,12 @@ namespace AppUIBasics
     /// </summary>
     public sealed class Filter : INotifyPropertyChanged
     {
-        private String _name;
+        private string _name;
         private int _count;
         private bool? _active;
         private List<ControlInfoDataItem> _items;
 
-        public Filter(String name, int count, List<ControlInfoDataItem> controlInfoList, bool active = false)
+        public Filter(string name, int count, List<ControlInfoDataItem> controlInfoList, bool active = false)
         {
             this.Name = name;
             this.Count = count;
@@ -151,7 +166,7 @@ namespace AppUIBasics
             this.Items = controlInfoList;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return Description;
         }
@@ -162,7 +177,7 @@ namespace AppUIBasics
             set { this.SetProperty(ref _items, value); }
         }
 
-        public String Name
+        public string Name
         {
             get { return _name; }
             set { if (this.SetProperty(ref _name, value)) this.NotifyPropertyChanged(nameof(Description)); }
@@ -180,9 +195,9 @@ namespace AppUIBasics
             set { this.SetProperty(ref _active, value); }
         }
 
-        public String Description
+        public string Description
         {
-            get { return String.Format("{0} ({1})", _name, _count); }
+            get { return string.Format("{0} ({1})", _name, _count); }
         }
 
         /// <summary>
@@ -202,7 +217,7 @@ namespace AppUIBasics
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (object.Equals(storage, value)) return false;
 

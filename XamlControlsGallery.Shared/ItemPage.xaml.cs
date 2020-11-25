@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -7,7 +7,6 @@
 // PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 //
 //*********************************************************
-using AppUIBasics.Common;
 using AppUIBasics.Data;
 using System;
 using System.Linq;
@@ -26,6 +25,8 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using System.Reflection;
+using AppUIBasics.Helper;
 
 namespace AppUIBasics
 {
@@ -55,6 +56,13 @@ namespace AppUIBasics
             LayoutVisualStates.CurrentStateChanged += (s, e) => UpdateSeeAlsoPanelVerticalTranslationAnimation();
             Loaded += (s,e) => SetInitialVisuals();
             contentFrame.NavigationFailed += ContentFrame_NavigationFailed;
+            this.Unloaded += this.ItemPage_Unloaded;
+        }
+
+        private void ItemPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            // Notifying the pageheader that this Itempage was unloaded
+            NavigationRootPage.Current.PageHeader.Event_ItemPage_Unloaded(sender, e);
         }
 
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
@@ -77,6 +85,19 @@ namespace AppUIBasics
             _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
             UpdateSeeAlsoPanelVerticalTranslationAnimation();
+
+            if (UIHelper.IsScreenshotMode)
+            {
+                var controlExamples = (this.contentFrame.Content as UIElement)?.GetDescendantsOfType<ControlExample>();
+
+                if (controlExamples != null)
+                {
+                    foreach (var controlExample in controlExamples)
+                    {
+                        VisualStateManager.GoToState(controlExample, "ScreenshotMode", false);
+                    }
+                }
+            }
         }
 
         private void UpdateSeeAlsoPanelVerticalTranslationAnimation()
@@ -107,7 +128,7 @@ namespace AppUIBasics
 
         private void OnToggleTheme()
         {
-            var currentElementTheme = ((_currentElementTheme ?? ElementTheme.Default) == ElementTheme.Default) ? App.ActualTheme : _currentElementTheme.Value;
+            var currentElementTheme = ((_currentElementTheme ?? ElementTheme.Default) == ElementTheme.Default) ? ThemeHelper.ActualTheme : _currentElementTheme.Value;
             var newTheme = currentElementTheme == ElementTheme.Dark ? ElementTheme.Light : ElementTheme.Dark;
             SetControlExamplesTheme(newTheme);
         }
@@ -139,7 +160,7 @@ namespace AppUIBasics
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            var item = await ControlInfoDataSource.Instance.GetItemAsync((String)e.Parameter);
+            var item = await ControlInfoDataSource.Instance.GetItemAsync((string)e.Parameter);
 
             if (item != null)
             {
@@ -160,6 +181,13 @@ namespace AppUIBasics
 
                 if (pageType != null)
                 {
+                    // Pagetype is not null!
+                    // So lets generate the github links and set them!
+                    var gitHubBaseURI = "https://github.com/microsoft/Xaml-Controls-Gallery/tree/master/XamlControlsGallery/ControlPages/";
+                    var pageName = pageType.Name + ".xaml";
+                    PageCodeGitHubLink.NavigateUri = new Uri(gitHubBaseURI + pageName + ".cs");
+                    PageMarkupGitHubLink.NavigateUri = new Uri(gitHubBaseURI + pageName);
+
                     this.contentFrame.Navigate(pageType);
                 }
 
@@ -195,7 +223,7 @@ namespace AppUIBasics
                 {
                     var target = NavigationRootPage.Current.PageHeader.TitlePanel;
 
-                    // Setup the "basic" configuration if the API is present. 
+                    // Setup the "basic" configuration if the API is present.
                     if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
                     {
                         connectedAnimation.Configuration = new BasicConnectedAnimationConfiguration();
@@ -209,7 +237,7 @@ namespace AppUIBasics
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            SetControlExamplesTheme(App.ActualTheme);
+            SetControlExamplesTheme(ThemeHelper.ActualTheme);
 
             base.OnNavigatingFrom(e);
         }
@@ -227,6 +255,13 @@ namespace AppUIBasics
                 ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("controlAnimation", target);
             }
 #endif
+            // We use reflection to call the OnNavigatedFrom function the user leaves this page
+            // See this PR for more information: https://github.com/microsoft/Xaml-Controls-Gallery/pull/145
+            Frame contentFrameAsFrame = contentFrame as Frame;
+            Page innerPage = contentFrameAsFrame.Content as Page;
+            MethodInfo dynMethod = innerPage.GetType().GetMethod("OnNavigatedFrom",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            dynMethod.Invoke(innerPage, new object[] { e });
 
             base.OnNavigatedFrom(e);
         }

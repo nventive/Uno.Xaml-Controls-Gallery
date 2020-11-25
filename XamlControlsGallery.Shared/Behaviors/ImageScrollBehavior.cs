@@ -1,4 +1,5 @@
-﻿using Microsoft.Xaml.Interactivity;
+using AppUIBasics.Helper;
+using Microsoft.Xaml.Interactivity;
 using System.Linq;
 using Windows.Storage;
 using Windows.UI;
@@ -16,7 +17,7 @@ namespace AppUIBasics.Behaviors
         private const int _minFontSize = 24;
         private const int scrollViewerThresholdValue = 190;
         private ScrollViewer scrollViewer;
-        private GridView gridView;
+        private ListViewBase listGridView;
 
         public DependencyObject AssociatedObject { get; private set; }
 
@@ -35,19 +36,19 @@ namespace AppUIBasics.Behaviors
             AssociatedObject = associatedObject;
             if (!GetScrollViewer())
             {
-                ((GridView)associatedObject).Loaded += GridView_Loaded;
+                ((ListViewBase)associatedObject).Loaded += ListGridView_Loaded;
             }
         }
 
-        private void GridView_Loaded(object sender, RoutedEventArgs e)
+        private void ListGridView_Loaded(object sender, RoutedEventArgs e)
         {
             GetScrollViewer();
-            gridView = sender as GridView;
+            listGridView = sender as ListViewBase;
         }
 
         private bool GetScrollViewer()
         {
-            scrollViewer = Common.UIHelper.GetDescendantsOfType<ScrollViewer>(AssociatedObject).FirstOrDefault();
+            scrollViewer = Helper.UIHelper.GetDescendantsOfType<ScrollViewer>(AssociatedObject).FirstOrDefault();
             if (scrollViewer != null)
             {
                 scrollViewer.ViewChanging += ScrollViewer_ViewChanging;
@@ -77,7 +78,7 @@ namespace AppUIBasics.Behaviors
             }
             else
             {
-                if (App.ActualTheme != ElementTheme.Dark)
+                if (ThemeHelper.ActualTheme != ElementTheme.Dark)
                 {
                     VisualStateManager.GoToState(header, "DefaultForeground", false);
                     Color foreground = new Color() { A = _alpha };
@@ -95,7 +96,7 @@ namespace AppUIBasics.Behaviors
 
         public void Detach()
         {
-            ((GridView)AssociatedObject).Loaded -= GridView_Loaded;
+            ((ListViewBase)AssociatedObject).Loaded -= ListGridView_Loaded;
             AssociatedObject = null;
         }
     }

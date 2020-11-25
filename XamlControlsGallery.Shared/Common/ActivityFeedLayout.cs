@@ -97,8 +97,7 @@ namespace AppUIBasics.Common
         {
             base.InitializeForContextCore(context);
 
-            var state = context.LayoutState as ActivityFeedLayoutState;
-            if (state == null)
+            if (!(context.LayoutState is ActivityFeedLayoutState state))
             {
                 // Store any state we might need since (in theory) the layout could be in use by multiple 
                 // elements simultaneously
@@ -161,7 +160,7 @@ namespace AppUIBasics.Common
             // created because it isn't until after our MeasureOverride completes that the unused elements 
             // will be recycled and available to use.  We could avoid this by choosing to track the first/last
             // index from the previous layout pass.  The diff between the previous range and current range 
-            // would represent the elements that we can pre-emptively make available for re-use by calling 
+            // would represent the elements that we can preemptively make available for re-use by calling 
             // context.RecycleElement(element).
             for (int rowIndex = firstRowIndex; rowIndex < lastRowIndex; rowIndex++)
             {

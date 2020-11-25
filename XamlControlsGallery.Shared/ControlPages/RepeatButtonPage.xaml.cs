@@ -10,13 +10,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class RepeatButtonPage : Page
     {
         public RepeatButtonPage()
@@ -25,10 +20,17 @@ namespace AppUIBasics.ControlPages
         }
 
         private static int _clicks = 0;
+        private static int _clickReveal = 0;
         private void RepeatButton_Click(object sender, RoutedEventArgs e)
         {
             _clicks += 1;
             Control1Output.Text = "Number of clicks: " + _clicks;
+        }
+
+        private void RepeatButtonReveal_Click(object sender, RoutedEventArgs e)
+        {
+            _clickReveal += 1;
+            ControlRevealOutput.Text = "Number of clicks: " + _clickReveal;
         }
     }
 }

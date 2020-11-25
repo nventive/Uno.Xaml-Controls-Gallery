@@ -16,6 +16,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 
+    <!-- URLs on this page have a en-us as localization since having them not have a fixed locale results in the page having the language used by the user, 
+        which may be a different language than the app is using. This was quite confusing to see and was not intuitive.-->
     <local:ControlExample HeaderText="A simple WebView " HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
         <local:ControlExample.Example>
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -32,9 +34,9 @@
             </Grid>
         </local:ControlExample.Example>
         <local:ControlExample.Xaml>
-            <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                <Paragraph>&lt;WebView Source="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/web-view" /&gt;</Paragraph>
-            </RichTextBlock>
+            <x:String>
+                &lt;WebView Source="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/web-view" /&gt;
+            </x:String>
         </local:ControlExample.Xaml>
     </local:ControlExample>
 </Page>

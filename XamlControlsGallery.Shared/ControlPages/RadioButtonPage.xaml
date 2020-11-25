@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -15,7 +15,7 @@
         xmlns:xamarin="http://uno.ui/xamarin"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:AppUIBasics"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d xamarin">
     <RelativePanel HorizontalAlignment="Left">
         <local:ControlExample x:Name="Example1"
@@ -53,7 +53,7 @@
                     <TextBlock Text="Background" Style="{ThemeResource BaseTextBlockStyle}" />
                     <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollMode="Auto"
                             HorizontalScrollBarVisibility="Hidden">
-                        <StackPanel Orientation="Horizontal" 
+                        <StackPanel Orientation="Horizontal"
                                   xamarin:Height="75">
                             <RadioButton Content="Green" Tag="Green" GroupName="BGColor" Checked="BGRadioButton_Checked" />
                             <RadioButton Content="Yellow" Tag="Yellow" GroupName="BGColor"
@@ -83,26 +83,18 @@
                 <Border x:Name="Control2Output" BorderThickness="10" BorderBrush="#FFFFD700" Background="#FFFFFFFF"
                         Height="75" Margin="0,10,0,10" />
             </StackPanel>
+            <local:ControlExample.Output>
+                <TextBlock x:Name="Control1Output" Text="Select an option." />
+            </local:ControlExample.Output>
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;StackPanel&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;StackPanel Orientation="Horizontal"&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;TextBlock Text="Background" Style="{ThemeResource BaseTextBlockStyle}"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Green" Tag="Green" GroupName="BGColor" Checked="BGRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Yellow" Tag="Yellow" GroupName="BGColor" Checked="BGRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Blue" Tag="Blue" GroupName="BGColor" Checked="BGRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="White" Tag="White" GroupName="BGColor" Checked="BGRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/StackPanel  Orientation="Horizontal"&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;StackPanel Orientation="Horizontal"&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;TextBlock Text="BorderBrush" Style="{ThemeResource BaseTextBlockStyle}"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Green" Tag="Green" GroupName="BorderBrush" Checked="BorderRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Yellow" Tag="Yellow" GroupName="BorderBrush" Checked="BorderRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="Blue" Tag="Blue" GroupName="BorderBrush" Checked="BorderRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;RadioButton Content="White" Tag="White" GroupName="BorderBrush" Checked="BorderRadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/StackPanel&gt;</Paragraph>
-                    <Paragraph>&lt;/StackPanel&gt;</Paragraph>
-                </RichTextBlock>
+                <x:String xml:space="preserve">
+&lt;muxc:RadioButtons Header="Options:"&gt;
+    &lt;RadioButton Content="Option 1" Checked="RadioButton_Checked"/&gt;
+    &lt;RadioButton Content="Option 2" Checked="RadioButton_Checked"/&gt;
+    &lt;RadioButton Content="Option 3" Checked="RadioButton_Checked"/&gt;
+&lt;/muxc:RadioButtons&gt;
+                </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
-    </RelativePanel>
+    </StackPanel>
 </Page>

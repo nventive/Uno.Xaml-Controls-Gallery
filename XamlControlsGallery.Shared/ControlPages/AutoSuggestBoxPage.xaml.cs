@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -17,34 +17,142 @@ using AppUIBasics.Data;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AppUIBasics.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class AutoSuggestBoxPage : Page
     {
-        public ObservableCollection<string> Suggestions { get; private set; }
+        private List<string> Cats = new List<string>()
+        {
+            "Abyssinian",
+            "Aegean",
+            "American Bobtail",
+            "American Curl",
+            "American Ringtail",
+            "American Shorthair",
+            "American Wirehair",
+            "Aphrodite Giant",
+            "Arabian Mau",
+            "Asian cat",
+            "Asian Semi-longhair",
+            "Australian Mist",
+            "Balinese",
+            "Bambino",
+            "Bengal",
+            "Birman",
+            "Bombay",
+            "Brazilian Shorthair",
+            "British Longhair",
+            "British Shorthair",
+            "Burmese",
+            "Burmilla",
+            "California Spangled",
+            "Chantilly-Tiffany",
+            "Chartreux",
+            "Chausie",
+            "Colorpoint Shorthair",
+            "Cornish Rex",
+            "Cymric",
+            "Cyprus",
+            "Devon Rex",
+            "Donskoy",
+            "Dragon Li",
+            "Dwelf",
+            "Egyptian Mau",
+            "European Shorthair",
+            "Exotic Shorthair",
+            "Foldex",
+            "German Rex",
+            "Havana Brown",
+            "Highlander",
+            "Himalayan",
+            "Japanese Bobtail",
+            "Javanese",
+            "Kanaani",
+            "Khao Manee",
+            "Kinkalow",
+            "Korat",
+            "Korean Bobtail",
+            "Korn Ja",
+            "Kurilian Bobtail",
+            "Lambkin",
+            "LaPerm",
+            "Lykoi",
+            "Maine Coon",
+            "Manx",
+            "Mekong Bobtail",
+            "Minskin",
+            "Napoleon",
+            "Munchkin",
+            "Nebelung",
+            "Norwegian Forest Cat",
+            "Ocicat",
+            "Ojos Azules",
+            "Oregon Rex",
+            "Oriental Bicolor",
+            "Oriental Longhair",
+            "Oriental Shorthair",
+            "Persian (modern)",
+            "Persian (traditional)",
+            "Peterbald",
+            "Pixie-bob",
+            "Ragamuffin",
+            "Ragdoll",
+            "Raas",
+            "Russian Blue",
+            "Russian White",
+            "Sam Sawet",
+            "Savannah",
+            "Scottish Fold",
+            "Selkirk Rex",
+            "Serengeti",
+            "Serrade Petit",
+            "Siamese",
+            "Siberian or´Siberian Forest Cat",
+            "Singapura",
+            "Snowshoe",
+            "Sokoke",
+            "Somali",
+            "Sphynx",
+            "Suphalak",
+            "Thai",
+            "Thai Lilac",
+            "Tonkinese",
+            "Toyger",
+            "Turkish Angora",
+            "Turkish Van",
+            "Turkish Vankedisi",
+            "Ukrainian Levkoy",
+            "Wila Krungthep",
+            "York Chocolate"
+        };
 
         public AutoSuggestBoxPage()
         {
-            this.Suggestions = new ObservableCollection<string>();
-
             this.InitializeComponent();
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            var suitableItems = new List<string>();
+            var splitText = sender.Text.ToLower().Split(" ");
+            foreach(var cat in Cats)
             {
-                Suggestions.Clear();
-                Suggestions.Add(sender.Text + "1");
-                Suggestions.Add(sender.Text + "2");
+                var found = splitText.All((key)=>
+                {
+                    return cat.ToLower().Contains(key);
+                });
+                if(found)
+                {
+                    suitableItems.Add(cat);
+                }
             }
-            Control1.ItemsSource = Suggestions;
+            if(suitableItems.Count == 0)
+            {
+                suitableItems.Add("No results found");
+            }
+            sender.ItemsSource = suitableItems;
         }
+
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             SuggestionOutput.Text = args.SelectedItem.ToString();
@@ -137,11 +245,27 @@ namespace AppUIBasics.ControlPages
         {
             var suggestions = new List<ControlInfoDataItem>();
 
+            var querySplit = query.Split(" ");
             foreach (var group in ControlInfoDataSource.Instance.Groups)
             {
                 var matchingItems = group.Items.Where(
-                    item => item.Title.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) >= 0);
-
+                    item =>
+                    {
+                        // Idea: check for every word entered (separated by space) if it is in the name,  
+                        // e.g. for query "split button" the only result should "SplitButton" since its the only query to contain "split" and "button" 
+                        // If any of the sub tokens is not in the string, we ignore the item. So the search gets more precise with more words 
+                        bool flag = true;
+                        foreach (string queryToken in querySplit)
+                        {
+                            // Check if token is not in string 
+                            if (item.Title.IndexOf(queryToken, StringComparison.CurrentCultureIgnoreCase) < 0)
+                            {
+                                // Token is not in string, so we ignore this item. 
+                                flag = false;
+                            }
+                        }
+                        return flag;
+                    });
                 foreach (var item in matchingItems)
                 {
                     suggestions.Add(item);

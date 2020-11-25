@@ -21,14 +21,6 @@
     x:Name="pageRoot"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <Storyboard x:Name="PopOutStoryboard">
-            <PopOutThemeAnimation SpeedRatio="2" TargetName="seeAlsoPanel" />
-        </Storyboard>
-        <Storyboard x:Name="PopInStoryboard">
-            <PopInThemeAnimation FromVerticalOffset="150" SpeedRatio=".3" TargetName="seeAlsoPanel" />
-        </Storyboard>
-    </Page.Resources>
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -51,7 +43,7 @@
                 <VisualState x:Name="NormalFrameContent" />
                 <VisualState x:Name="WideFrameContent">
                     <VisualState.Setters>
-                        <Setter Target="contentFrame.Width" Value="1000" />
+                        <Setter Target="contentFrame.Width" Value="1028" />
                         <Setter Target="contentFrame.HorizontalAlignment" Value="Left" />
                     </VisualState.Setters>
                 </VisualState>
@@ -68,15 +60,19 @@
                         <Setter Target="seeAlsoPanel.(Grid.Column)" Value="0" />
                         <Setter Target="seeAlsoPanel.(Grid.ColumnSpan)" Value="3" />
 
+                        <Setter Target="SourcePanel.(Grid.ColumnSpan)" Value="1" />
+
                         <Setter Target="DocumentationPanel.(Grid.ColumnSpan)" Value="1" />
                         <Setter Target="DocumentationPanel.Margin" Value="0" />
-
                         <Setter Target="RelatedControlsPanel.(Grid.Row)" Value="0" />
                         <Setter Target="RelatedControlsPanel.(Grid.Column)" Value="2" />
                         <Setter Target="RelatedControlsPanel.(Grid.ColumnSpan)" Value="1" />
 
                         <Setter Target="rightMargin.Width" Value="0" />
                         <Setter Target="contentRoot.Padding" Value="14,0" />
+                        <Setter Target="FeedbackPanel.(Grid.Row)" Value="1" />
+                        <Setter Target="FeedbackPanel.(Grid.Column)" Value="2" />
+                        <Setter Target="FeedbackPanel.(Grid.ColumnSpan)" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="WideLayout">
@@ -88,11 +84,21 @@
                         <Setter Target="seeAlsoPanel.(Grid.Row)" Value="3" />
                         <Setter Target="seeAlsoPanel.(Grid.Column)" Value="0" />
                         <Setter Target="seeAlsoPanel.(Grid.ColumnSpan)" Value="3" />
+
+                        <Setter Target="SourcePanel.(Grid.ColumnSpan)" Value="1" />
+
                         <Setter Target="DocumentationPanel.(Grid.ColumnSpan)" Value="1" />
                         <Setter Target="DocumentationPanel.Margin" Value="0" />
                         <Setter Target="RelatedControlsPanel.(Grid.Row)" Value="0" />
                         <Setter Target="RelatedControlsPanel.(Grid.Column)" Value="2" />
                         <Setter Target="RelatedControlsPanel.(Grid.ColumnSpan)" Value="1" />
+
+                        <Setter Target="FeedbackPanel.(Grid.Row)" Value="1" />
+                        <Setter Target="FeedbackPanel.(Grid.Column)" Value="2" />
+                        <Setter Target="FeedbackPanel.(Grid.ColumnSpan)" Value="1" />
+
+                        <Setter Target="rightMargin.Width" Value="0" />
+                        <Setter Target="contentRoot.Padding" Value="14,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeLayout">
@@ -123,11 +129,11 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock
-                    x:Name="subTitleText"
+                    x:Name="descriptionText"
                     Style="{ThemeResource BodyTextBlockStyle}"
                     Grid.ColumnSpan="2"
                     Margin="0,5,24,0"
-                    Text="{x:Bind Item.Subtitle}" />
+                    Text="{x:Bind Item.Description}" />
 
                 <Frame x:Name="contentFrame" Grid.Row="1" />
 
@@ -141,6 +147,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -148,7 +156,26 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel x:Name="DocumentationPanel" Grid.ColumnSpan="3" Margin="0,0,0,40">
+                    <StackPanel x:Name="SourcePanel" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,40">
+                        <TextBlock
+                            x:Name="SourceHeader"
+                            x:Uid="SourceHeader"
+                            Style="{ThemeResource SubtitleTextBlockStyle}"
+                            Text="View page code on GitHub"/>
+                        <HyperlinkButton
+                            x:Name="PageMarkupGitHubLink"
+                            ToolTipService.ToolTip="{x:Bind PageMarkupGitHubLink.NavigateUri, Mode=OneWay}">
+                            <TextBlock Text="XAML source code"/>
+                        </HyperlinkButton>
+                        <HyperlinkButton
+                            x:Name="PageCodeGitHubLink"
+                            ToolTipService.ToolTip="{x:Bind PageCodeGitHubLink.NavigateUri, Mode=OneWay}"
+                            Margin="0,12,0,0">
+                            <TextBlock Text="C# source code"/>
+                        </HyperlinkButton>
+                    </StackPanel>
+
+                    <StackPanel x:Name="DocumentationPanel" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,0,0,40">
                         <TextBlock
                             x:Name="docHeader"
                             x:Uid="DocHeader"
@@ -165,7 +192,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="data:ControlInfoDocLink">
-                                    <HyperlinkButton NavigateUri="{Binding Uri}">
+                                    <HyperlinkButton NavigateUri="{Binding Uri}" ToolTipService.ToolTip="{Binding Uri}">
                                         <TextBlock Text="{x:Bind Title}" />
                                     </HyperlinkButton>
                                 </DataTemplate>
@@ -173,7 +200,7 @@
                         </ItemsControl>
                     </StackPanel>
 
-                    <StackPanel x:Name="RelatedControlsPanel" Grid.Row="1" Grid.ColumnSpan="3">
+                    <StackPanel x:Name="RelatedControlsPanel" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,0,40">
                         <TextBlock
                             x:Name="relatedControlsHeader"
                             x:Uid="RelatedControlsHeader"
@@ -222,6 +249,17 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                    </StackPanel>
+
+                    <StackPanel x:Name="FeedbackPanel" Grid.Row="3" Grid.ColumnSpan="3">
+                        <TextBlock
+                            x:Name="feedbackHeader"
+                            x:Uid="FeedbackHeader"
+                            Style="{StaticResource SubtitleTextBlockStyle}" />
+                        <HyperlinkButton NavigateUri="https://github.com/microsoft/Xaml-Controls-Gallery/issues/new/choose"
+                                         ToolTipService.ToolTip="https://github.com/microsoft/Xaml-Controls-Gallery/issues/new/choose">
+                            <TextBlock x:Uid="FeedbackLink" />
+                        </HyperlinkButton>
                     </StackPanel>
                 </Grid>
             </Grid>
