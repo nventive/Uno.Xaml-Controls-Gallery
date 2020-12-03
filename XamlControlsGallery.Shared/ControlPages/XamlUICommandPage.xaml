@@ -1,6 +1,6 @@
-﻿<Page x:Class="AppUIBasics.ControlPages.XamlUICommandPage" 
+﻿<Page x:Class="AppUIBasics.ControlPages.XamlUICommandPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:AppUIBasics"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -46,7 +46,7 @@
 
                 <RelativePanel Grid.Row="1">
                     <AppBarButton x:Name="CustomButton" Command="{StaticResource CustomXamlUICommand}"/>
-                    <TextBlock x:Name="XamlUICommandOutput" Margin="8,0,0,0" FontFamily="Global User Interface" 
+                    <TextBlock x:Name="XamlUICommandOutput" Margin="8,0,0,0" FontFamily="Global User Interface"
                                RelativePanel.RightOf="CustomButton" RelativePanel.AlignVerticalCenterWith="CustomButton" />
                 </RelativePanel>
 

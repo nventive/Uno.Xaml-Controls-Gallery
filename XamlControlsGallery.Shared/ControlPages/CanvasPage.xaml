@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -9,10 +9,15 @@
 //
 //*********************************************************
 -->
-<Page x:Class="AppUIBasics.ControlPages.CanvasPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:AppUIBasics"
-        xmlns:common="using:AppUIBasics.Common" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+<Page x:Class="AppUIBasics.ControlPages.CanvasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:AppUIBasics"
+      xmlns:common="using:AppUIBasics.Common"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      mc:Ignorable="d">
     <StackPanel>
         <local:ControlExample x:Name="Example1" HeaderText="A Canvas control.">
 
@@ -47,8 +52,9 @@
                     </StackPanel>
                 </StackPanel>
             </local:ControlExample.Options>
+            <!--TODO: APM-->
             <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
+                <win:RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
                     <Paragraph>&lt;Canvas Width="120" Height="120" Background="Gray"&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Red" Canvas.Left="
                         <Run Text="{x:Bind LeftSlider.Value, Mode=OneWay}" /> "
@@ -61,7 +67,7 @@
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Green" Canvas.Left="40" Canvas.Top="40" Canvas.ZIndex="2" /&gt;</Paragraph>
                     <Paragraph TextIndent="12">&lt;Rectangle Fill="Yellow" Canvas.Left="60" Canvas.Top="60" Canvas.ZIndex="3" /&gt;</Paragraph>
                     <Paragraph>&lt;/Canvas&gt;</Paragraph>
-                </RichTextBlock>
+                </win:RichTextBlock>
             </local:ControlExample.Xaml>
             <local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="Left" Value="{x:Bind LeftSlider.Value, Mode=OneWay}" />

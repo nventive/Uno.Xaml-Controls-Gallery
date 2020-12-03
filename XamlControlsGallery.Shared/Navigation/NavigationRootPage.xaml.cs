@@ -1,4 +1,4 @@
-﻿﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -167,10 +167,9 @@ namespace AppUIBasics
                 {
                     var itemInGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = groupItem.Title, Tag = groupItem.UniqueId, DataContext = groupItem};
 
-                    //TODO: APM
-                    itemInGroup.Icon = GetIcon(item.ImagePath)
+                    itemInGroup.Icon = GetIcon(groupItem.ImagePath);
 
-                    item.MenuItems.Add(itemInGroup);
+                    NavigationViewControl.MenuItems.Add(itemInGroup);
                     AutomationProperties.SetName(itemInGroup, groupItem.Title);
                 }
 

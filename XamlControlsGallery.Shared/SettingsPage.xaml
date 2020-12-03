@@ -183,7 +183,7 @@
                     <Paragraph Margin="0,10,0,10">
                         <Hyperlink NavigateUri="https://github.com/Microsoft/XamlBehaviors">Xaml Behaviors</Hyperlink>
                     </Paragraph>
-                </RichTextBlock>
+                </win:RichTextBlock>
 
                 <xamarin:TextBlock MaxWidth="840" Margin="0,10,0,0">
                     <Hyperlink NavigateUri="https://github.com/nventive/Uno">Uno platform</Hyperlink>

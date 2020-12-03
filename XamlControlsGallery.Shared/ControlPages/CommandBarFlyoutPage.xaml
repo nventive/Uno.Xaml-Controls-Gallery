@@ -1,4 +1,4 @@
-﻿<Page x:Class="AppUIBasics.ControlPages.CommandBarFlyoutPage"
+<Page x:Class="AppUIBasics.ControlPages.CommandBarFlyoutPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:AppUIBasics"
@@ -8,15 +8,15 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <muxc:CommandBarFlyout Placement="Right" x:Name="CommandBarFlyout1">
+        <muxcontrols:CommandBarFlyout Placement="Right" x:Name="CommandBarFlyout1">
             <AppBarButton Label="Share" Icon="Share" ToolTipService.ToolTip="Share" Click="OnElementClicked" />
             <AppBarButton Label="Save" Icon="Save" ToolTipService.ToolTip="Save" Click="OnElementClicked" />
             <AppBarButton Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" Click="OnElementClicked" />
-            <muxc:CommandBarFlyout.SecondaryCommands>
+            <muxcontrols:CommandBarFlyout.SecondaryCommands>
                 <AppBarButton Label="Resize" Click="OnElementClicked" />
                 <AppBarButton Label="Move" Click="OnElementClicked" />
-            </muxc:CommandBarFlyout.SecondaryCommands>
-        </muxc:CommandBarFlyout>
+            </muxcontrols:CommandBarFlyout.SecondaryCommands>
+        </muxcontrols:CommandBarFlyout>
     </Page.Resources>
 
     <StackPanel>

@@ -18,34 +18,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d xamarin">
     <RelativePanel HorizontalAlignment="Left">
-        <local:ControlExample x:Name="Example1"
-                HeaderText="A group of radio buttons implicitly grouped by their parent container.">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <!-- A RadioButton group. -->
-                    <TextBlock Text="Options:" Style="{ThemeResource BaseTextBlockStyle}" />
-                    <RadioButton x:Name="Option1RadioButton" Content="Option 1" Checked="Option1RadioButton_Checked" />
-                    <RadioButton x:Name="Option2RadioButton" Content="Option 2" Checked="Option2RadioButton_Checked" />
-                    <RadioButton x:Name="Option3RadioButton" Content="Option 3" Checked="Option3RadioButton_Checked" />
-                </StackPanel>
-                <TextBlock x:Name="Control1Output" Text="Select an option." Style="{ThemeResource BodyTextBlockStyle}"
-                        VerticalAlignment="Center" Grid.Column="1" Margin="8,0"/>
-            </Grid>
-            <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;StackPanel&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;TextBlock Text="Options:" Style="{ThemeResource BaseTextBlockStyle}"/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;RadioButton x:Name="Option1RadioButton" Content="Option 1" Checked="Option1RadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;RadioButton x:Name="Option2RadioButton" Content="Option 2" Checked="Option2RadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;RadioButton x:Name="Option3RadioButton" Content="Option 3" Checked="Option3RadioButton_Checked"/&gt;</Paragraph>
-                    <Paragraph>&lt;/StackPanel&gt;</Paragraph>
-                </RichTextBlock>
-            </local:ControlExample.Xaml>
-        </local:ControlExample>
         <local:ControlExample HeaderText="Two groups of radio buttons explicitly grouped by GroupName."
                 RelativePanel.Below="Example1">
             <StackPanel x:Name="Control2" Grid.Row="4">
@@ -96,5 +68,5 @@
                 </x:String>
             </local:ControlExample.Xaml>
         </local:ControlExample>
-    </StackPanel>
+    </RelativePanel>
 </Page>
