@@ -10,15 +10,16 @@
       xmlns:muxc="using:Windows.UI.Xaml.Controls"
       mc:Ignorable="d">
     <StackPanel>
-        <local:ControlExample HeaderText="A Simple MenuBar"
-                              XamlSource="MenuBar/MenuBarSample1.txt">
-            <StackPanel x:Name="Control1" Orientation="Horizontal">
-                <muxc:MenuBar>
+        <local:ControlExample HeaderText="A simple MenuBar" 
+                              XamlSource="MenuBar\MenuBarSample1.txt">
+            <StackPanel>
+                <TextBlock x:Name="SelectedOptionText" Text="" />
+                <muxc:MenuBar x:Name="Example1">
                     <muxc:MenuBarItem Title="File">
-                        <MenuFlyoutItem Text="New"/>
-                        <MenuFlyoutItem Text="Open..."/>
-                        <MenuFlyoutItem Text="Save"/>
-                        <MenuFlyoutItem Text="Exit"/>
+                        <MenuFlyoutItem x:Name="o1" Text="New" Click="OnElementClicked"/>
+                        <MenuFlyoutItem x:Name="o2" Text="Open" Click="OnElementClicked"/>
+                        <MenuFlyoutItem x:Name="o3" Text="Save" Click="OnElementClicked"/>
+                        <MenuFlyoutItem x:Name="o4" Text="Exit" Click="OnElementClicked"/>
                     </muxc:MenuBarItem>
 
                     <muxc:MenuBarItem Title="Edit">
@@ -33,7 +34,7 @@
                     </muxc:MenuBarItem>
                 </muxc:MenuBar>
             </StackPanel>
-        </local:ControlExample>
+        </local:ControlExample>        
 
         <local:ControlExample HeaderText="MenuBar with keyboard accelerators"
                               XamlSource="Menubar\MenuBarSample3.txt">
@@ -122,7 +123,8 @@
                         <MenuFlyoutItem x:Name="z11" Text="Paste" Click="OnElementClicked"/>
                     </muxc:MenuBarItem>
 
-                    <muxc:MenuBarItem Title="View">
+                    <!--TODO: UNO-->
+                    <!--<muxc:MenuBarItem Title="View">
                         <MenuFlyoutItem x:Name="z12" Text="Output" Click="OnElementClicked"/>
                         <MenuFlyoutSeparator/>
                         <muxc:RadioMenuFlyoutItem x:Name="z13" Text="Landscape" GroupName="OrientationGroup" Click="OnElementClicked"/>
@@ -131,7 +133,7 @@
                         <muxc:RadioMenuFlyoutItem x:Name="z15" Text="Small icons" GroupName="SizeGroup" Click="OnElementClicked"/>
                         <muxc:RadioMenuFlyoutItem x:Name="z16" Text="Medium icons" IsChecked="True" GroupName="SizeGroup" Click="OnElementClicked"/>
                         <muxc:RadioMenuFlyoutItem x:Name="z17" Text="Large icons" GroupName="SizeGroup" Click="OnElementClicked"/>
-                    </muxc:MenuBarItem>
+                    </muxc:MenuBarItem>-->
 
                     <muxc:MenuBarItem Title="Help">
                         <MenuFlyoutItem x:Name="z18" Text="About" Click="OnElementClicked"/>

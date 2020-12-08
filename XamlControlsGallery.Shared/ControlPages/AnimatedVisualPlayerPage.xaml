@@ -11,21 +11,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <local:ControlExample x:Name="AnimatedVisualPlayerExample" 
+        <local:ControlExample x:Name="AnimatedVisualPlayerExample"
                               HeaderText="Playback of a Lottie animation.">
             <local:ControlExample.Example>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <!-- Text -->
                     <TextBlock TextWrapping="WrapWholeWords">
-                        This AnimatedVisualPlayer consumes an animation created using 
-                        Adobe AfterEffects and translated into Windows.UI.Composition objects using 
+                        This AnimatedVisualPlayer consumes an animation created using
+                        Adobe AfterEffects and translated into Windows.UI.Composition objects using
                         <Hyperlink NavigateUri="https://aka.ms/lottie">
                            Lottie-Windows
                         </Hyperlink>.
-                        Since the 
+                        Since the
                         <Hyperlink NavigateUri="https://docs.microsoft.com/uwp/api/windows.ui.composition.compositionshape">
                             CompositionShapes
-                        </Hyperlink> used here are supported on Windows 10 version 17763+, 
+                        </Hyperlink> used here are supported on Windows 10 version 17763+,
                         the AnimatedVisualPlayer falls back to an Image when its Source is unavailable.
                     </TextBlock>
                     <Border Width="400" Height="400"

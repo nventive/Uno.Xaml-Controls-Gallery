@@ -216,10 +216,10 @@ The data template is defined to display a CustomDataObject object (same type as 
                     AllowDrop="{x:Bind DropCheckBox.IsChecked.Value, Mode=OneWay}"
                     IsItemClickEnabled="{x:Bind ItemClickCheckBox.IsChecked.Value, Mode=OneWay}"
                     IsSwipeEnabled="{x:Bind SwipeCheckBox.IsChecked.Value, Mode=OneWay}"
-                    ItemClick="Control1_ItemClick"
+                    ItemClick="ContentGridView_ItemClick"
                     ItemTemplate="{StaticResource ImageOverlayTemplate}"
                     ItemsSource="{x:Bind Items, Mode=OneWay}"
-                    SelectionChanged="Control1_SelectionChanged"
+                    SelectionChanged="ContentGridView_SelectionChanged"
                     FlowDirection="LeftToRight" />
 
                 <StackPanel Grid.Row="1">
@@ -259,6 +259,7 @@ The data template is defined to display a CustomDataObject object (same type as 
                         <TextBlock TextWrapping="Wrap" FontSize="13" MaxWidth="150"> In order to drag, drop, and reorder items within the GridView, make sure the last three boxes are checked below.<LineBreak/></TextBlock>
                         <TextBlock TextWrapping="Wrap" FontSize="13" MaxWidth="150"> Turning on IsItemClickEnabled will allow the user to click on an item (and print output below the GridView), regardless of selection mode.<LineBreak/></TextBlock>
                         <CheckBox x:Name="ItemClickCheckBox" Click="ItemClickCheckBox_Click" Content="IsItemClickEnabled" />
+                        <CheckBox x:Name="SwipeCheckBox" Content="IsSwipeEnabled" />
                         <CheckBox x:Name="DragCheckBox" Content="CanDragItems" />
                         <CheckBox x:Name="ReorderCheckBox" Content="CanReorderItems" />
                         <CheckBox x:Name="DropCheckBox" Content="AllowDrop" />

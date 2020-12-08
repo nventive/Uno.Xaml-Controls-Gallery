@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="using:AppUIBasics.Common"
         xmlns:muxc="using:Windows.UI.Xaml.Controls"
+        xmlns:muxcontrol="using:Microsoft.UI.Xaml.Controls"
         x:Class="AppUIBasics.ControlPages.NavigationViewPage"
         mc:Ignorable="d">
     <Page.Resources>
@@ -229,11 +230,11 @@
                               XamlSource="NavigationView\NavigationViewSample9_xaml.txt">
             <local:ControlExample.Options>
                 <StackPanel>
-                    <muxc:RadioButtons Header="Pane position:"
+                    <muxcontrol:RadioButtons Header="Pane position:"
                                        SelectedIndex="0">
                         <RadioButton x:Name="nvSample9Left" Content="Left mode" Checked="panePositionLeft_Checked"/>
                         <RadioButton x:Name="nvSample9Top" Content="Top mode" Checked="panePositionTop_Checked"/>
-                    </muxc:RadioButtons>
+                    </muxcontrol:RadioButtons>
                 </StackPanel>
             </local:ControlExample.Options>
             <Grid>

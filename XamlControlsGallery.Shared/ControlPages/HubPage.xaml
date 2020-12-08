@@ -1,4 +1,4 @@
-﻿<!--
+<!--
     //*********************************************************
     //
     // Copyright (c) Microsoft. All rights reserved.
@@ -94,23 +94,8 @@
                     <ListView x:Name="ZoomedOutList" />
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
-            <local:ControlExample.Xaml>
-                <RichTextBlock Style="{StaticResource XamlCodeRichTextBlockStyle}">
-                    <Paragraph>&lt;Hub Header=&quot;News&quot;&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;HubSection Header=&quot;Latest&quot;&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;DataTemplate&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;!-- Content --&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;/DataTemplate&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/HubSection&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;HubSection Header=&quot;Tech&quot; IsHeaderInteractive=&quot;True&quot; Background=&quot;#222222&quot; MinWidth=&quot;250&quot; RequestedTheme=&quot;Dark&quot;&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;DataTemplate&gt;</Paragraph>
-                    <Paragraph TextIndent="36">&lt;!-- Content --&gt;</Paragraph>
-                    <Paragraph TextIndent="24">&lt;/DataTemplate&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;/HubSection&gt;</Paragraph>
-                    <Paragraph TextIndent="12">&lt;!-- More sections --&gt;</Paragraph>
-                    <Paragraph>&lt;/Hub&gt;</Paragraph>
-                </RichTextBlock>
-            </local:ControlExample.Xaml>
+            <!--TODO: APM-->
+
         </local:ControlExample>
     </StackPanel>
 </Page>

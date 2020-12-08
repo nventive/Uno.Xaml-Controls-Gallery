@@ -20,39 +20,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <local:ControlExample HeaderText="Two RadioButtons controls with strings as options.">
+        <local:ControlExample HeaderText="A group of RadioButton controls in a RadioButtons group.">
             <StackPanel>
-                <muxc:RadioButtons x:Name="BackgroundRadioButtons" MaxColumns="3" Header="Background" SelectedIndex="0" SelectionChanged="BackgroundColor_SelectionChanged">
-                    <x:String>Green</x:String>
-                    <x:String>Yellow</x:String>
-                    <x:String>White</x:String>
+                <muxc:RadioButtons Header="Options:">
+                    <RadioButton Content="Option 1" Checked="RadioButton_Checked" />
+                    <RadioButton Content="Option 2" Checked="RadioButton_Checked" />
+                    <RadioButton Content="Option 3" Checked="RadioButton_Checked" />
                 </muxc:RadioButtons>
-                <muxc:RadioButtons x:Name="BorderRadioButtons" MaxColumns="3" Header="Border" SelectedIndex="1" SelectionChanged="BorderBrush_SelectionChanged">
-                    <x:String>Green</x:String>
-                    <x:String>Yellow</x:String>
-                    <x:String>White</x:String>
-                </muxc:RadioButtons>
-                <Border x:Name="ControlOutput" BorderThickness="10" BorderBrush="#FFFFD700" Background="#FFFFFFFF"
-                        Height="50" Margin="0,10,0,10" />
             </StackPanel>
+            <local:ControlExample.Output>
+                <TextBlock x:Name="Control1Output" Text="Select an option." />
+            </local:ControlExample.Output>
             <local:ControlExample.Xaml>
                 <x:String xml:space="preserve">
-&lt;muxc:RadioButtons x:Name="BackgroundRadioButtons" SelectedIndex="$(BackgroundRadioButtonsSubstitution)"  MaxColumns="3" Header="Background" SelectionChanged="BackgroundColor_SelectionChanged"&gt;
-    &lt;x:String&gt;Green&lt;/x:String&gt;
-    &lt;x:String&gt;Yellow&lt;/x:String&gt;
-    &lt;x:String&gt;White&lt;/x:String&gt;
-&lt;/muxc:RadioButtons&gt;
-&lt;muxc:RadioButtons x:Name="BorderRadioButtons" SelectedIndex="$(BorderRadioButtonsSubstitution)" MaxColumns="3" Header="Border" SelectionChanged="BorderBrush_SelectionChanged"&gt;
-    &lt;x:String&gt;Green&lt;/x:String&gt;
-    &lt;x:String&gt;Yellow&lt;/x:String&gt;
-    &lt;x:String&gt;White&lt;/x:String&gt;
+&lt;muxc:RadioButtons Header="Options:"&gt;
+    &lt;RadioButton Content="Option 1" Checked="RadioButton_Checked"/&gt;
+    &lt;RadioButton Content="Option 2" Checked="RadioButton_Checked"/&gt;
+    &lt;RadioButton Content="Option 3" Checked="RadioButton_Checked"/&gt;
 &lt;/muxc:RadioButtons&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
-                <local:ControlExampleSubstitution Key="BackgroundRadioButtonsSubstitution" Value="{x:Bind BackgroundRadioButtons.SelectedIndex, Mode=OneWay}" />
-                <local:ControlExampleSubstitution Key="BorderRadioButtonsSubstitution" Value="{x:Bind BorderRadioButtons.SelectedIndex, Mode=OneWay}" />
-            </local:ControlExample.Substitutions>
         </local:ControlExample>
     </StackPanel>
 </Page>

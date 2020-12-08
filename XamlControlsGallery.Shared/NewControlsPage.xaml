@@ -142,6 +142,29 @@
                     <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Padding="0,0,0,10" Text="Recently Updated Samples" />
                 </GridView.Header>
             </GridView>
+
+            <GridView
+                    x:Name="previewItemGridView"
+                    Padding="24,0,0,0"
+                    AutomationProperties.AutomationId="ItemGridView"
+                    AutomationProperties.Name="Items In Group"
+                    ContainerContentChanging="OnItemGridViewContainerContentChanging"
+                    IsItemClickEnabled="True"
+                    IsSwipeEnabled="False"
+                    ItemClick="OnItemGridViewItemClick"
+                    ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                    ItemTemplate="{StaticResource ControlItemTemplate}"
+                    ItemsSource="{x:Bind PreviewItems, Mode=OneWay}"
+                    KeyDown="OnItemGridViewKeyDown"
+                    Loaded="OnItemGridViewLoaded"
+                    SizeChanged="OnItemGridViewSizeChanged"
+                    SelectionMode="None"
+                    ScrollViewer.VerticalScrollMode="Disabled">
+                <GridView.Header>
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Padding="0,0,0,10" Text="Preview Samples" />
+                </GridView.Header>
+            </GridView>
+
             <GridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>

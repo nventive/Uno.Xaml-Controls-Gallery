@@ -9,7 +9,8 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:l="using:AppUIBasics.ControlPages"
     xmlns:common="using:AppUIBasics.Common"
-    mc:Ignorable="d" FontFamily="Segoe UI">
+    mc:Ignorable="d"
+    FontFamily="Segoe UI">
 
     <win:Page.Resources>
         <DataTemplate x:Key="HorizontalBarTemplate" x:DataType="l:Bar">

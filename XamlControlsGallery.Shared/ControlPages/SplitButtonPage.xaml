@@ -25,7 +25,7 @@
     </Page.Resources>
 
     <StackPanel>
-        <local:ControlExample x:Name="Example1" HeaderText="A SplitButton controling text color in a RichEditBox"
+        <local:ControlExample x:Name="Example1" HeaderText="A SplitButton controlling text color in a RichEditBox" 
                               XamlSource="Buttons\SplitButton\SplitButtonSample1.txt"
                               WebViewHeight="150">
             <Grid x:Name="Control1" ColumnSpacing="24">
@@ -35,47 +35,58 @@
                     <muxc:SplitButton.Flyout>
                         <Flyout Placement="Bottom">
                             <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3">
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Red">
+                                <VariableSizedWrapGrid.Resources>
+                                    <Style TargetType="Rectangle">
+                                        <Setter Property="Width" Value="{StaticResource SwatchSize}"/>
+                                        <Setter Property="Height" Value="{StaticResource SwatchSize}"/>
+                                    </Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="MinWidth" Value="0"/>
+                                        <Setter Property="MinHeight" Value="0"/>
+                                        <Setter Property="Margin" Value="6"/>
+                                    </Style>
+                                </VariableSizedWrapGrid.Resources>
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Red">
                                     <Button.Content>
-                                        <Rectangle Fill="Red" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Red"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Orange">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Orange">
                                     <Button.Content>
-                                        <Rectangle Fill="Orange" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Orange"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Yellow">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Yellow">
                                     <Button.Content>
-                                        <Rectangle Fill="Yellow" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Yellow"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Green">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Green">
                                     <Button.Content>
-                                        <Rectangle Fill="Green" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Green"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Blue">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Blue">
                                     <Button.Content>
-                                        <Rectangle Fill="Blue" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Blue"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Indigo">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Indigo">
                                     <Button.Content>
-                                        <Rectangle Fill="Indigo" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Indigo"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Violet">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Violet">
                                     <Button.Content>
-                                        <Rectangle Fill="Violet" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Violet"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Gray">
+                                <Button Click="ColorButton_Click" AutomationProperties.Name="Gray">
                                     <Button.Content>
-                                        <Rectangle Fill="Gray" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Gray"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Click="ColorButton_Click" Style="{StaticResource buttonStyle}" AutomationProperties.Name="Black">
                             </VariableSizedWrapGrid>
                         </Flyout>
                     </muxc:SplitButton.Flyout>
@@ -83,15 +94,14 @@
 
             </Grid>
             <local:ControlExample.Options>
-                <RichEditBox x:Name="myRichEditBox" Width="240" MinHeight="96"
-                             PlaceholderText="Type something here"
+                <RichEditBox x:Name="myRichEditBox" Width="240" MinHeight="96" 
+                             PlaceholderText="Type something here" 
                              TextChanged="MyRichEditBox_TextChanged"/>
             </local:ControlExample.Options>
         </local:ControlExample>
 
         <local:ControlExample HeaderText="A SplitButton with RevealStyle applied" XamlSource="Buttons\SplitButton\SplitButtonSample2.txt">
-            <!-- <local:ControlExample.Example> -->
-            <Grid ColumnSpacing="24">
+            <local:ControlExample.Example>
                 <muxc:SplitButton AutomationProperties.Name="Font color with reveal" x:Name="myColorButtonReveal" Padding="5" MinHeight="0" MinWidth="0" VerticalAlignment="Top" Style="{ThemeResource SplitButtonRevealStyle}">
                     Choose color
                     <muxc:SplitButton.Flyout>
@@ -151,21 +161,14 @@
                                 </Button>
                                 <Button Click="RevealColorButton_Click" AutomationProperties.Name="Black">
                                     <Button.Content>
-                                        <Rectangle Fill="Black" Style="{StaticResource rectangleStyle}"/>
+                                        <Rectangle Fill="Black"/>
                                     </Button.Content>
                                 </Button>
                             </VariableSizedWrapGrid>
                         </Flyout>
-                    </muxcontrols:SplitButton.Flyout>
-                </muxcontrols:SplitButton>
-            </Grid>
-            <local:ControlExample.Options>
-                <win:RichEditBox x:Name="myRichEditBox"
-                                 Grid.Column="1"
-                                 MinWidth="240"
-                                 MinHeight="96"
-                                 PlaceholderText="Type something here"/>
-            </local:ControlExample.Options>
+                    </muxc:SplitButton.Flyout>
+                </muxc:SplitButton>
+            </local:ControlExample.Example>
         </local:ControlExample>
     </StackPanel>
 </Page>

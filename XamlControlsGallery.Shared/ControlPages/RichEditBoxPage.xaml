@@ -69,12 +69,12 @@
                               HorizontalContentAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel Margin="0,0,0,20" HorizontalAlignment="Stretch">
                 <RelativePanel.Resources>
-                    <Style x:Key="buttonStyle" TargetType="Button">
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Margin" Value="0,0,8,0" />
-                    </Style>
                     <ResourceDictionary>
+                        <Style x:Key="buttonStyle" TargetType="Button">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Margin" Value="0,0,8,0" />
+                        </Style>
                         <Style TargetType="Button">
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="Background" Value="Transparent"/>
