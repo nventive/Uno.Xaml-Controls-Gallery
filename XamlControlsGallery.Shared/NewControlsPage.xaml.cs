@@ -22,6 +22,20 @@ namespace AppUIBasics
             this.InitializeComponent();
         }
 
+        private IEnumerable<ControlInfoDataItem> _updateditems;
+        public IEnumerable<ControlInfoDataItem> UpdatedItems
+        {
+            get { return _updateditems; }
+            set { SetProperty(ref _updateditems, value); }
+        }
+
+        private IEnumerable<ControlInfoDataItem> _previewitems;
+        public IEnumerable<ControlInfoDataItem> PreviewItems
+        {
+            get { return _previewitems; }
+            set { SetProperty(ref _previewitems, value); }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
@@ -85,7 +99,7 @@ namespace AppUIBasics
                 }
             }
 
-            return groupList
+            return groupList;
         }
 
         protected override bool GetIsNarrowLayoutState()

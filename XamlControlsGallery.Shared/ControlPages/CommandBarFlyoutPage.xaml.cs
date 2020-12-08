@@ -22,10 +22,8 @@ namespace AppUIBasics.ControlPages
 
         private void ShowMenu(bool isTransient)
         {
-            myImageBorder.BorderBrush = new SolidColorBrush(Colors.Blue);
-
 #if NETFX_CORE // UNO TODO
-            if (wasLeftPointerPressed)
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
             {
                 FlyoutShowOptions myOption = new FlyoutShowOptions
                 {
@@ -39,7 +37,6 @@ namespace AppUIBasics.ControlPages
                 CommandBarFlyout1.ShowAt(Image1);
             }
 #endif
-            args.Handled = true;
         }
 
         private void MyImageButton_ContextRequested(Windows.UI.Xaml.UIElement sender, ContextRequestedEventArgs args)

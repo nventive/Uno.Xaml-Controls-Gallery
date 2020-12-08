@@ -1,4 +1,4 @@
-﻿﻿//*********************************************************
+﻿//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -9,6 +9,9 @@
 //*********************************************************
 using System;
 using System.Linq;
+using AppUIBasics.Helper;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -44,7 +47,7 @@ namespace AppUIBasics
             if (ElementSoundPlayer.SpatialAudioMode == ElementSpatialAudioMode.On)
                 spatialSoundBox.IsChecked = true;
 
-            if (NavigationRootPage.Current.NavigationView.PaneDisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto)
+            if (NavigationRootPage.Current.NavigationView.PaneDisplayMode == Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto)
             {
                 navigationLocation.SelectedIndex = 0;
             }

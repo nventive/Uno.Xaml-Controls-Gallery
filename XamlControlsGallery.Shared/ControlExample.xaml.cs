@@ -1,4 +1,4 @@
-﻿﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -242,7 +242,7 @@ namespace AppUIBasics
 
         private void CSharpPresenter_Loaded(object sender, RoutedEventArgs e)
         {
-            FormatAndRenderSampleFromFile(CSharpSource, (sender as ContentPresenter), SyntaxHighlightLanguage.CSharp);
+            FormatAndRenderSampleFromFile(CSharpSource, (sender as ContentPresenter), Languages.CSharp);
         }
 
         private void GenerateAllSyntaxHighlightedContent()
@@ -264,7 +264,7 @@ namespace AppUIBasics
         }
 
 
-        private async void FormatAndRenderSampleFromFile(Uri source, ContentPresenter presenter, SyntaxHighlightLanguage highlightLanguage)
+        private async void FormatAndRenderSampleFromFile(Uri source, ContentPresenter presenter, ILanguage highlightLanguage)
         {
             if (source != null && source.AbsolutePath.EndsWith("txt"))
             {
@@ -281,7 +281,7 @@ namespace AppUIBasics
         }
 
         private static Regex SubstitutionPattern = new Regex(@"\$\(([^\)]+)\)");
-        private void FormatAndRenderSampleFromString(String sampleString, ContentPresenter presenter, SyntaxHighlightLanguage HighlightLanguage)
+        private void FormatAndRenderSampleFromString(String sampleString, ContentPresenter presenter, ILanguage highlightLanguage)
         {
             // Trim out stray blank lines at start and end.
             sampleString = sampleString.TrimStart('\n').TrimEnd();

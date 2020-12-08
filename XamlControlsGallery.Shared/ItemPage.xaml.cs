@@ -229,7 +229,7 @@ namespace AppUIBasics
                         connectedAnimation.Configuration = new BasicConnectedAnimationConfiguration();
                     }
 
-                    connectedAnimation.TryStart(target, new UIElement[] { subTitleText });
+                    connectedAnimation.TryStart(target, new UIElement[] { descriptionText });
                 }
             }
 #endif

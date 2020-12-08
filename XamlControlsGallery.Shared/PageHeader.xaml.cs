@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -20,13 +20,11 @@ namespace AppUIBasics
 {
     public sealed partial class PageHeader : UserControl
     {
-        
         public Action ToggleThemeAction { get; set; }
 
-        public TeachingTip TeachingTip1 => ToggleThemeTeachingTip1;
-        public TeachingTip TeachingTip2 => ToggleThemeTeachingTip2;
-        public TeachingTip TeachingTip3 => ToggleThemeTeachingTip3;
-
+        //public TeachingTip TeachingTip1 => ToggleThemeTeachingTip1;
+        //public TeachingTip TeachingTip2 => ToggleThemeTeachingTip2;
+        //public TeachingTip TeachingTip3 => ToggleThemeTeachingTip3;
 
         public object Title
         {
