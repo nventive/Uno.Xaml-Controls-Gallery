@@ -21,15 +21,13 @@ using Windows.System.Profile;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
-using muxc = Microsoft.UI.Xaml.Controls;
+using muxc = Windows.UI.Xaml.Controls;
 using AppUIBasics.ControlPages;
 using AppUIBasics.Helper;
 
@@ -238,7 +236,7 @@ namespace AppUIBasics
 
         private void OnNewControlsMenuItemLoaded(object sender, RoutedEventArgs e)
         {
-            if (IsFocusSupported && NavigationViewControl.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
+            if (IsFocusSupported && NavigationViewControl.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
             {
                 _newControlsMenuItem.Focus(FocusState.Keyboard);
             }
@@ -301,7 +299,9 @@ namespace AppUIBasics
                 NavigationViewControl.AlwaysShowHeader = true;
 
                 bool isFilteredPage = e.SourcePageType == typeof(SectionPage) || e.SourcePageType == typeof(SearchResultsPage);
-                PageHeader?.UpdateBackground(isFilteredPage);
+
+                //TODO: APM
+                //PageHeader?.UpdateBackground(isFilteredPage);
             }
         }
 
@@ -389,43 +389,45 @@ namespace AppUIBasics
                     // We are not :(
                     else
                     {
-                        // Maybe one of our items is? ಠಿ_ಠ
-                        if(item.MenuItems.Count != 0)
-                        {
-                            foreach(muxc.NavigationViewItem child in item.MenuItems)
-                            {
-                                if((string)child.Content == infoDataItem.Title)
-                                {
-                                    // We are the item corresponding to the selected one, update selection!
+                        //TODO: UNO
 
-                                    // Deal with differences in displaymodes
-                                    if(NavigationView.PaneDisplayMode == muxc.NavigationViewPaneDisplayMode.Top)
-                                    {
-                                        // In Topmode, the child is not visible, so set parent as selected
-                                        // Everything else does not work unfortunately
-                                        NavigationView.SelectedItem = item;
-                                        item.StartBringIntoView();
-                                    }
-                                    else
-                                    {
-                                        // Expand so we animate
-                                        item.IsExpanded = true;
-                                        // Ensure parent is expanded so we actually show the selection indicator
-                                        NavigationView.UpdateLayout();
-                                        // Set selected item
-                                        NavigationView.SelectedItem = child;
-                                        child.StartBringIntoView();
-                                    }
-                                    // Set to true to also skip out of outer for loop
-                                    changedSelection = true;
-                                    // Break out of child iteration for loop
-                                    break;
-                                }
-                            }
-                        }
+                        // Maybe one of our items is? ಠಿ_ಠ
+                        //if(item.MenuItems.Count != 0)
+                        //{
+                        //    foreach(muxc.NavigationViewItem child in item.MenuItems)
+                        //    {
+                        //        if((string)child.Content == infoDataItem.Title)
+                        //        {
+                        //            // We are the item corresponding to the selected one, update selection!
+
+                        //            // Deal with differences in displaymodes
+                        //            if(NavigationView.PaneDisplayMode == muxc.NavigationViewPaneDisplayMode.Top)
+                        //            {
+                        //                // In Topmode, the child is not visible, so set parent as selected
+                        //                // Everything else does not work unfortunately
+                        //                NavigationView.SelectedItem = item;
+                        //                item.StartBringIntoView();
+                        //            }
+                        //            else
+                        //            {
+                        //                // Expand so we animate
+                        //                item.IsExpanded = true;
+                        //                // Ensure parent is expanded so we actually show the selection indicator
+                        //                NavigationView.UpdateLayout();
+                        //                // Set selected item
+                        //                NavigationView.SelectedItem = child;
+                        //                child.StartBringIntoView();
+                        //            }
+                        //            // Set to true to also skip out of outer for loop
+                        //            changedSelection = true;
+                        //            // Break out of child iteration for loop
+                        //            break;
+                        //        }
+                        //    }
+                        //}
                     }
                     // We updated selection, break here!
-                    if(changedSelection)
+                    if (changedSelection)
                     {
                         break;
                     }
