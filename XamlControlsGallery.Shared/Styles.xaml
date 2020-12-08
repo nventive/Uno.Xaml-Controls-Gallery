@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -52,13 +52,15 @@
     <common:NullToVisibilityConverter x:Key="nullToVisibilityConverter" />
     <common:NullToVisibilityConverter x:Key="inverseNullToVisibilityConverter" NonNullValue="Collapsed" NullValue="Visible" />
     <common:BooleanToValueConverter x:Key="booleanToValueConverter" />
-    <common:ShowAcrylicBehindHeaderConverter x:Key="showAcrylicBehindHeaderConverter" />
     <common:ColorToBrushConverter x:Key="colorToBrushConverter"/>
 
     <!--  Breakpoints  -->
     <x:Double x:Key="Breakpoint640Plus">641</x:Double>
 
     <x:String x:Key="AppName">All controls</x:String>
+
+    <x:String x:Key="ControlsName">All controls</x:String>
+    <x:String x:Key="NewControlsName">What's New</x:String>
 
     <Style x:Key="XamlCodeRichTextBlockStyle" TargetType="RichTextBlock">
         <win:Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -87,6 +89,29 @@
         <xamarin:Setter Property="Margin" Value="0,0,20,20" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
+
+    <Style x:Key="IndentedGridViewItemStyle" TargetType="GridViewItem">
+        <Setter Property="Margin" Value="12,0,0,12" />
+    </Style>
+
+    <Style x:Key="IndentedGridViewItemStyleSmall" TargetType="GridViewItem">
+        <Setter Property="Margin" Value="12,0,12,12" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <LinearGradientBrush x:Key="HeroImageGradientBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="{ThemeResource SystemAltMediumColor}"/>
+        <GradientStop Offset="0.5" Color="{ThemeResource SystemAltMediumColor}"/>
+        <GradientStop Offset="1" Color="Transparent"/>
+    </LinearGradientBrush>
+    
+    <Style x:Name="NarrowHeaderTextBlockStyle" BasedOn="{StaticResource HeaderTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource SystemControlForegroundChromeWhiteBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="36,12,0,0"/>
+    </Style>
+
 
     <!-- UNO TODO Implicit styles don't merge with default styles -->
     <Style TargetType="TextBox" xamarin:BasedOn="{StaticResource XamlDefaultTextBox}">

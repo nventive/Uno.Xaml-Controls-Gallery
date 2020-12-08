@@ -235,26 +235,27 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ColorSlideTransitionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ColorStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ColorToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ComboBoxItemToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DefaultElementAnimator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DeviceFamilyTrigger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DoubleToIntConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DoubleToThicknessConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ImageLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\LanguageList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MenuItemTemplateSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NullableBooleanToBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\OrientedSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShowAcrylicBehindHeaderConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\StringToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\UIHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ValueToFontFamilyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ValueToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VariedImageSizeLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\WrapPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConnectedAnimationPages\CardPage.xaml.cs">
       <DependentUpon>CardPage.xaml</DependentUpon>
@@ -509,6 +510,10 @@
       <DependentUpon>XamlCompInteropPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\ControlInfoDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\NavigationOrientationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ThemeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\UIHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
@@ -554,6 +559,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TabViewPages\MyTabContentControl.xaml.cs">
+      <DependentUpon>MyTabContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TabViewPages\TabViewWindowingSamplePage.xaml.cs">
+      <DependentUpon>TabViewWindowingSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UnoPlatformShell.cs" />
   </ItemGroup>
@@ -963,6 +974,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)TabViewPages\MyTabContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)TabViewPages\TabViewWindowingSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
