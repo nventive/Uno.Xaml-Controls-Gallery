@@ -163,7 +163,7 @@ namespace AppUIBasics
 
                 foreach (var groupItem in group.Items)
                 {
-                    var itemInGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = groupItem.Title, Tag = groupItem.UniqueId, DataContext = groupItem};
+                    var itemInGroup = new Windows.UI.Xaml.Controls.NavigationViewItem() { Content = groupItem.Title, Tag = groupItem.UniqueId, DataContext = groupItem};
 
                     itemInGroup.Icon = GetIcon(groupItem.ImagePath);
 

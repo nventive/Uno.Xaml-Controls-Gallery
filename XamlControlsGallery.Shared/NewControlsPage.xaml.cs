@@ -38,7 +38,7 @@ namespace AppUIBasics
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = string.Empty;
 
@@ -51,7 +51,8 @@ namespace AppUIBasics
             var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = menuItem.Content;
-            Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsNew)).OrderBy(i => i.Title)
+            //Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsNew)).OrderBy(i => i.Title)'
+            Items
 #if HAS_UNO && !DEBUG
                 .Where(o => o.IsUno)
 #endif
@@ -76,7 +77,7 @@ namespace AppUIBasics
             ObservableCollection<GroupInfoList> groupList = new ObservableCollection<GroupInfoList>(query);
 
             //Move Preview samples to the back of the list
-            var previewGroup = groupList.ElementAt(1);
+            var previewGroup = groupList.ElementAtOrDefault(1);
             if (previewGroup?.Key.ToString() == "Preview")
             {
                 groupList.RemoveAt(1);
