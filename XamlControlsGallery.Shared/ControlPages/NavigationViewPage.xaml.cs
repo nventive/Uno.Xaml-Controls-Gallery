@@ -34,12 +34,12 @@ namespace AppUIBasics.ControlPages
         {
             this.InitializeComponent();
 
-            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample8.SelectedItem = nvSample8.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            nvSample9.SelectedItem = nvSample9.MenuItems.OfType<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample2.SelectedItem = nvSample2.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample5.SelectedItem = nvSample5.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample6.SelectedItem = nvSample6.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample7.SelectedItem = nvSample7.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample8.SelectedItem = nvSample8.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
+            nvSample9.SelectedItem = nvSample9.MenuItems.OfType<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
 
             Categories = new ObservableCollection<CategoryBase>();
             Category firstCategory = new Category { Name = "Category 1", Glyph = Symbol.Home, Tooltip = "This is category 1" };
@@ -74,7 +74,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 if (selectedItem != null)
                 {
                     string selectedItemTag = ((string)selectedItem.Tag);
@@ -96,7 +96,7 @@ namespace AppUIBasics.ControlPages
                 }
                 else
                 {
-                    var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                    var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                     string selectedItemTag = ((string)selectedItem.Tag);
                     string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
                     Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
@@ -135,7 +135,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string selectedItemTag = ((string)selectedItem.Tag);
                 sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
@@ -151,7 +151,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
                 Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
                 contentFrame6.Navigate(pageType);
@@ -166,7 +166,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
                 Type pageType = Type.GetType(pageName + ", " + typeof(ControlPages.BorderPage).Assembly.FullName);
 
@@ -189,7 +189,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+                var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
                 string selectedItemTag = ((string)selectedItem.Tag);
                 sender.Header = "Sample Page " + selectedItemTag.Substring(selectedItemTag.Length - 1);
                 string pageName = "AppUIBasics.SamplePages." + selectedItemTag;
@@ -200,7 +200,7 @@ namespace AppUIBasics.ControlPages
 
         private void NavigationView_SelectionChanged9(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
         {
-            var selectedItem = (Windows.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
+            var selectedItem = (Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem;
             string pageName = "AppUIBasics.SamplePages." + ((string)selectedItem.Tag);
             Type pageType = Type.GetType(pageName);
 

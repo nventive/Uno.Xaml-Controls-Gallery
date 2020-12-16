@@ -22,53 +22,18 @@ namespace AppUIBasics
             this.InitializeComponent();
         }
 
-        private IEnumerable<ControlInfoDataItem> _updateditems;
-        public IEnumerable<ControlInfoDataItem> UpdatedItems
-        {
-            get { return _updateditems; }
-            set { SetProperty(ref _updateditems, value); }
-        }
-
-        private IEnumerable<ControlInfoDataItem> _previewitems;
-        public IEnumerable<ControlInfoDataItem> PreviewItems
-        {
-            get { return _previewitems; }
-            set { SetProperty(ref _previewitems, value); }
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
+            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Microsoft.UI.Xaml.Controls.NavigationViewItem>().First();
             menuItem.IsSelected = true;
             NavigationRootPage.Current.NavigationView.Header = string.Empty;
 
             Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.BadgeString != null)).OrderBy(i => i.Title).ToList();
-            itemsCVS.Source = FormatData();
+            //itemsCVS.Source = FormatData();
         }
 
         private ObservableCollection<GroupInfoList> FormatData()
         {
-            var menuItem = NavigationRootPage.Current.NavigationView.MenuItems.Cast<Windows.UI.Xaml.Controls.NavigationViewItem>().First();
-            menuItem.IsSelected = true;
-            NavigationRootPage.Current.NavigationView.Header = menuItem.Content;
-            //Items = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsNew)).OrderBy(i => i.Title)'
-            Items
-#if HAS_UNO && !DEBUG
-                .Where(o => o.IsUno)
-#endif
-                .ToList();
-
-            UpdatedItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsUpdated)).OrderBy(i => i.Title)
-#if HAS_UNO && !DEBUG
-                .Where(o => o.IsUno)
-#endif
-                .ToList();
-            PreviewItems = ControlInfoDataSource.Instance.Groups.SelectMany(g => g.Items.Where(i => i.IsPreview)).OrderBy(i => i.Title)
-#if HAS_UNO && !DEBUG
-                .Where(o => o.IsUno)
-#endif
-                .ToList();
-
             var query = from item in this.Items
                         group item by item.BadgeString into g
                         orderby g.Key
@@ -77,7 +42,7 @@ namespace AppUIBasics
             ObservableCollection<GroupInfoList> groupList = new ObservableCollection<GroupInfoList>(query);
 
             //Move Preview samples to the back of the list
-            var previewGroup = groupList.ElementAtOrDefault(1);
+            var previewGroup = groupList.ElementAt(1);
             if (previewGroup?.Key.ToString() == "Preview")
             {
                 groupList.RemoveAt(1);
@@ -105,7 +70,7 @@ namespace AppUIBasics
 
         protected override bool GetIsNarrowLayoutState()
         {
-            return LayoutVisualStates.CurrentState == NarrowLayout;
+            return true;//LayoutVisualStates.CurrentState == NarrowLayout;
         }
     }
 

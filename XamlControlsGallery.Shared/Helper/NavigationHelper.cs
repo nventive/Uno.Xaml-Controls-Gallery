@@ -11,6 +11,8 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using AppUIBasics.Common;
 
@@ -59,7 +61,7 @@ namespace AppUIBasics.Helper
     /// </code>
     /// </example>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public partial class NavigationHelper : DependencyObject
+    public class NavigationHelper : DependencyObject
     {
         private Page Page { get; set; }
         private Frame Frame { get { return this.Page.Frame; } }
@@ -168,14 +170,14 @@ namespace AppUIBasics.Helper
     {
         private Frame Frame { get; set; }
         SystemNavigationManager systemNavigationManager;
-        private Windows.UI.Xaml.Controls.NavigationView CurrentNavView { get; set; }
+        private Microsoft.UI.Xaml.Controls.NavigationView CurrentNavView { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RootNavigationHelper"/> class.
         /// </summary>
         /// <param name="rootFrame">A reference to the top-level frame.
         /// This reference allows for frame manipulation and to register navigation handlers.</param>
-        public RootFrameNavigationHelper(Frame rootFrame, Windows.UI.Xaml.Controls.NavigationView currentNavView)
+        public RootFrameNavigationHelper(Frame rootFrame, Microsoft.UI.Xaml.Controls.NavigationView currentNavView)
         {
             this.Frame = rootFrame;
             this.Frame.Navigated += (s, e) =>
@@ -203,7 +205,7 @@ namespace AppUIBasics.Helper
                 this.CoreWindow_PointerPressed;
         }
 
-        private void NavView_BackRequested(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs args)
+        private void NavView_BackRequested(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs args)
         {
             TryGoBack();
         }
@@ -211,7 +213,7 @@ namespace AppUIBasics.Helper
         private bool TryGoBack()
         {
             // don't go back if the nav pane is overlayed
-            if (this.CurrentNavView.IsPaneOpen && (this.CurrentNavView.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Compact || this.CurrentNavView.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal))
+            if (this.CurrentNavView.IsPaneOpen && (this.CurrentNavView.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Compact || this.CurrentNavView.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal))
             {
                 return false;
             }
@@ -222,7 +224,7 @@ namespace AppUIBasics.Helper
                 this.Frame.GoBack();
                 navigated = true;
             }
-            
+
             return navigated;
         }
 
@@ -250,11 +252,12 @@ namespace AppUIBasics.Helper
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
             {
                 this.CurrentNavView.IsBackEnabled = this.Frame.CanGoBack ? true : false;
-            } else
+            }
+            else
             {
                 systemNavigationManager.AppViewBackButtonVisibility = this.Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
             }
-            
+
         }
 
         /// <summary>

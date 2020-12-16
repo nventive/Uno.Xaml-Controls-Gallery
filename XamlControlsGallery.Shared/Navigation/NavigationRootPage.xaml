@@ -1,4 +1,4 @@
-﻿<!--
+<!--
     //*********************************************************
     //
     // Copyright (c) Microsoft. All rights reserved.
@@ -9,127 +9,92 @@
     //
     //*********************************************************
 -->
-<Page x:Class="AppUIBasics.NavigationRootPage"
-	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:mux="using:Windows.UI.Xaml.Controls"
-	  xmlns:uno="using:XamlControlsGallery"
-	  xmlns:local="using:AppUIBasics">
+<Page
+    x:Class="AppUIBasics.NavigationRootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:AppUIBasics">
 
-	<Page.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../UnoPlatformShell.xaml" />
-			</ResourceDictionary.MergedDictionaries>
+    <Page.Resources>
+        <DataTemplate x:Key="NavigationViewHeaderTemplate">
+            <local:PageHeader
+                Title="{Binding}"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                BackgroundColorOpacity="1" />
+        </DataTemplate>
+    </Page.Resources>
 
-			<DataTemplate x:Key="NavigationViewHeaderTemplate">
-				<local:PageHeader Title="{Binding}"
-								  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-								  BackgroundColorOpacity="1" />
-			</DataTemplate>
-		</ResourceDictionary>
-	</Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<!-- UnoPlatformShell -->
-	<uno:UnoPlatformShell x:Name="UnoShell" 
-						  AppName="XAML Controls Gallery"
-						  AppAuthor="Microsoft"
-						  LinkToOriginalApp="https://github.com/Microsoft/Xaml-Controls-Gallery"
-						  LinkToAppAuthor="https://github.com/Microsoft"
-						  LinkToUnoPlatformApp="https://github.com/nventive/Uno.Xaml-Controls-Gallery">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <local:DeviceFamilyTrigger DeviceFamily="Windows.Xbox" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="XboxContentSafeRect.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
 
-		<!-- About Content -->
-		<uno:UnoPlatformShell.AboutContent>
-			<StackPanel>
+        </VisualStateManager.VisualStateGroups>
 
-				<!-- About Content Line 1 -->
-				<TextBlock TextWrapping="Wrap"
-						   Foreground="{StaticResource Color02Brush}"
-						   FontStyle="Italic"
-						   FontSize="14">
-						
-					This application is running 
-					<Bold>
-						entirely locally
-					</Bold> 
-					on your machine, no data is being sent out to the wire.
-				</TextBlock>
-			</StackPanel>
-		</uno:UnoPlatformShell.AboutContent>
+        <Rectangle
+            x:Name="XboxContentSafeRect"
+            Width="48"
+            Fill="{ThemeResource NavigationViewDefaultPaneBackground}"
+            Visibility="Collapsed" Canvas.ZIndex="0" />
 
-		<!-- App Content -->
-		<uno:UnoPlatformShell.AppContent>
-			<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border x:Name="AppTitleBar"
+                Grid.Column="1"
+                IsHitTestVisible="True"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+                Canvas.ZIndex="1">
+            <TextBlock x:Name="AppTitle"
+                       Text="{x:Bind GetAppTitleFromSystem()}"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource CaptionTextBlockStyle}" />
+        </Border>
 
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-				<VisualStateManager.VisualStateGroups>
-					<VisualStateGroup>
-						<VisualState>
-							<VisualState.StateTriggers>
-								<local:DeviceFamilyTrigger DeviceFamily="Windows.Xbox" />
-							</VisualState.StateTriggers>
-							<VisualState.Setters>
-								<Setter Target="XboxContentSafeRect.Visibility"
-										Value="Visible" />
-							</VisualState.Setters>
-						</VisualState>
-					</VisualStateGroup>
+        <muxc:NavigationView
+            Canvas.ZIndex="0"
+            x:Name="NavigationViewControl"
+            Grid.Column="1"
+            AlwaysShowHeader="True"
+            Header=" "
+            HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
+            IsTabStop="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            PaneOpening="NavigationViewControl_PaneOpened"
+            PaneClosing="NavigationViewControl_PaneClosing"
+            DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+            ItemInvoked="OnNavigationViewItemInvoked">
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    x:Name="controlsSearchBox"
+                    VerticalAlignment="Center"
+                    x:FieldModifier="public"
+                    PlaceholderText="Search"
+                    QueryIcon="Find"
+                    QuerySubmitted="OnControlsSearchBoxQuerySubmitted"
+                    MinWidth="200"
+                    KeyboardAcceleratorPlacementMode="Hidden"
+                    TextChanged="OnControlsSearchBoxTextChanged">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="F" Invoked="CtrlF_Invoked" />
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
 
-				</VisualStateManager.VisualStateGroups>
-
-				<Rectangle x:Name="XboxContentSafeRect"
-						   Width="48"
-						   Fill="{ThemeResource NavigationViewDefaultPaneBackground}"
-						   Visibility="Collapsed"
-						   Canvas.ZIndex="0" />
-
-				<Border Grid.Column="1"
-						x:Name="AppTitleBar"
-						IsHitTestVisible="True"
-						VerticalAlignment="Top"
-						Background="Transparent"
-						Canvas.ZIndex="1">
-					<TextBlock x:Name="AppTitle"
-							   Text="XAML Controls Gallery"
-							   VerticalAlignment="Center"
-							   Style="{StaticResource CaptionTextBlockStyle}" />
-				</Border>
-
-				<mux:NavigationView Canvas.ZIndex="0"
-									x:Name="NavigationViewControl"
-									Grid.Column="1"
-									AlwaysShowHeader="True"
-									Header=" "
-									HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
-									IsTabStop="False"
-									PaneOpening="NavigationViewControl_PaneOpened"
-									PaneClosing="NavigationViewControl_PaneClosing"
-									ItemInvoked="OnNavigationViewItemInvoked">
-					<mux:NavigationView.AutoSuggestBox>
-						<AutoSuggestBox x:Name="controlsSearchBox"
-										Style="{StaticResource AutoSuggestBoxStyle}"
-										VerticalAlignment="Center"
-										x:FieldModifier="public"
-										PlaceholderText="Search"
-										QueryIcon="Find"
-										QuerySubmitted="OnControlsSearchBoxQuerySubmitted"
-										RequestedTheme="Light"
-										TextChanged="OnControlsSearchBoxTextChanged">
-							<AutoSuggestBox.KeyboardAccelerators>
-								<KeyboardAccelerator Invoked="KeyboardAccelerator_Invoked"
-													 Key="E"
-													 Modifiers="Control" />
-							</AutoSuggestBox.KeyboardAccelerators>
-						</AutoSuggestBox>
-					</mux:NavigationView.AutoSuggestBox>
-
-					<Frame x:Name="rootFrame"
-						   Navigated="OnRootFrameNavigated" />
-				</mux:NavigationView>
-			</Grid>
-		</uno:UnoPlatformShell.AppContent>
-	</uno:UnoPlatformShell>
+            <Frame x:Name="rootFrame" Navigated="OnRootFrameNavigated" />
+        </muxc:NavigationView>
+    </Grid>
 </Page>

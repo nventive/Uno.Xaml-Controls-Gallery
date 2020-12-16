@@ -258,7 +258,7 @@ namespace AppUIBasics
             }
 
             rootFrame.Navigate(targetPageType, targetPageArguments);
-            ((Windows.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Windows.UI.Xaml.Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
+            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Windows.UI.Xaml.Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
 
             // Ensure the current window is active
             Windows.UI.Xaml.Window.Current.Activate();

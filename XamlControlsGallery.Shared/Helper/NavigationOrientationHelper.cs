@@ -44,13 +44,13 @@ namespace AppUIBasics.Helper
 
             if (isLeftMode)
             {
-                NavigationRootPage.Current.NavigationView.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
+                NavigationRootPage.Current.NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
                 titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             }
             else
             {
-                NavigationRootPage.Current.NavigationView.PaneDisplayMode = Windows.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
+                NavigationRootPage.Current.NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
                 var userSettings = new UISettings();
                 titleBar.ButtonBackgroundColor = userSettings.GetColorValue(UIColorType.Accent);
                 titleBar.ButtonInactiveBackgroundColor = userSettings.GetColorValue(UIColorType.Accent);

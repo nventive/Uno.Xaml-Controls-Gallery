@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace AppUIBasics
 {
-    public abstract partial class ItemsPageBase : Page, INotifyPropertyChanged
+    public abstract class ItemsPageBase : Page, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -58,13 +58,6 @@ namespace AppUIBasics
 
             _itemId = item.UniqueId;
 
-            if (gridView.ContainerFromItem(item) is GridViewItem)
-            {
-#if NETFX_CORE // UNO TODO
-               gridView.PrepareConnectedAnimation("controlAnimation", item, "controlRoot");
-#endif
-            }
-
             this.Frame.Navigate(typeof(ItemPage), _itemId, new DrillInNavigationTransitionInfo());
         }
 
@@ -73,7 +66,7 @@ namespace AppUIBasics
             if (e.Key == VirtualKey.Up)
             {
                 var nextElement = FocusManager.FindNextElement(FocusNavigationDirection.Up);
-                if (nextElement?.GetType() == typeof(Windows.UI.Xaml.Controls.NavigationViewItem))
+                if (nextElement?.GetType() == typeof(Microsoft.UI.Xaml.Controls.NavigationViewItem))
                 {
                     NavigationRootPage.Current.PageHeader.Focus(FocusState.Programmatic);
                 }
@@ -99,22 +92,6 @@ namespace AppUIBasics
                     {
                         ((GridViewItem)gridView.ContainerFromItem(item))?.Focus(FocusState.Programmatic);
                     }
-
-// UNO TODO
-#if NETFX_CORE
-                    ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("controlAnimation");
-
-                    if (animation != null)
-                    {
-                        // Setup the "basic" configuration if the API is present.
-                        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
-                        {
-                            animation.Configuration = new BasicConnectedAnimationConfiguration();
-                        }
-
-                        await gridView.TryStartConnectedAnimationAsync(animation, item, "controlRoot");
-                    }
-#endif
                 }
             }
         }
