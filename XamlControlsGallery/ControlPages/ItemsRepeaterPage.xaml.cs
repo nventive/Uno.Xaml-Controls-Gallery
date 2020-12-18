@@ -55,7 +55,9 @@ namespace AppUIBasics.ControlPages
                 "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 1024
             };
-            MixedTypeRepeater.ItemsSource = basicData;
+
+            //TODO: UNO
+            //MixedTypeRepeater.ItemsSource = basicData;
 
             List<NestedCategory> nestedCategories = new List<NestedCategory>
             {
@@ -168,23 +170,24 @@ namespace AppUIBasics.ControlPages
     </Border>
 </DataTemplate>";
             }
-            else if (layoutKey.Equals(nameof(this.UniformGridLayout)))
-            {
-                layout.Value = layoutKey;
-                itemTemplateKey = "CircularTemplate";
+            //TODO: UNO
+//            else if (layoutKey.Equals(nameof(this.UniformGridLayout)))
+//            {
+//                layout.Value = layoutKey;
+//                itemTemplateKey = "CircularTemplate";
 
-                repeater.MaxWidth = 540;
+//                repeater.MaxWidth = 540;
 
-                SampleCodeLayout.Value = @"<muxc:UniformGridLayout x:Name=""UniformGridLayout"" MinRowSpacing=""8"" MinColumnSpacing=""8""/>";
-                SampleCodeDT.Value = @"<DataTemplate x:Key=""CircularTemplate"" x:DataType=""l:Bar"">
-    <Grid>
-        <Ellipse Fill=""{ThemeResource SystemChromeLowColor}"" Height=""{x:Bind MaxDiameter}"" 
-                 Width=""{x:Bind MaxDiameter}"" VerticalAlignment=""Center"" HorizontalAlignment=""Center""/>
-        <Ellipse Fill=""{ThemeResource SystemAccentColor}"" Height=""{x:Bind Diameter}"" 
-                 Width=""{x:Bind Diameter}"" VerticalAlignment=""Center"" HorizontalAlignment=""Center""/>
-    </Grid>
-</DataTemplate>";
-            }
+//                SampleCodeLayout.Value = @"<muxc:UniformGridLayout x:Name=""UniformGridLayout"" MinRowSpacing=""8"" MinColumnSpacing=""8""/>";
+//                SampleCodeDT.Value = @"<DataTemplate x:Key=""CircularTemplate"" x:DataType=""l:Bar"">
+//    <Grid>
+//        <Ellipse Fill=""{ThemeResource SystemChromeLowColor}"" Height=""{x:Bind MaxDiameter}"" 
+//                 Width=""{x:Bind MaxDiameter}"" VerticalAlignment=""Center"" HorizontalAlignment=""Center""/>
+//        <Ellipse Fill=""{ThemeResource SystemAccentColor}"" Height=""{x:Bind Diameter}"" 
+//                 Width=""{x:Bind Diameter}"" VerticalAlignment=""Center"" HorizontalAlignment=""Center""/>
+//    </Grid>
+//</DataTemplate>";
+//            }
             repeater.Layout = Resources[layoutKey] as Microsoft.UI.Xaml.Controls.VirtualizingLayout;
             repeater.ItemTemplate = Resources[itemTemplateKey] as DataTemplate;
             repeater.ItemsSource = BarItems;

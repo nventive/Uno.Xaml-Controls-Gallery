@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -409,33 +409,34 @@ namespace AppUIBasics.ControlPages
 
         #region x:Bind Converter Helpers
 
-        private muxc.ScrollBarVisibility ObjectToScrollControllerVisibility(object value)
-        {
-            Enum.TryParse<muxc.ScrollBarVisibility>(value as string, out muxc.ScrollBarVisibility output);
-            return output;
-        }
+        //TODO: UNO
+        //private muxc.ScrollBarVisibility ObjectToScrollControllerVisibility(object value)
+        //{
+        //    Enum.TryParse<muxc.ScrollBarVisibility>(value as string, out muxc.ScrollBarVisibility output);
+        //    return output;
+        //}
 
-        private muxc.ScrollMode ObjectToScrollMode(object value)
-        {
-            Enum.TryParse<muxc.ScrollMode>(value as string, out muxc.ScrollMode output);
-            return output;
-        }
+        //private muxc.ScrollMode ObjectToScrollMode(object value)
+        //{
+        //    Enum.TryParse<muxc.ScrollMode>(value as string, out muxc.ScrollMode output);
+        //    return output;
+        //}
 
-        private muxc.ContentOrientation ObjectToContentOrientation(object value)
-        {
-            Enum.TryParse<muxc.ContentOrientation>(value as string, out muxc.ContentOrientation output);
-            return output;
-        }
+        //private muxc.ContentOrientation ObjectToContentOrientation(object value)
+        //{
+        //    Enum.TryParse<muxc.ContentOrientation>(value as string, out muxc.ContentOrientation output);
+        //    return output;
+        //}
 
-        private void LvIgnoredInputKinds_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var listView = sender as ListView;
+        //private void LvIgnoredInputKinds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var listView = sender as ListView;
 
-            var stringified = String.Join(',', listView.SelectedItems);
-            Enum.TryParse<muxc.InputKind>(stringified, out muxc.InputKind output);
+        //    var stringified = String.Join(',', listView.SelectedItems);
+        //    Enum.TryParse<muxc.InputKind>(stringified, out muxc.InputKind output);
 
-            scroller3.IgnoredInputKind = output;
-        }
+        //    scroller3.IgnoredInputKind = output;
+        //}
 
         #endregion
 

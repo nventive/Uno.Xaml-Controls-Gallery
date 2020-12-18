@@ -32,8 +32,8 @@
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Customizing RichEditBox's CommandBarFlyout - Adding 'Share'" 
-                              XamlSource="Text\RichEditBox\RichEditBoxSample4_Xaml.txt"
-                              CSharpSource="Text\RichEditBox\RichEditBoxSample4_cs.txt"
+                              XamlSource="Text\\RichEditBox\\RichEditBoxSample4_Xaml.txt"
+                              CSharpSource="Text\\RichEditBox\\RichEditBoxSample4_cs.txt"
                               MinimumUniversalAPIContract="7">
             <RichEditBox x:Name="REBCustom" AutomationProperties.Name="editor with custom menu" 
                          Width="800" 
@@ -44,8 +44,8 @@
         </local:ControlExample>
 
         <local:ControlExample HeaderText="A custom editor with RichEditBox." 
-                              XamlSource="Text\RichEditBox\RichEditBoxSample3_Xaml.txt"
-                              CSharpSource="Text\RichEditBox\RichEditBoxSample3_cs.txt"
+                              XamlSource="Text\\RichEditBox\\RichEditBoxSample3_Xaml.txt"
+                              CSharpSource="Text\\RichEditBox\\RichEditBoxSample3_cs.txt"
                               HorizontalContentAlignment="Stretch" VerticalAlignment="Top">
             <RelativePanel Margin="0,0,0,20" HorizontalAlignment="Stretch">
                 <RelativePanel.Resources>

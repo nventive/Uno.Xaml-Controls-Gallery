@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="AppUIBasics.ControlPages.SplitViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -140,7 +140,8 @@
                 </x:String>
             </local:ControlExample.Xaml>
             <local:ControlExample.Substitutions>
-                <local:ControlExampleSubstitution Key="PaneBackground" Value="{x:Bind ((ComboBoxItem)paneBackgroundCombobox.SelectedItem).Tag, Mode=OneWay}" />
+                <!--TODO: UNO-->
+                <!--<local:ControlExampleSubstitution Key="PaneBackground" Value="{x:Bind ((ComboBoxItem)paneBackgroundCombobox.SelectedItem).Tag, Mode=OneWay}" />-->
                 <local:ControlExampleSubstitution Key="IsPaneOpen" Value="{x:Bind splitView.IsPaneOpen, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="OpenPaneLength" Value="{x:Bind openPaneLengthSlider.Value, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="CompactPaneLength" Value="{x:Bind compactPaneLengthSlider.Value, Mode=OneWay}" />

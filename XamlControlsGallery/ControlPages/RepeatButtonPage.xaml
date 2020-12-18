@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -34,10 +34,11 @@
                     &lt;RepeatButton Content="Click and hold" Click="RepeatButton_Click" $(IsEnabled)/&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="IsEnabled" IsEnabled="{x:Bind DisableControl1.IsChecked.Value, Mode=OneWay}"
                                                   Value= "IsEnabled=&quot;False&quot; "/>
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
         <local:ControlExample HeaderText="A RepeatButton with Reveal style applied.">
             <local:ControlExample.Example>

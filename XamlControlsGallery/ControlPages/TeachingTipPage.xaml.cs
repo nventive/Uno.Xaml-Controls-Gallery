@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace AppUIBasics.ControlPages
 {
+    //TODO: UNO
     public sealed partial class TeachingTipPage : Page
     {
         public TeachingTipPage()
@@ -22,26 +23,26 @@ namespace AppUIBasics.ControlPages
 
         private void TestButtonClick1(object sender, RoutedEventArgs e)
         {
-            if (NavigationRootPage.Current?.PageHeader != null)
-            {
-                NavigationRootPage.Current.PageHeader.TeachingTip1.IsOpen = true;
-            }
+            //if (NavigationRootPage.Current?.PageHeader != null)
+            //{
+            //    NavigationRootPage.Current.PageHeader.TeachingTip1.IsOpen = true;
+            //}
         }
 
         private void TestButtonClick2(object sender, RoutedEventArgs e)
         {
-            if (NavigationRootPage.Current?.PageHeader != null)
-            {
-                NavigationRootPage.Current.PageHeader.TeachingTip2.IsOpen = true;
-            }
+            //if (NavigationRootPage.Current?.PageHeader != null)
+            //{
+            //    NavigationRootPage.Current.PageHeader.TeachingTip2.IsOpen = true;
+            //}
         }
 
         private void TestButtonClick3(object sender, RoutedEventArgs e)
         {
-            if (NavigationRootPage.Current?.PageHeader != null)
-            {
-                NavigationRootPage.Current.PageHeader.TeachingTip3.IsOpen = true;
-            }
+            //if (NavigationRootPage.Current?.PageHeader != null)
+            //{
+            //    NavigationRootPage.Current.PageHeader.TeachingTip3.IsOpen = true;
+            //}
         }
     }
 }

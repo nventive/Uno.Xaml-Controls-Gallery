@@ -69,22 +69,22 @@
 
         <muxc:StackLayout x:Name="VerticalStackLayout" Orientation="Vertical" Spacing="8"/>
         <muxc:StackLayout x:Name="HorizontalStackLayout" Orientation="Horizontal" Spacing="8"/>
-        <muxc:UniformGridLayout x:Name="UniformGridLayout" MinRowSpacing="8" MinColumnSpacing="8"/>
+        <!-- <muxc:UniformGridLayout x:Name="UniformGridLayout" MinRowSpacing="8" MinColumnSpacing="8"/> -->
 
         <common:ActivityFeedLayout x:Key="MyFeedLayout" ColumnSpacing="12" RowSpacing="12" MinItemSize="80, 108"/>
-        <muxc:UniformGridLayout x:Key="UniformGridLayout2" MinItemWidth="108" MinItemHeight="108" MinRowSpacing="12" MinColumnSpacing="12"/>
+        <!-- <muxc:UniformGridLayout x:Key="UniformGridLayout2" MinItemWidth="108" MinItemHeight="108" MinRowSpacing="12" MinColumnSpacing="12"/> -->
 
         <DataTemplate x:DataType="l:Recipe" x:Key="RecipeTemplate">
             <StackPanel BorderThickness="1" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" Margin="5">
                 <StackPanel Background="{x:Bind Color}" Margin="8" Height="75" Opacity=".8">
-                    <TextBlock Text="{x:Bind Num.ToString()}" FontSize="35" TextAlignment="Center" 
+                    <TextBlock Text="{x:Bind Num.ToString()}" FontSize="35" TextAlignment="Center"
                                Padding="12"  Foreground="{ThemeResource SystemControlForegroundAltHighBrush}"/>
                 </StackPanel>
-                <TextBlock 
-                    x:Name="recipeName" 
+                <TextBlock
+                    x:Name="recipeName"
                     Text="{x:Bind Name}"
                     TextWrapping="Wrap"
-                    Margin="15,0,10,0" 
+                    Margin="15,0,10,0"
                     Style="{StaticResource TitleTextBlockStyle}"/>
                 <TextBlock Text="{x:Bind Ingredients}" Style="{StaticResource BodyTextBlockStyle}" Margin="15,0,15,15"/>
             </StackPanel>
@@ -101,8 +101,8 @@
 
     <StackPanel>
         <local:ControlExample HeaderText="Basic, non-interactive items laid out by ItemsRepeater">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
-                          HorizontalScrollMode="Auto" 
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          HorizontalScrollMode="Auto"
                           IsVerticalScrollChainingEnabled="False"
                           MaxHeight="500">
                 <muxc:ItemsRepeater x:Name="repeater"
@@ -116,7 +116,7 @@
                     <Button x:Name="DeleteBtn" Content="Remove Item" Click="DeleteBtn_Click" MinWidth="150"/>
 
                     <muxc:RadioButtons Header="Layout">
-                        <RadioButton x:Name="VStackBtn" 
+                        <RadioButton x:Name="VStackBtn"
                                      Content="StackLayout - Vertical"
                                      Click="RadioBtn_Click"
                                      Tag="VerticalStackLayout"
@@ -137,8 +137,8 @@
                 <x:String xml:space="preserve">
 
 &lt;!-- The ItemsRepeater and ScrollViewer used: --&gt;
-&lt;ScrollViewer HorizontalScrollBarVisibility="Auto" 
-        HorizontalScrollMode="Auto" 
+&lt;ScrollViewer HorizontalScrollBarVisibility="Auto"
+        HorizontalScrollMode="Auto"
         IsVerticalScrollChainingEnabled="False"
         MaxHeight="500"&gt;
     &lt;muxc:ItemsRepeater
@@ -146,16 +146,16 @@
         Layout="{StaticResource $(Layout)}"
         ItemTemplate="{StaticResource $(ElementGenerator)}" /&gt;
 &lt;ScrollViewer/&gt;
-                    
+
 &lt;!-- The Layout specifications used: --&gt;
-                    
-$(SampleCodeLayout)     
-                    
+
+$(SampleCodeLayout)
+
 &lt;!-- The DataTemplate used: $(ElementGenerator)--&gt;
-                    
-$(SampleCodeDT)                    
-                    
-&lt;!-- The ItemsSource used is a list of custom-class Bar objects called BarItems. Bar objects have 
+
+$(SampleCodeDT)
+
+&lt;!-- The ItemsSource used is a list of custom-class Bar objects called BarItems. Bar objects have
 the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and MaxDiameter. --&gt;
     </x:String>
             </local:ControlExample.Xaml>
@@ -180,7 +180,7 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
                               IsVerticalScrollChainingEnabled="False"
                               Padding="0,0,16,0">
 
-                    <muxc:ItemsRepeater x:Name="repeater2" 
+                    <muxc:ItemsRepeater x:Name="repeater2"
                                        Margin="0,0,12,0"
                                        HorizontalAlignment="Stretch"
                                        Layout="{StaticResource MyFeedLayout}"
@@ -202,12 +202,12 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
             </local:ControlExample.Substitutions>
         </local:ControlExample>
 
-        <local:ControlExample HeaderText="ItemsRepeater with mixed-type collection"
+        <!--<local:ControlExample HeaderText="ItemsRepeater with mixed-type collection"
                               XamlSource="ItemsRepeater/ItemsRepeaterSample1_xaml.txt"
                               CSharpSource="ItemsRepeater/ItemsRepeaterSample1_cs.txt">
             <StackPanel>
                 <TextBlock Text="This is an ItemsRepeater that displays both integer and string items. It uses a DataTemplateSelector to choose the correct layout for each of its items." TextWrapping="Wrap"/>
-                <muxc:ItemsRepeater x:Name="MixedTypeRepeater" 
+                <muxc:ItemsRepeater x:Name="MixedTypeRepeater"
                                            Margin="0,0,12,0"
                                            HorizontalAlignment="Stretch"
                                            ItemTemplate="{StaticResource StringOrIntTemplateSelector}">
@@ -217,7 +217,7 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
                     </muxc:ItemsRepeater.Layout>
                 </muxc:ItemsRepeater>
             </StackPanel>
-        </local:ControlExample>
+        </local:ControlExample>-->
 
         <local:ControlExample HeaderText="Laying out nested ItemsRepeaters"
                               XamlSource="ItemsRepeater/ItemsRepeaterNestedSample_xaml.txt">
@@ -241,7 +241,7 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <ScrollViewer x:Name="Animated_ScrollViewer" 
+                <ScrollViewer x:Name="Animated_ScrollViewer"
                               Grid.Column="0"
                               Height="175"
                               Width="250"
@@ -250,8 +250,8 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
                             <DataTemplate x:DataType="x:String">
                                 <Button Content="{x:Bind}"
                                         Background="{x:Bind}"
-                                        Click="Animated_GotItem" 
-                                        GotFocus="Animated_GotItem" 
+                                        Click="Animated_GotItem"
+                                        GotFocus="Animated_GotItem"
                                         HorizontalAlignment="Stretch"
                                         Loaded="GetButtonSize"
                                         Foreground="{StaticResource SystemBaseHighColor}"/>
@@ -292,7 +292,7 @@ the following attributes: Height, MaxHeight, Length, MaxLength, Diameter, and Ma
                              HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,20"
                              TextChanged="FilterRecipes_FilterChanged"/>
                     <TextBlock>Enable Animations</TextBlock>
-                    <CheckBox Content="Enable animations" x:Name="EnableAnimations" Checked="OnEnableAnimationsChanged" 
+                    <CheckBox Content="Enable animations" x:Name="EnableAnimations" Checked="OnEnableAnimationsChanged"
                               Unchecked="OnEnableAnimationsChanged" Margin="0,0,0,10"/>
                     <TextBlock Text="Sort by number of ingredients" Margin="0,0,0,10"/>
                     <Button Content="Least to most" Click="OnSortAscClick" Margin="0,0,0,5"/>

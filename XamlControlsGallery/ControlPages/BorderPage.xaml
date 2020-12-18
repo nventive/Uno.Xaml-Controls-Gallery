@@ -110,11 +110,12 @@
 &lt;/Border&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="BorderThickness" Value="{x:Bind Control1.BorderThickness.Top, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="BorderBrush" Value="{x:Bind ((SolidColorBrush)Control1.BorderBrush).Color, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="Background" Value="{x:Bind ((SolidColorBrush)Control1.Background).Color, Mode=OneWay}" />
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
     </StackPanel>
 </Page>

@@ -43,7 +43,14 @@ namespace AppUIBasics.ControlPages
 
         private void InitializeSliders()
         {
+
+#if NETFX_CORE
             var rectSize = Rect.ActualSize.ToSize();
+#else
+            //TODO: UNO CHECK Extension
+            var rectSize = new Size(Rect.ActualSize.X, Rect.ActualSize.Y);
+#endif
+
             if (RadialGradientBrushExample.MappingMode == BrushMappingMode.Absolute)
             {
                 CenterXSlider.Maximum = RadiusXSlider.Maximum = OriginXSlider.Maximum = rectSize.Width;

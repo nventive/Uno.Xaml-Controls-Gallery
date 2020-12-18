@@ -34,10 +34,12 @@
                     &lt;Button Content="Standard XAML button" Click="Button_Click" $(IsEnabled)/&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
-                    <local:ControlExampleSubstitution Key="IsEnabled" IsEnabled="{x:Bind DisableButton1.IsChecked.Value, Mode=OneWay}"
-                                                  Value= "IsEnabled=&quot;False&quot; "/>
-            </local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
+                    <local:ControlExampleSubstitution Key="IsEnabled"
+                                                      IsEnabled="{x:Bind DisableButton1.IsChecked.Value, Mode=OneWay}"
+                                                      Value= "IsEnabled=&quot;False&quot; "/>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
         <local:ControlExample x:Name="Example2" HeaderText="A Button with graphical content.">
             <local:ControlExample.Example>

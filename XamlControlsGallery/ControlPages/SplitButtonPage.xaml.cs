@@ -31,7 +31,10 @@ namespace AppUIBasics.ControlPages
             CurrentColor.Fill = new SolidColorBrush(color);
 
             myColorButton.Flyout.Hide();
+
+            #if NETFX_CORE
             myRichEditBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+            #endif
             currentColor = color;
         }
 

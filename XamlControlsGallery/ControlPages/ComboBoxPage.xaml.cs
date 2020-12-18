@@ -53,7 +53,9 @@ namespace AppUIBasics.ControlPages
         private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string colorName = e.AddedItems[0].ToString();
-            Color color;
+
+            //TODO: UNO Check
+            Color color = Colors.Red;
             switch (colorName)
             {
                 case "Yellow":

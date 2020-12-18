@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -112,13 +112,14 @@
 &lt;/ScrollViewer&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="ZoomMode" Value="{x:Bind ((ComboBoxItem)zoomCombo.SelectedItem).Content, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="HorizontalScrollMode" Value="{x:Bind ((ComboBoxItem)hsmCombo.SelectedItem).Content, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="HorizontalScrollBarVisibility" Value="{x:Bind ((ComboBoxItem)hsbvCombo.SelectedItem).Content, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="VerticalScrollMode" Value="{x:Bind ((ComboBoxItem)vsmCombo.SelectedItem).Content, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="VerticalScrollBarVisibility" Value="{x:Bind ((ComboBoxItem)vsbvCombo.SelectedItem).Content, Mode=OneWay}" />
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
     </StackPanel>
 </Page>

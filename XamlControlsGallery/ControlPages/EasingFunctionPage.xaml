@@ -169,9 +169,10 @@
 &lt;/Storyboard&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="EasingFunction" Value="{x:Bind ((control:NamedEasingFunction)EasingComboBox.SelectedItem).Name, Mode=OneWay}" />
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
     </StackPanel>
 </Page>

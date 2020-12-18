@@ -71,7 +71,7 @@
         <local:ControlExample HeaderText="NavigationView with default PaneDisplayMode" 
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample1.txt"
+                              XamlSource="NavigationView\\NavigationViewSample1.txt"
                               WebViewHeight="250">
             <Grid>
                 <Grid.RowDefinitions>
@@ -104,7 +104,7 @@
         <local:ControlExample HeaderText="NavigationView with PaneDisplayMode set to Top"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample2.txt"
+                              XamlSource="NavigationView\\NavigationViewSample2.txt"
                               WebViewHeight="200" >
             <Grid>
                 <Grid.RowDefinitions>
@@ -138,7 +138,7 @@
         <local:ControlExample HeaderText="NavigationView that switches pane orientation based on window width"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample3.txt" 
+                              XamlSource="NavigationView\\NavigationViewSample3.txt" 
                               WebViewHeight="450">
             <Grid x:Name="InnerGrid">
                 <Grid.RowDefinitions>
@@ -170,8 +170,8 @@
         <local:ControlExample HeaderText="Tying selection and focus - Tabs"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample4_xaml.txt"
-                              CSharpSource="NavigationView\NavigationViewSample4_cs.txt"
+                              XamlSource="NavigationView\\NavigationViewSample4_xaml.txt"
+                              CSharpSource="NavigationView\\NavigationViewSample4_cs.txt"
                               WebViewHeight="800">
             <Grid>
                 <Grid.RowDefinitions>
@@ -200,8 +200,8 @@
         <local:ControlExample HeaderText="Data binding"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch"
-                              XamlSource="NavigationView\NavigationViewSample5_xaml.txt"
-                              CSharpSource="NavigationView\NavigationViewSample5_cs.txt"
+                              XamlSource="NavigationView\\NavigationViewSample5_xaml.txt"
+                              CSharpSource="NavigationView\\NavigationViewSample5_cs.txt"
                               WebViewHeight="950">
             <Grid>
                 <Grid.RowDefinitions>
@@ -227,7 +227,7 @@
         <local:ControlExample HeaderText="NavigationView with Footer Menu Items"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch"
-                              XamlSource="NavigationView\NavigationViewSample9_xaml.txt">
+                              XamlSource="NavigationView\\NavigationViewSample9_xaml.txt">
             <local:ControlExample.Options>
                 <StackPanel>
                     <muxc:RadioButtons Header="Pane position:"
@@ -268,15 +268,16 @@
                     <Frame Margin="0,0,0,0" x:Name="contentFrame9" />
                 </muxc:NavigationView>
             </Grid>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="PaneDisplay" Value="{x:Bind nvSample9.PaneDisplayMode, Mode=OneWay}"/>
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
 
         <local:ControlExample HeaderText="Hierarchical NavigationView"
                               VerticalAlignment="Top" 
                               HorizontalContentAlignment="Stretch" 
-                              XamlSource="NavigationView\NavigationViewSample8_xaml.txt">
+                              XamlSource="NavigationView\\NavigationViewSample8_xaml.txt">
             <local:ControlExample.Options>
                 <StackPanel>
                     <TextBlock Text="PanePosition:" Margin="0,12,0,0"/>
@@ -332,9 +333,10 @@
                     <Frame x:Name="contentFrame8" />
                 </muxc:NavigationView>
             </Grid>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="PaneDisplay" Value="{x:Bind nvSample8.PaneDisplayMode, Mode=OneWay}"/>
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
 
         <local:ControlExample HeaderText="API in action"

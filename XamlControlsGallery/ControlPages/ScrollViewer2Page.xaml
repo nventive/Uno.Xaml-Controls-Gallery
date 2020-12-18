@@ -19,11 +19,13 @@
 
         <local:ControlExample HeaderText="Constrain the layout of content.">
             <muxcontrols:ScrollViewer x:Name="scroller1"
-                                      ContentOrientation="{x:Bind ObjectToContentOrientation(cbContentOrientation.SelectedValue), Mode=OneWay}"
                                       Height="420"
                                       AutomationProperties.Name="Scrollviewer with item grid inside"
                                       IsTabStop="True"
                                       KeyDown="Scroller_HandleKeyDown">
+
+                                        <!-- TODO: UNO -->
+                                      <!-- ContentOrientation="{x:Bind ObjectToContentOrientation(cbContentOrientation.SelectedValue), Mode=OneWay}" -->
 
                 <VariableSizedWrapGrid HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                     <VariableSizedWrapGrid.ChildrenTransitions>
@@ -75,7 +77,7 @@
                               ItemsSource="{x:Bind ContentOrientation}"
                               SelectedIndex="0"
                               Grid.Row="1"
-                              Grid.ColumnSpan="2" 
+                              Grid.ColumnSpan="2"
                               HorizontalAlignment="Stretch"/>
 
                 </Grid>
@@ -83,7 +85,7 @@
 
             <local:ControlExample.Xaml>
                 <x:String xml:space="preserve">
-&lt;muxc:ScrollViewer 
+&lt;muxc:ScrollViewer
                ContentOrientation="$(ContentOrientation)"
                Height="$(Height)"/&gt;
 
@@ -130,10 +132,6 @@
                                       MaxZoomFactor="5"
                                       MinZoomFactor="0.1"
                                       IsTabStop="True"
-                                      HorizontalScrollMode="{x:Bind ObjectToScrollMode(hsmCombo.SelectedItem), Mode=OneWay}"
-                                      HorizontalScrollBarVisibility="{x:Bind ObjectToScrollControllerVisibility(hsbvCombo.SelectedItem), Mode=OneWay}"
-                                      VerticalScrollMode="{x:Bind ObjectToScrollMode(vsmCombo.SelectedItem), Mode=OneWay}"
-                                      VerticalScrollBarVisibility="{x:Bind ObjectToScrollControllerVisibility(vsbvCombo.SelectedItem), Mode=OneWay}"
                                       ZoomMode="Disabled"
                                       Height="420"
                                       AutomationProperties.Name="Scrollviewer with image inside"
@@ -141,6 +139,13 @@
                 <Image x:Name="image" Source="{StaticResource BitmapImageSource}" Stretch="None" HorizontalAlignment="Left"
                         VerticalAlignment="Top" />
             </muxcontrols:ScrollViewer>
+
+                            <!-- TODO: UNO -->
+                                                  <!-- HorizontalScrollMode="{x:Bind ObjectToScrollMode(hsmCombo.SelectedItem), Mode=OneWay}"
+                                      HorizontalScrollBarVisibility="{x:Bind ObjectToScrollControllerVisibility(hsbvCombo.SelectedItem), Mode=OneWay}"
+                                      VerticalScrollMode="{x:Bind ObjectToScrollMode(vsmCombo.SelectedItem), Mode=OneWay}"
+                                      VerticalScrollBarVisibility="{x:Bind ObjectToScrollControllerVisibility(vsbvCombo.SelectedItem), Mode=OneWay}" -->
+
 
             <local:ControlExample.Options>
                 <Grid MinWidth="200" RowSpacing="8" ColumnSpacing="8">
@@ -171,14 +176,14 @@
                                Margin="0,4" />
 
                     <TextBlock Text="Horizontal"
-                               Grid.Row="1" 
+                               Grid.Row="1"
                                VerticalAlignment="Center"/>
                     <ComboBox x:Name="hsmCombo"
                               AutomationProperties.Name="Horizontal scroll modes"
                               ItemsSource="{x:Bind ScrollModes}"
                               SelectedIndex="0"
                               Grid.Row="1"
-                              Grid.Column="1" 
+                              Grid.Column="1"
                               HorizontalAlignment="Stretch"/>
 
                     <TextBlock Text="Vertical"
@@ -189,7 +194,7 @@
                               ItemsSource="{x:Bind ScrollModes}"
                               SelectedIndex="0"
                               Grid.Row="2"
-                              Grid.Column="1" 
+                              Grid.Column="1"
                               HorizontalAlignment="Stretch"/>
 
 
@@ -242,7 +247,7 @@
                               HorizontalAlignment="Stretch"/>
 
                     <TextBlock Grid.Row="8" Text="ZoomFactor" VerticalAlignment="Center"/>
-                    <Slider Grid.Row="8" Grid.Column="1" x:Name="ZoomSlider" IsEnabled="False" 
+                    <Slider Grid.Row="8" Grid.Column="1" x:Name="ZoomSlider" IsEnabled="False"
                             AutomationProperties.Name="Zoomfactor"
                             Maximum="{x:Bind scroller2.MaxZoomFactor, Mode=OneWay}"
                             Minimum="{x:Bind scroller2.MinZoomFactor, Mode=OneWay}"
@@ -257,7 +262,7 @@
 
             <local:ControlExample.Xaml>
                 <x:String xml:space="preserve">
-&lt;ScrollViewer IsTabStop="True" 
+&lt;ScrollViewer IsTabStop="True"
               ContentOrientation="None"
               HorizontalScrollMode="$(HorizontalScrollMode)"
               HorizontalScrollBarVisibility="$(HorizontalScrollBarVisibility)"
@@ -267,7 +272,7 @@
               Height="$(Height)" &gt;
 
     &lt;Image Source="$(ImageUri)"
-           Stretch="None" 
+           Stretch="None"
            HorizontalAlignment="Left"
            VerticalAlignment="Top"/&gt;
 
@@ -279,11 +284,13 @@
                 <local:ControlExampleSubstitution Key="HorizontalScrollBarVisibility" Value="{x:Bind hsbvCombo.SelectedValue, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="VerticalScrollMode" Value="{x:Bind vsmCombo.SelectedValue, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="VerticalScrollBarVisibility" Value="{x:Bind vsbvCombo.SelectedValue, Mode=OneWay}" />
-                <local:ControlExampleSubstitution Key="ZoomMode" Value="{x:Bind (x:String)cbZoomMode.SelectedItem, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="Height" Value="{x:Bind scroller2.Height, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="ImageUri" Value="{StaticResource ImageUri}" />
             </local:ControlExample.Substitutions>
         </local:ControlExample>
+                <!-- TODO: UNO -->
+                <!-- <local:ControlExampleSubstitution Key="ZoomMode" Value="{x:Bind (x:String)cbZoomMode.SelectedItem, Mode=OneWay}" /> -->
+
 
         <local:ControlExample HeaderText="Selectively ignore input">
             <muxcontrols:ScrollViewer x:Name="scroller3"
@@ -297,7 +304,7 @@
                                       ZoomMode="Enabled"
                                       Height="420"
                                       KeyDown="Scroller_HandleKeyDown">
-                <Image Source="{StaticResource BitmapImageSource}" 
+                <Image Source="{StaticResource BitmapImageSource}"
                        Stretch="None"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
@@ -324,7 +331,7 @@
                               AutomationProperties.Name="Ignored input kinds"
                               ItemsSource="{x:Bind InputKinds}"
                               IsMultiSelectCheckBoxEnabled="True"
-                              SelectionMode="Multiple" 
+                              SelectionMode="Multiple"
                               SelectedIndex="0"
                               SelectionChanged="LvIgnoredInputKinds_SelectionChanged"
                               Grid.Row="1"
@@ -340,21 +347,21 @@
                    IgnoredInputKind="$(IgnoredInputKind)"&gt;
 
     &lt;Image Source="$(ImageUri)"
-           Stretch="None" 
+           Stretch="None"
            HorizontalAlignment="Left"
            VerticalAlignment="Top"/&gt;
 
 &lt;/muxc:ScrollViewer&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-           
+
             <local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="IgnoredInputKind" Value="{x:Bind scroller3.IgnoredInputKind, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="ImageUri" Value="{StaticResource ImageUri}" />
             </local:ControlExample.Substitutions>
-           
+
         </local:ControlExample>
-        
+
         <local:ControlExample HeaderText="Customize the default animation used for panning and zooming.">
 
             <muxcontrols:ScrollViewer x:Name="scroller4"
@@ -401,7 +408,7 @@
                                FontWeight="SemiBold"
                                Margin="0,4" />
 
-                    <TextBlock Grid.Row="1" 
+                    <TextBlock Grid.Row="1"
                                VerticalAlignment="Center">
                         X target: <Run FontWeight="SemiBold" Text="{x:Bind xposSlider.Value, Mode=OneWay}"/>
                     </TextBlock>
@@ -410,7 +417,7 @@
                             Maximum="{x:Bind Sample4MaximumXViewportPosition, Mode=OneWay}"
                             StepFrequency="1"
                             Grid.Row="1"
-                            Grid.Column="1" 
+                            Grid.Column="1"
                             HorizontalAlignment="Stretch"/>
 
                     <TextBlock Grid.Row="2"
@@ -422,7 +429,7 @@
                             Maximum="{x:Bind Sample4MaximumYViewportPosition, Mode=OneWay}"
                             StepFrequency="1"
                             Grid.Row="2"
-                            Grid.Column="1" 
+                            Grid.Column="1"
                             HorizontalAlignment="Stretch"/>
 
                     <TextBlock Text="Animation"
@@ -453,9 +460,10 @@
                                FontWeight="SemiBold"
                                Margin="0,4" />
 
-                    <TextBlock Grid.Row="6" 
+                    <TextBlock Grid.Row="6"
                                VerticalAlignment="Center">
-                        Scale factor: <Run FontWeight="SemiBold" Text="{x:Bind FormatDouble(zoomFactorSlider.Value), Mode=OneWay}"/>
+                               <!-- TODO: UNO -->
+                        <!-- Scale factor: <Run FontWeight="SemiBold" Text="{x:Bind FormatDouble(zoomFactorSlider.Value), Mode=OneWay}"/> -->
                     </TextBlock>
                     <Slider x:Name="zoomFactorSlider"
                             AutomationProperties.Name="Scale factor"
@@ -466,7 +474,7 @@
                             Maximum="2.0"
                             Value="1.0"
                             Grid.Row="6"
-                            Grid.Column="1" 
+                            Grid.Column="1"
                             HorizontalAlignment="Stretch"/>
 
                     <TextBlock Text="Animation"
@@ -489,7 +497,7 @@
                              Grid.Column="1"
                              HorizontalAlignment="Stretch"/>
 
-                    <Button x:Name="bGo" 
+                    <Button x:Name="bGo"
                             Content="Go!"
                             Click="Go_Click"
                             Grid.Row="9"
@@ -508,19 +516,19 @@
                    Height="$(Height)"/&gt;
 
     &lt;Image Source="$(ImageUri)"
-           Stretch="None" 
+           Stretch="None"
            HorizontalAlignment="Left"
            VerticalAlignment="Top"/&gt;
 
 &lt;/muxc:ScrollViewer&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-           
+
             <local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="Height" Value="{x:Bind scroller4.Height, Mode=OneWay}" />
                 <local:ControlExampleSubstitution Key="ImageUri" Value="{StaticResource ImageUri}" />
             </local:ControlExample.Substitutions>
- 
+
         </local:ControlExample>
     </StackPanel>
 </local:ItemsPageBase>

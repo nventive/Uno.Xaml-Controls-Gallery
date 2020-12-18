@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -89,8 +89,8 @@
     <StackPanel>
 
         <local:ControlExample HeaderText="Basic ListView with Simple DataTemplate"
-                              XamlSource="ListView\ListViewSample1_xaml.txt"
-                              CSharpSource="ListView\ListViewSample1_cs.txt">
+                              XamlSource="ListView\\ListViewSample1_xaml.txt"
+                              CSharpSource="ListView\\ListViewSample1_cs.txt">
             <StackPanel>
                 <TextBlock Margin="0,0,0,15">
                     This is a basic ListView that has the full source code below. <LineBreak/>Other samples on this page display only the additional markup needed to customize a simple ListView like this one.
@@ -215,8 +215,8 @@ source code for the XAML Controls Gallery. -->
         </local:ControlExample>
 
         <local:ControlExample HeaderText="ListView with Grouped Headers" 
-                              XamlSource="ListView\ListViewSample2_xaml.txt"
-                              CSharpSource="ListView\ListViewSample2_cs.txt">
+                              XamlSource="ListView\\ListViewSample2_xaml.txt"
+                              CSharpSource="ListView\\ListViewSample2_cs.txt">
             <StackPanel>
                 <TextBlock TextWrapping="Wrap" Margin="0 0 0 15">
                     Switch the toggle on the right to enable sticky group headers, which makes the headers stay put at the top of the ListView while scrolling.

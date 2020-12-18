@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -87,7 +87,9 @@
             </local:ControlExample.Xaml>
             <local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="IsOpen" IsEnabled="True" Value="{x:Bind PrimaryCommandBar.IsOpen, Mode=OneWay}" />
-                <local:ControlExampleSubstitution Key="IsSticky" IsEnabled="{x:Bind PrimaryCommandBar.IsSticky, Mode=OneWay}" Value=" IsSticky=&quot;True&quot; " />
+
+                <!--TODO: UNO-->
+                <!--<local:ControlExampleSubstitution Key="IsSticky" IsEnabled="{x:Bind PrimaryCommandBar.IsSticky, Mode=OneWay}" Value=" IsSticky=&quot;True&quot; " />-->
                 <local:ControlExampleSubstitution Key="MultipleButtonsSecondaryCommands" IsEnabled="{x:Bind MultipleButtons, Mode=OneWay}" Value="{StaticResource MultipleButtonsSecondaryCommands}"/>
             </local:ControlExample.Substitutions>
         </local:ControlExample>

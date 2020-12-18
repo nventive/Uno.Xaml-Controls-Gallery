@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -38,8 +38,12 @@
         </DataTemplate>
 
         <DataTemplate x:Key="ZoomedOutTemplate" x:DataType="wuxdata:ICollectionViewGroup">
-            <TextBlock Text="{x:Bind ((data:ControlInfoDataGroup)Group).Title}" Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"/>
+            <TextBlock Text="UNO" Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"/>
         </DataTemplate>
+
+        <!--TODO: UNO-->
+        <!--Text="{x:Bind ((data:ControlInfoDataGroup)Group).Title}"-->
+
     </Page.Resources>
 
     <StackPanel>

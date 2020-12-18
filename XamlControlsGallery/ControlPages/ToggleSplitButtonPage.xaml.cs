@@ -1,4 +1,4 @@
-﻿using Windows.UI.Text;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
@@ -34,6 +34,7 @@ namespace AppUIBasics.ControlPages
 
             myListButton.IsChecked = true;
             myListButton.Flyout.Hide();
+
             myRichEditBox.Focus(FocusState.Keyboard);
         }
 

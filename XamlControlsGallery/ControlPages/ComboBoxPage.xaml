@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -45,9 +45,11 @@
                 <StackPanel>
                     <ComboBox x:Name="Combo2" ItemsSource="{x:Bind Fonts}" DisplayMemberPath="Item1"
                             SelectedValuePath="Item2" Header="Font" MinWidth="200" Loaded="Combo2_Loaded" />
-                    <TextBlock x:Name="Control2Output" Text="You can set the font used for this text."
-                            FontFamily="{x:Bind (FontFamily)Combo2.SelectedValue, Mode=OneWay}"
+                    <TextBlock x:Name="Control2Output" Text="You can set the font used for this text."                            
                             Style="{StaticResource OutputTextBlockStyle}" />
+
+                    <!--//TODO: UNO-->
+                    <!--FontFamily="{x:Bind (FontFamily)Combo2.SelectedValue, Mode=OneWay}"-->
                 </StackPanel>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>
@@ -64,8 +66,11 @@
                     <ComboBox x:Name="Combo3" contract7Present:IsEditable="True" ItemsSource="{x:Bind FontSizes}" Header="Font Size" Width="200" Loaded="Combo3_Loaded"  />
                     <TextBlock x:Name="Control3Output" Text="You can set the font size used for this text."
                                FontFamily="Segoe UI"
-                               FontSize="{x:Bind (x:Double)Combo3.SelectedValue, Mode=OneWay}"
                                Style="{StaticResource OutputTextBlockStyle}" />
+
+                    <!--TODO: UNO-->
+                    <!--FontSize="{x:Bind (x:Double)Combo3.SelectedValue, Mode=OneWay}"-->
+
                 </StackPanel>
             </local:ControlExample.Example>
             <local:ControlExample.Xaml>

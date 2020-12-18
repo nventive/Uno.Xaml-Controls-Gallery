@@ -348,9 +348,6 @@
     <Compile Include="ControlPages\AcrylicPage.xaml.cs">
       <DependentUpon>AcrylicPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ControlPages\AnimatedVisualPlayerPage.xaml.cs">
-      <DependentUpon>AnimatedVisualPlayerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ControlPages\AppBarButtonPage.xaml.cs">
       <DependentUpon>AppBarButtonPage.xaml</DependentUpon>
     </Compile>
@@ -760,10 +757,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\AutomationPropertiesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ControlPages\AnimatedVisualPlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

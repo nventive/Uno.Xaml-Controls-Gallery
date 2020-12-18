@@ -17,7 +17,7 @@
     <StackPanel>
         <local:ControlExample
             HeaderText="RadialGradientBrush Sample"
-            XamlSource="Brushes\RadialGradientBrushSample_xaml.txt">
+            XamlSource="Brushes\\RadialGradientBrushSample_xaml.txt">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Rectangle x:Name="Rect" Width="200" Height="200">
                     <Rectangle.Fill>

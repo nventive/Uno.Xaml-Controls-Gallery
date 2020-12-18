@@ -61,7 +61,7 @@ namespace AppUIBasics.Helper
     /// </code>
     /// </example>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public class NavigationHelper : DependencyObject
+    public partial class NavigationHelper : DependencyObject
     {
         private Page Page { get; set; }
         private Frame Frame { get { return this.Page.Frame; } }

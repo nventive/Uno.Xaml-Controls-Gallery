@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -23,9 +23,9 @@ namespace AppUIBasics
         
         public Action ToggleThemeAction { get; set; }
 
-        public TeachingTip TeachingTip1 => ToggleThemeTeachingTip1;
-        public TeachingTip TeachingTip2 => ToggleThemeTeachingTip2;
-        public TeachingTip TeachingTip3 => ToggleThemeTeachingTip3;
+        //public TeachingTip TeachingTip1 => ToggleThemeTeachingTip1;
+        //public TeachingTip TeachingTip2 => ToggleThemeTeachingTip2;
+        //public TeachingTip TeachingTip3 => ToggleThemeTeachingTip3;
 
 
         public object Title
@@ -101,11 +101,12 @@ namespace AppUIBasics
             ToggleThemeAction?.Invoke();
         }
 
+#if NETFX_CORE
         private void ToggleThemeTeachingTip2_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
         {
             NavigationRootPage.Current.PageHeader.ToggleThemeAction?.Invoke();
         }
-
+#endif
         /// <summary>
         /// This method will be called when a <see cref="ItemPage"/> gets unloaded. 
         /// Put any code in here that should be done when a <see cref="ItemPage"/> gets unloaded.

@@ -9,7 +9,11 @@
 //*********************************************************
 using AppUIBasics.Common;
 using AppUIBasics.Helper;
+
+#if NETFX_CORE
 using Microsoft.Graphics.Canvas.Effects;
+#endif
+
 using System;
 using System.Linq;
 using Windows.ApplicationModel.Core;

@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -33,9 +33,12 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Rectangle x:Name="Rectangle1" Fill="Red"
-                        Grid.Column="{x:Bind (x:Int32)ColumnSlider.Value, Mode=OneWay}"
-                        Grid.Row="{x:Bind (x:Int32)RowSlider.Value, Mode=OneWay}"
                         Height="50" Width="50" />
+
+                <!--TODO: UNO-->
+                <!--Grid.Column="{x:Bind (x:Int32)ColumnSlider.Value, Mode=OneWay}"
+                        Grid.Row="{x:Bind (x:Int32)RowSlider.Value, Mode=OneWay}"-->
+
                 <Rectangle Fill="Blue" Grid.Row="1" />
                 <Rectangle Fill="Green" Grid.Column="1" />
                 <Rectangle Fill="Yellow" Grid.Row="1" Grid.Column="1" />

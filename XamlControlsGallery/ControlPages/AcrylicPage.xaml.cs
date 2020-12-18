@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,30 +25,40 @@ namespace AppUIBasics.ControlPages
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+
+#if NETFX_CORE
             Rectangle shape = (sender == OpacitySliderInApp) ? CustomAcrylicShapeInApp : CustomAcrylicShape;
 
             if (sender == OpacitySliderLumin)
                 shape = CustomAcrylicShapeLumin;
 
             ((Microsoft.UI.Xaml.Media.AcrylicBrush)shape.Fill).TintOpacity = e.NewValue;
+#endif
+
         }
 
         private void ColorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+#if NETFX_CORE
             Rectangle shape = (sender == ColorSelectorInApp) ? CustomAcrylicShapeInApp : CustomAcrylicShape;
             ((Microsoft.UI.Xaml.Media.AcrylicBrush)shape.Fill).TintColor = ((SolidColorBrush)e.AddedItems.First()).Color;
+#endif
         }
 
         private void FallbackColorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+#if NETFX_CORE
             Rectangle shape = (sender == FallbackColorSelectorInApp) ? CustomAcrylicShapeInApp : CustomAcrylicShape;
             ((Microsoft.UI.Xaml.Media.AcrylicBrush)shape.Fill).FallbackColor = ((SolidColorBrush)e.AddedItems.First()).Color;
+#endif
         }
 
         private void LuminositySlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+#if NETFX_CORE
             Rectangle shape = CustomAcrylicShapeLumin;
             ((Microsoft.UI.Xaml.Media.AcrylicBrush)shape.Fill).TintLuminosityOpacity = e.NewValue;
+#endif
         }
     }
 }

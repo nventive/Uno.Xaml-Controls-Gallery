@@ -37,10 +37,11 @@
                     &lt;ToggleButton Content="ToggleButton" Click="Button_Click" $(IsEnabled)/&gt;
                 </x:String>
             </local:ControlExample.Xaml>
-            <local:ControlExample.Substitutions>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Substitutions>
                 <local:ControlExampleSubstitution Key="IsEnabled" IsEnabled="{x:Bind DisableToggle1.IsChecked.Value, Mode=OneWay}"
                                                   Value= "IsEnabled=&quot;False&quot; "/>
-            </local:ControlExample.Substitutions>
+            </local:ControlExample.Substitutions>-->
         </local:ControlExample>
         <local:ControlExample HeaderText="A ToggleButton with Reveal style applied.">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">

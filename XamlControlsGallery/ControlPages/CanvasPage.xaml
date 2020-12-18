@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 //*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -24,8 +24,11 @@
                     </Style>
                 </Canvas.Resources>
                 <Rectangle Fill="Red" Canvas.Left="{x:Bind LeftSlider.Value, Mode=OneWay}"
-                        Canvas.Top="{x:Bind TopSlider.Value, Mode=OneWay}"
-                        Canvas.ZIndex="{x:Bind (x:Int32)ZSlider.Value, Mode=OneWay}" />
+                        Canvas.Top="{x:Bind TopSlider.Value, Mode=OneWay}" />
+
+                <!--TODO: UNO-->
+                <!--Canvas.ZIndex="{x:Bind (x:Int32)ZSlider.Value, Mode=OneWay}"-->
+
                 <Rectangle Fill="Blue" Canvas.Left="20" Canvas.Top="20" Canvas.ZIndex="1" />
                 <Rectangle Fill="Green" Canvas.Left="40" Canvas.Top="40" Canvas.ZIndex="2" />
                 <Rectangle Fill="Yellow" Canvas.Left="60" Canvas.Top="60" Canvas.ZIndex="3" />

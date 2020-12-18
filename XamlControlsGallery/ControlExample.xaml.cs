@@ -27,7 +27,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+
+#if NETFX_CORE
 using Windows.Media.AppRecording;
+#endif
+
 using Windows.ApplicationModel.Core;
 
 namespace AppUIBasics
@@ -37,7 +41,7 @@ namespace AppUIBasics
     /// If enabled (default), then $(Key) is replaced with the stringified value.
     /// If disabled, then $(Key) is replaced with the empty string.
     /// </summary>
-    public sealed class ControlExampleSubstitution : DependencyObject
+    public sealed partial class ControlExampleSubstitution : DependencyObject
     {
         public event TypedEventHandler<ControlExampleSubstitution, object> ValueChanged;
 
@@ -294,11 +298,13 @@ namespace AppUIBasics
                 throw new KeyNotFoundException(match.Groups[1].Value);
             });
 
+#if NETFX_CORE
             var sampleCodeRTB = new RichTextBlock {FontFamily = new FontFamily("Consolas")};
 
             var formatter = GenerateRichTextFormatter();
             formatter.FormatRichTextBlock(sampleString, highlightLanguage, sampleCodeRTB);
             presenter.Content = sampleCodeRTB;
+#endif
         }
 
         private RichTextBlockFormatter GenerateRichTextFormatter()
@@ -408,6 +414,8 @@ namespace AppUIBasics
 
         public async void TakeScreenshotWithDelay()
         {
+
+#if NETFX_CORE
             // 3 second countdown
             for (int i = 3; i > 0; i--)
             {
@@ -430,11 +438,13 @@ namespace AppUIBasics
                 var manager = AppRecordingManager.GetDefault();
                 if (manager.GetStatus().CanRecord)
                 {
+
                     var result = await manager.SaveScreenshotToFilesAsync(
                         ApplicationData.Current.LocalFolder,
                         "appScreenshot",
                         AppRecordingSaveScreenshotOption.HdrContentVisible,
                         manager.SupportedScreenshotMediaEncodingSubtypes);
+
 
                     if (result.Succeeded)
                     {
@@ -486,6 +496,9 @@ namespace AppUIBasics
 
             await Task.Delay(1000);
             ScreenshotStatusTextBlock.Text = "";
+
+#endif
+
         }
 
         string GetBestScreenshotName()
