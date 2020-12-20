@@ -30,12 +30,12 @@ namespace AppUIBasics.ControlPages
                 mySymbolIcon.Symbol = Symbol.Bullets;
                 myListButton.SetValue(AutomationProperties.NameProperty, "Roman Numerals");
             }
-            myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
+           // myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
 
             myListButton.IsChecked = true;
             myListButton.Flyout.Hide();
 
-            myRichEditBox.Focus(FocusState.Keyboard);
+           // myRichEditBox.Focus(FocusState.Keyboard);
         }
 
         private void MyListButton_IsCheckedChanged(Microsoft.UI.Xaml.Controls.ToggleSplitButton sender, Microsoft.UI.Xaml.Controls.ToggleSplitButtonIsCheckedChangedEventArgs args)
@@ -43,12 +43,12 @@ namespace AppUIBasics.ControlPages
             if (sender.IsChecked)
             {
                 //add bulleted list
-                myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
+                //myRichEditBox.Document.Selection.ParagraphFormat.ListType = _type;
             }
             else
             {
                 //remove bulleted list
-                myRichEditBox.Document.Selection.ParagraphFormat.ListType = MarkerType.None;
+               // myRichEditBox.Document.Selection.ParagraphFormat.ListType = MarkerType.None;
             }
         }
     }

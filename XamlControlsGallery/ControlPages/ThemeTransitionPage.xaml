@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="AppUIBasics.ControlPages.ThemeTransitionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -153,11 +153,12 @@
                 <Button x:Name="ShowPopupButton" Content="Show Popup" Click="ShowPopupButton_Click" />
 
                 <Popup x:Name="ExamplePopup" Margin="-75">
-                    <Popup.ChildTransitions>
+                    <!--TODO: UNO-->
+                    <!--<Popup.ChildTransitions>
                         <TransitionCollection>
                             <PopupThemeTransition />
                         </TransitionCollection>
-                    </Popup.ChildTransitions>
+                    </Popup.ChildTransitions>-->
                     <Grid >
                         <Ellipse Width="200" Height="200"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{ThemeResource FlyoutBackgroundThemeBrush}" StrokeThickness="2" Stroke="{ThemeResource SystemControlForegroundChromeGrayBrush}" />
                         <StackPanel Margin="24" VerticalAlignment="Center" Width="200">

@@ -10,7 +10,7 @@
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
     <StackPanel>
-        <local:ControlExample HeaderText="A simple MenuBar" 
+        <!--<local:ControlExample HeaderText="A simple MenuBar" 
                               XamlSource="MenuBar\\MenuBarSample1.txt">
             <StackPanel>
                 <TextBlock x:Name="SelectedOptionText" Text="" />
@@ -34,9 +34,9 @@
                     </muxc:MenuBarItem>
                 </muxc:MenuBar>
             </StackPanel>
-        </local:ControlExample>
+        </local:ControlExample>-->
 
-        <local:ControlExample HeaderText="MenuBar with keyboard accelerators" 
+        <!--<local:ControlExample HeaderText="MenuBar with keyboard accelerators" 
                               XamlSource="Menubar\\MenuBarSample3.txt">
             <StackPanel>
                 <TextBlock x:Name="SelectedOptionText1" Text="" />
@@ -139,6 +139,6 @@
                     </muxc:MenuBarItem>
                 </muxc:MenuBar>
             </StackPanel>
-        </local:ControlExample>
+        </local:ControlExample>-->
     </StackPanel>
 </Page>

@@ -37,7 +37,6 @@ namespace AppUIBasics
         public static readonly DependencyProperty TitleProperty = 
             DependencyProperty.Register("Title", typeof(object), typeof(PageHeader), new PropertyMetadata(null));
 
-
         public Thickness HeaderPadding
         {
             get { return (Thickness)GetValue(HeaderPaddingProperty); }

@@ -10,17 +10,21 @@ namespace AppUIBasics.ControlPages
     {
         public ConnectedAnimationPage()
         {
+
             this.InitializeComponent();
 
+#if NETFX_CORE
             ContentFrame.Navigate(typeof(SamplePage1));
 
             CollectionContentFrame.Navigate(typeof(ConnectedAnimationPages.CollectionPage));
 
             CardFrame.Navigate(typeof(ConnectedAnimationPages.CardPage));
+#endif
         }
 
         private ConnectedAnimationConfiguration GetConfiguration()
         {
+#if NETFX_CORE
             var selectedName = (ConfigurationPanel.SelectedItem as RadioButton).Content.ToString();
             switch (selectedName)
             {
@@ -33,6 +37,9 @@ namespace AppUIBasics.ControlPages
                 default:
                     return null;
             }
+#else
+            return null;
+#endif
         }
 
         private void NavigateButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

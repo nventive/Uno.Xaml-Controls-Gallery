@@ -76,7 +76,7 @@ namespace AppUIBasics.ControlPages
                 var deleteCommand = new StandardUICommand(StandardUICommandKind.Delete);
                 deleteCommand.ExecuteRequested += DeleteCommand_ExecuteRequested;
 
-                DeleteFlyoutItem.Command = deleteCommand;
+                //DeleteFlyoutItem.Command = deleteCommand;
 
                 for (var i = 0; i < 15; i++)
                 {

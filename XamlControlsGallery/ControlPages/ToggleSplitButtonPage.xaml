@@ -33,9 +33,10 @@
                     </Flyout>
                 </muxc:ToggleSplitButton.Flyout>
             </muxc:ToggleSplitButton>
-            <local:ControlExample.Options>
+            <!--TODO: UNO-->
+            <!--<local:ControlExample.Options>
                 <RichEditBox x:Name="myRichEditBox" Width="240" MinHeight="96" AutomationProperties.Name="Text entry"/>
-            </local:ControlExample.Options>
+            </local:ControlExample.Options>-->
         </local:ControlExample>
     </StackPanel>
 </Page>
