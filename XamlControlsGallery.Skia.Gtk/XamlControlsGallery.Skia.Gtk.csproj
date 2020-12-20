@@ -5,6 +5,9 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;Uno0001</NoWarn>
+  </PropertyGroup>
   <ItemGroup Condition="exists('..\XamlControlsGallery.UWP')">
     <EmbeddedResource Include="..\XamlControlsGallery.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
     <Content Include="..\XamlControlsGallery.UWP\Assets\StoreLogo.png" Link="Assets\StoreLogo.png" />
