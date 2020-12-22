@@ -92,7 +92,9 @@ namespace AppUIBasics
         public PageHeader()
         {
             this.InitializeComponent();
-            this.InitializeDropShadow(ShadowHost, TitleTextBlock.GetAlphaMask());
+
+            //TODO: UNO
+            //this.InitializeDropShadow(ShadowHost, TitleTextBlock.GetAlphaMask());
         }
 
         public void OnThemeButtonClick(object sender, RoutedEventArgs e)
