@@ -445,7 +445,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\ObjectQuickAnimation.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\PickerIcon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NavigationViewItemIcons\TextIcon.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\new.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NewIcon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ninegrid.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NumberBox.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ParallaxView.png" />

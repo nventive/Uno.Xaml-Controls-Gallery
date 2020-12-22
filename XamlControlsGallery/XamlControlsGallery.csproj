@@ -156,7 +156,7 @@
     <Content Include="Assets\NavigationViewItemIcons\ObjectQuickAnimation.png" />
     <Content Include="Assets\NavigationViewItemIcons\PickerIcon.png" />
     <Content Include="Assets\NavigationViewItemIcons\TextIcon.png" />
-    <Content Include="Assets\new.png" />
+    <Content Include="Assets\NewIcon.png" />
     <Content Include="Assets\ParallaxView.png" />
     <Content Include="Assets\PersonPicture.png" />
     <Content Include="Assets\preview.png" />
