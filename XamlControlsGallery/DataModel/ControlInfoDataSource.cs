@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Windows.Data.Json;
 using Windows.Storage;
 using Windows.UI.Xaml.Media;
@@ -192,29 +193,31 @@ namespace AppUIBasics.Data
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
             string jsonText = await FileIO.ReadTextAsync(file);
 
-            JsonObject jsonObject = JsonObject.Parse(jsonText);
-            JsonArray jsonArray = jsonObject["Groups"].GetArray();
+            JObject jsonObject = JObject.Parse(jsonFile);
+
+
+            JArray jsonArray = (JArray) jsonObject["Groups"];
 
             lock (_lock)
             {
-                foreach (JsonValue groupValue in jsonArray)
+                foreach (JObject groupValue in jsonArray)
                 {
-                    JsonObject groupObject = groupValue.GetObject();
-                    ControlInfoDataGroup group = new ControlInfoDataGroup(groupObject["UniqueId"].GetString(),
-                                                                          groupObject["Title"].GetString(),
-                                                                          groupObject["Subtitle"].GetString(),
-                                                                          groupObject["ImagePath"].GetString(),
-                                                                          groupObject["Description"].GetString());
+                    var groupObject = groupValue;
+                    ControlInfoDataGroup group = new ControlInfoDataGroup((string) groupObject["UniqueId"],
+                                                                          (string)groupObject["Title"],
+                                                                          (string) groupObject["Subtitle"],
+                                                                          (string) groupObject["ImagePath"],
+                                                                          (string) groupObject["Description"]);
 
-                    foreach (JsonValue itemValue in groupObject["Items"].GetArray())
+                    foreach (JObject itemValue in (JArray) groupObject["Items"])
                     {
-                        JsonObject itemObject = itemValue.GetObject();
+                        var itemObject = itemValue;
 
                         string badgeString = null;
 
-                        bool isNew = itemObject.ContainsKey("IsNew") ? itemObject["IsNew"].GetBoolean() : false;
-                        bool isUpdated = itemObject.ContainsKey("IsUpdated") ? itemObject["IsUpdated"].GetBoolean() : false;
-                        bool isPreview = itemObject.ContainsKey("IsPreview") ? itemObject["IsPreview"].GetBoolean() : false;
+                        bool isNew = itemObject.ContainsKey("IsNew") ? (bool) itemObject["IsNew"] : false;
+                        bool isUpdated = itemObject.ContainsKey("IsUpdated") ? (bool) itemObject["IsUpdated"]: false;
+                        bool isPreview = itemObject.ContainsKey("IsPreview") ? (bool) itemObject["IsPreview"] : false;
 
                         if (isNew)
                         {
@@ -229,31 +232,31 @@ namespace AppUIBasics.Data
                             badgeString = "Preview";
                         }
 
-                        var item = new ControlInfoDataItem(itemObject["UniqueId"].GetString(),
-                                                                itemObject["Title"].GetString(),
-                                                                itemObject["Subtitle"].GetString(),
-                                                                itemObject["ImagePath"].GetString(),
+                        var item = new ControlInfoDataItem((string) itemObject["UniqueId"],
+                                                                (string) itemObject["Title"],
+                                                                (string) itemObject["Subtitle"],
+                                                                (string) itemObject["ImagePath"],
                                                                 badgeString,
-                                                                itemObject["Description"].GetString(),
-                                                                itemObject["Content"].GetString(),
+                                                                (string) itemObject["Description"],
+                                                                (string) itemObject["Content"],
                                                                 isNew,
                                                                 isUpdated,
                                                                 isPreview);
 
                         if (itemObject.ContainsKey("Docs"))
                         {
-                            foreach (JsonValue docValue in itemObject["Docs"].GetArray())
+                            foreach (JObject docValue in (JArray) itemObject["Docs"])
                             {
-                                JsonObject docObject = docValue.GetObject();
-                                item.Docs.Add(new ControlInfoDocLink(docObject["Title"].GetString(), docObject["Uri"].GetString()));
+                                var docObject = docValue;
+                                item.Docs.Add(new ControlInfoDocLink((string)docObject["Title"], (string) docObject["Uri"]));
                             }
                         }
 
                         if (itemObject.ContainsKey("RelatedControls"))
                         {
-                            foreach (JsonValue relatedControlValue in itemObject["RelatedControls"].GetArray())
+                            foreach (var relatedControlValue in (JArray) itemObject["RelatedControls"])
                             {
-                                item.RelatedControls.Add(relatedControlValue.GetString());
+                                item.RelatedControls.Add((string)relatedControlValue);
                             }
                         }
 
