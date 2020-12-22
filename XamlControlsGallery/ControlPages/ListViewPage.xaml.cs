@@ -123,17 +123,17 @@ namespace AppUIBasics.ControlPages
 
         }
 
-        private void Target_DragOver(object sender, DragEventArgs e)
+        private void Target_DragOver(object sender, Windows.UI.Xaml.DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
         }
 
-        private void Source_DragOver(object sender, DragEventArgs e)
+        private void Source_DragOver(object sender, Windows.UI.Xaml.DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Move;
         }
 
-        private async void ListView_Drop(object sender, DragEventArgs e)
+        private async void ListView_Drop(object sender, Windows.UI.Xaml.DragEventArgs e)
         {
             ListView target = (ListView)sender;
 
@@ -229,7 +229,7 @@ namespace AppUIBasics.ControlPages
             }
         }
 
-        private void Target_DragEnter(object sender, DragEventArgs e)
+        private void Target_DragEnter(object sender, Windows.UI.Xaml.DragEventArgs e)
         {
             // We don't want to show the Move icon
             e.DragUIOverride.IsGlyphVisible = false;
