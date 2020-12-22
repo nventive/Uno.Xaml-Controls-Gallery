@@ -476,7 +476,7 @@ namespace AppUIBasics
 
         private void UpdateHeaderMargin(Microsoft.UI.Xaml.Controls.NavigationView sender)
         {
-            if (PageHeader != null)
+            if (PageHeader != null && Current?.PageHeader != null)
             {
                 if (sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
                 {
