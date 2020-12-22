@@ -115,7 +115,7 @@ namespace AppUIBasics.ControlPages
             }
             else
             {
-                Debug.WriteLine("Before hitting sample page 1");
+                System.Diagnostics.Debug.WriteLine("Before hitting sample page 1");
 
                 var selectedItem = (Category)args.SelectedItem;
                 string selectedItemTag = selectedItem.Name;
@@ -181,7 +181,7 @@ namespace AppUIBasics.ControlPages
 
             // Get the sample number
             string sampleNum = (sender.Name).Substring(8);
-            Debug.Print("num: " + sampleNum + "\n");
+            System.Diagnostics.Debug.Print("num: " + sampleNum + "\n");
 
             if (args.IsSettingsSelected)
             {

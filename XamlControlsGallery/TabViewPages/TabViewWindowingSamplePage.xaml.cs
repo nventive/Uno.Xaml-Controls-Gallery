@@ -157,7 +157,7 @@ namespace AppUIBasics.TabViewPages
             args.Data.RequestedOperation = DataPackageOperation.Move;
         }
 
-        private async void Tabs_TabStripDrop(object sender, DragEventArgs e)
+        private async void Tabs_TabStripDrop(object sender,  Windows.UI.Xaml.DragEventArgs e)
         {
             // This event is called when we're dragging between different TabViews
             // It is responsible for handling the drop of the item into the second TabView
@@ -213,7 +213,7 @@ namespace AppUIBasics.TabViewPages
         }
 
         // This method prevents the TabView from handling things that aren't text (ie. files, images, etc.)
-        private void Tabs_TabStripDragOver(object sender, DragEventArgs e)
+        private void Tabs_TabStripDragOver(object sender, Windows.UI.Xaml.DragEventArgs e)
         {
             if (e.DataView.Properties.ContainsKey(DataIdentifier))
             {
