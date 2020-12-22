@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AppUIBasics;
 using Com.Nostra13.Universalimageloader.Core;
 using Windows.UI.Xaml.Media;
 

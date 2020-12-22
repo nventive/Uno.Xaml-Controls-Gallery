@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -18,7 +18,7 @@ namespace AppUIBasics
     /// positioned in the next row or column.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
-    public class WrapPanel : Panel
+    public partial class WrapPanel : Panel
     {
         /// <summary>
         /// A value indicating whether a dependency property change handler
