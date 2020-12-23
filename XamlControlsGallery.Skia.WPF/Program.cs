@@ -1,0 +1,3 @@
+namespace XamlControlsGallery.Skia.Gtk
+{
+}
