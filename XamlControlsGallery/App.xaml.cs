@@ -205,7 +205,13 @@ namespace AppUIBasics
                     throw new Exception("Root frame not found");
                 }
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
+
+#if __IOS__ || __ANDROID__
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
+#else
+                //TODO: UNO to be enabled in the others platforms
+                rootFrame.Language = "en-US";
+#endif
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Windows.UI.Xaml.Window.Current.Content = rootPage;
