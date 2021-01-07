@@ -157,59 +157,59 @@ namespace AppUIBasics.TabViewPages
             args.Data.RequestedOperation = DataPackageOperation.Move;
         }
 
-        private async void Tabs_TabStripDrop(object sender,  Windows.UI.Xaml.DragEventArgs e)
+        private async void
+            Tabs_TabStripDrop(object sender,  Windows.UI.Xaml.DragEventArgs e)
         {
             // This event is called when we're dragging between different TabViews
             // It is responsible for handling the drop of the item into the second TabView
 
-            //TODO: APM get ContainerFromIndex()
-            //if (e.DataView.Properties.TryGetValue(DataIdentifier, out object obj))
-            //{
-            //    // Ensure that the obj property is set before continuing. 
-            //    if (obj == null)
-            //    {
-            //        return;
-            //    }
+            if (e.DataView.Properties.TryGetValue(DataIdentifier, out object obj))
+            {
+                // Ensure that the obj property is set before continuing. 
+                if (obj == null)
+                {
+                    return;
+                }
 
-            //    var destinationTabView = sender as TabView;
-            //    var destinationItems = destinationTabView.TabItems;
+                var destinationTabView = sender as TabView;
+                var destinationItems = destinationTabView.TabItems;
 
-            //    if (destinationItems != null)
-            //    {
-            //        // First we need to get the position in the List to drop to
-            //        var index = -1;
+                if (destinationItems != null)
+                {
+                    // First we need to get the position in the List to drop to
+                    var index = -1;
 
-            //        // Determine which items in the list our pointer is between.
-            //        for (int i = 0; i < destinationTabView.TabItems.Count; i++)
-            //        {
-            //            var item = destinationTabView.ContainerFromIndex(i) as TabViewItem;
+                    // Determine which items in the list our pointer is between.
+                    for (int i = 0; i < destinationTabView.TabItems.Count; i++)
+                    {
+                        var item = destinationTabView.ContainerFromIndex(i) as TabViewItem;
 
-            //            if (e.GetPosition(item).X - item.ActualWidth < 0)
-            //            {
-            //                index = i;
-            //                break;
-            //            }
-            //        }
+                        if (e.GetPosition(item).X - item.ActualWidth < 0)
+                        {
+                            index = i;
+                            break;
+                        }
+                    }
 
-            //        // The TabView can only be in one tree at a time. Before moving it to the new TabView, remove it from the old.
-            //        var destinationTabViewListView = ((obj as TabViewItem).Parent as TabViewListView);
-            //        destinationTabViewListView.Items.Remove(obj);
+                    // The TabView can only be in one tree at a time. Before moving it to the new TabView, remove it from the old.
+                    var destinationTabViewListView = ((obj as TabViewItem).Parent as TabViewListView);
+                    destinationTabViewListView.Items.Remove(obj);
 
-            //        if (index < 0)
-            //        {
-            //            // We didn't find a transition point, so we're at the end of the list
-            //            destinationItems.Add(obj);
-            //        }
-            //        else if (index < destinationTabView.TabItems.Count)
-            //        {
-            //            // Otherwise, insert at the provided index.
-            //            destinationItems.Insert(index, obj);
-            //        }
+                    if (index < 0)
+                    {
+                        // We didn't find a transition point, so we're at the end of the list
+                        destinationItems.Add(obj);
+                    }
+                    else if (index < destinationTabView.TabItems.Count)
+                    {
+                        // Otherwise, insert at the provided index.
+                        destinationItems.Insert(index, obj);
+                    }
 
-            //        // Select the newly dragged tab
-            //        destinationTabView.SelectedItem = obj;
-            //    }
-            //}
+                    // Select the newly dragged tab
+                    destinationTabView.SelectedItem = obj;
+                }
+            }
         }
 
         // This method prevents the TabView from handling things that aren't text (ie. files, images, etc.)
