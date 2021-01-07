@@ -42,7 +42,7 @@ namespace AppUIBasics.ControlPages
         {
             ButtonBase b = (ButtonBase)sender;
 
-            if (Window.Current.Content is Frame rootFrame && b.Tag != null)
+            if (Windows.UI.Xaml.Window.Current.Content is Frame rootFrame && b.Tag != null)
             {
                 if (b.Tag.ToString() == "Home")
                 {

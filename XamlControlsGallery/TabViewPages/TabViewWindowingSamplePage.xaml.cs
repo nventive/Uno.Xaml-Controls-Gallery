@@ -36,7 +36,7 @@ namespace AppUIBasics.TabViewPages
                 }
                 else
                 {
-                    Window.Current.Close();
+                    Windows.UI.Xaml.Window.Current.Close();
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace AppUIBasics.TabViewPages
                 titleBar.ButtonBackgroundColor = Windows.UI.Colors.Transparent;
                 titleBar.ButtonInactiveBackgroundColor = Windows.UI.Colors.Transparent;
 
-                Window.Current.SetTitleBar(CustomDragRegion);
+                Windows.UI.Xaml.Window.Current.SetTitleBar(CustomDragRegion);
             }
             else
             {

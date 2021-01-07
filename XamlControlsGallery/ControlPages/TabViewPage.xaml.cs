@@ -247,9 +247,9 @@ namespace AppUIBasics.ControlPages
             {
                 Frame frame = new Frame();
                 frame.Navigate(typeof(TabViewWindowingSamplePage), null);
-                Window.Current.Content = frame;
+                Windows.UI.Xaml.Window.Current.Content = frame;
                 // You have to activate the window in order to show it later.
-                Window.Current.Activate();
+                Windows.UI.Xaml.Window.Current.Activate();
 
                 newViewId = ApplicationView.GetForCurrentView().Id;
             });

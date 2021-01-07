@@ -26,6 +26,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Window = Windows.UI.Xaml.Window;
 
 namespace AppUIBasics
 {
@@ -186,16 +187,16 @@ namespace AppUIBasics
             }
 
             rootFrame.Navigate(targetPageType, targetPageArguments);
-            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
+            ((Microsoft.UI.Xaml.Controls.NavigationViewItem)(((NavigationRootPage)(Windows.UI.Xaml.Window.Current.Content)).NavigationView.MenuItems[0])).IsSelected = true;
 
             // Ensure the current window is active
-            Window.Current.Activate();
+            Windows.UI.Xaml.Window.Current.Activate();
         }
 
         private Frame GetRootFrame()
         {
             Frame rootFrame;
-            if (!(Window.Current.Content is NavigationRootPage rootPage))
+            if (!(Windows.UI.Xaml.Window.Current.Content is NavigationRootPage rootPage))
             {
                 rootPage = new NavigationRootPage();
                 rootFrame = (Frame)rootPage.FindName("rootFrame");
@@ -207,7 +208,7 @@ namespace AppUIBasics
                 rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Window.Current.Content = rootPage;
+                Windows.UI.Xaml.Window.Current.Content = rootPage;
             }
             else
             {
