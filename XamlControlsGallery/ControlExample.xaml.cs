@@ -256,16 +256,26 @@ namespace AppUIBasics
             }
             else
             {
+//TODO: Check this
+#if NETFX_CORE
                 FormatAndRenderSampleFromFile(sampleUri, presenter, highlightLanguage);
+#endif
             }
         }
 
         private async void FormatAndRenderSampleFromFile(Uri source, ContentPresenter presenter, ILanguage highlightLanguage)
         {
+#if NETFX_CORE
             if (source != null && source.AbsolutePath.EndsWith("txt"))
+#else
+            if (IsValidUri(source))
+#endif
             {
+
                 Uri derivedSource = GetDerivedSource(source);
+
                 var file = await StorageFile.GetFileFromApplicationUriAsync(derivedSource);
+
                 string sampleString = await FileIO.ReadTextAsync(file);
 
                 FormatAndRenderSampleFromString(sampleString, presenter, highlightLanguage);
@@ -274,6 +284,18 @@ namespace AppUIBasics
             {
                 presenter.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private static bool IsValidUri(Uri source)
+        {
+            if (source == null)
+            {
+                return false;
+            }
+
+            return source.IsAbsoluteUri
+                ? source.AbsolutePath.EndsWith("txt")
+                : source.OriginalString.EndsWith("txt");
         }
 
         private static Regex SubstitutionPattern = new Regex(@"\$\(([^\)]+)\)");
