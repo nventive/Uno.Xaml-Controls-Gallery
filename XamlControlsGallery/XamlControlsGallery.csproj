@@ -688,7 +688,6 @@
     <Content Include="ControlPagesSampleCode\XamlUICommand\XamlUICommandSample1_cs.txt" />
     <Content Include="ControlPagesSampleCode\XamlUICommand\XamlUICommandSample1_xaml.txt" />
     <Content Include="DataModel\ControlInfoData.json" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppBar.png" />
@@ -1218,6 +1217,9 @@
     <SDKReference Include="WindowsDesktop, Version=10.0.18362.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Strings\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
