@@ -27,6 +27,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using System.Reflection;
 using AppUIBasics.Helper;
+using AppUIBasics.ControlPages;
 
 namespace AppUIBasics
 {
@@ -35,6 +36,8 @@ namespace AppUIBasics
     /// </summary>
     public partial class ItemPage : Page
     {
+
+        private const string ROOT_PAGE = "AppUIBasics.ControlPages.";
         private Compositor _compositor;
         private ControlInfoDataItem _item;
         private ElementTheme? _currentElementTheme;
@@ -153,7 +156,7 @@ namespace AppUIBasics
                 // Load control page into frame.
                 var loader = ResourceLoader.GetForCurrentView();
 
-                string pageRoot = loader.GetString("PageStringRoot");
+                string pageRoot = loader.GetString("PageStringRoot") ?? ROOT_PAGE;
 
                 string pageString = pageRoot + item.UniqueId + "Page";
                 Type pageType = Type.GetType(pageString);

@@ -380,6 +380,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Strings\en\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\en-US\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AcrylicBrush.png" />
@@ -1243,5 +1244,8 @@
     <AppxManifest Include="$(MSBuildThisFileDirectory)Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
   </ItemGroup>
 </Project>
