@@ -96,6 +96,9 @@ namespace AppUIBasics
     [ContentProperty(Name = "Example")]
     public sealed partial class ControlExample : UserControl
     {
+        private const string MsResouceScheme = "ms-resource";
+        private const string FilesRoute = "Files";
+
         public static readonly DependencyProperty HeaderTextProperty = DependencyProperty.Register("HeaderText", typeof(string), typeof(ControlExample), new PropertyMetadata(null));
         public string HeaderText
         {
@@ -135,7 +138,20 @@ namespace AppUIBasics
         public Uri XamlSource
         {
             get { return (Uri)GetValue(XamlSourceProperty); }
-            set { SetValue(XamlSourceProperty, value); }
+            set
+            {
+#if !NETFX_CORE
+                if (value == null || value.OriginalString.StartsWith(MsResouceScheme))
+                {
+                    SetValue(XamlSourceProperty, value);
+                }
+
+                SetValue(XamlSourceProperty, TryFormatUri(value));
+
+#else
+                SetValue(XamlSourceProperty, fileUri);
+#endif
+            }
         }
 
         public static readonly DependencyProperty CSharpProperty = DependencyProperty.Register("CSharp", typeof(string), typeof(ControlExample), new PropertyMetadata(null));
@@ -149,7 +165,20 @@ namespace AppUIBasics
         public Uri CSharpSource
         {
             get { return (Uri)GetValue(CSharpSourceProperty); }
-            set { SetValue(CSharpSourceProperty, value); }
+            set
+            {
+#if !NETFX_CORE
+                if (value == null || value.OriginalString.StartsWith(MsResouceScheme))
+                {
+                    SetValue(XamlSourceProperty, value);
+                }
+
+                SetValue(XamlSourceProperty, TryFormatUri(value));
+
+#else
+                SetValue(XamlSourceProperty, fileUri);
+#endif
+            }
         }
 
         public static readonly DependencyProperty SubstitutionsProperty = DependencyProperty.Register("Substitutions", typeof(IList<ControlExampleSubstitution>), typeof(ControlExample), new PropertyMetadata(null));
@@ -256,10 +285,7 @@ namespace AppUIBasics
             }
             else
             {
-//TODO: Check this
-#if NETFX_CORE
                 FormatAndRenderSampleFromFile(sampleUri, presenter, highlightLanguage);
-#endif
             }
         }
 
@@ -296,6 +322,20 @@ namespace AppUIBasics
             return source.IsAbsoluteUri
                 ? source.AbsolutePath.EndsWith("txt")
                 : source.OriginalString.EndsWith("txt");
+        }
+
+        private static Uri TryFormatUri(Uri uri)
+        {
+            try
+            {
+                var url = $"{MsResouceScheme}:///{FilesRoute}/{uri.OriginalString}";
+                return new Uri(url);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log error
+                return uri;
+            }
         }
 
         private static Regex SubstitutionPattern = new Regex(@"\$\(([^\)]+)\)");
