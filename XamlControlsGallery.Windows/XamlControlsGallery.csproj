@@ -19,11 +19,9 @@
     <PackageCertificateThumbprint>
     </PackageCertificateThumbprint>
     <PackageCertificateKeyFile>XamlControlsGallery_TemporaryKey.pfx</PackageCertificateKeyFile>
-
-		<!-- Disable until error fixed: error APPX0107: The certificate specified is not valid for signing. For more information about valid certificates, see http://go.microsoft.com/fwlink/?LinkID=241478.s -->
-		<AppxPackageSigningEnabled Condition="'$(Configuration)'=='Release'">false</AppxPackageSigningEnabled>
-
-		<!-- Required for .NET Core builds -->
+    <!-- Disable until error fixed: error APPX0107: The certificate specified is not valid for signing. For more information about valid certificates, see http://go.microsoft.com/fwlink/?LinkID=241478.s -->
+    <AppxPackageSigningEnabled Condition="'$(Configuration)'=='Release'">false</AppxPackageSigningEnabled>
+    <!-- Required for .NET Core builds -->
     <SkipAppxManifestValidation>true</SkipAppxManifestValidation>
   </PropertyGroup>
   <PropertyGroup>
@@ -113,16 +111,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ColorCode.UWP">
-      <Version>2.0.5</Version>
+      <Version>2.0.6</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.9</Version>
+      <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.1.181217001-prerelease</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
-      <Version>2.0.0</Version>
+      <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Json">
       <Version>4.5.0</Version>
