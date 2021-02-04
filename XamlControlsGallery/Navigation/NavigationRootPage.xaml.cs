@@ -140,12 +140,26 @@ namespace AppUIBasics
         {
             foreach (var group in ControlInfoDataSource.Instance.Groups.OrderBy(i => i.Title))
             {
-                var itemGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = group.Title, Tag = group.UniqueId, DataContext = group, Icon = GetIcon(group.ImagePath) };
+                var itemGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem()
+                {
+                    Content = group.Title,
+                    Tag = group.UniqueId,
+                    DataContext = group,
+                    Icon = GetIcon(group.ImagePath)
+                };
+
                 AutomationProperties.SetName(itemGroup, group.Title);
 
                 foreach (var item in group.Items)
                 {
-                    var itemInGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem() { Content = item.Title, Tag = item.UniqueId, DataContext = item, Icon = GetIcon(item.ImagePath) };
+                    var itemInGroup = new Microsoft.UI.Xaml.Controls.NavigationViewItem()
+                    {
+                        Content = item.Title,
+                        Tag = item.UniqueId,
+                        DataContext = item,
+                        Icon = GetIcon(item.ImagePath)
+                    };
+
                     itemGroup.MenuItems.Add(itemInGroup);
                     AutomationProperties.SetName(itemInGroup, item.Title);
                 }
@@ -179,8 +193,8 @@ namespace AppUIBasics
             return imagePath.ToLowerInvariant().EndsWith(".png") ?
                         (IconElement)new BitmapIcon() { UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute) , ShowAsMonochrome = false} :
                         (IconElement)new FontIcon()
-                        {
-                            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                        {                            
+                            FontFamily = Application.Current.Resources["SymbolThemeFontFamily"] as FontFamily,
                             Glyph = imagePath
                         };
         }
