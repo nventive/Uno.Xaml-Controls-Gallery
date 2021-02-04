@@ -145,11 +145,13 @@ namespace AppUIBasics
                 {
                     SetValue(XamlSourceProperty, value);
                 }
-
-                SetValue(XamlSourceProperty, TryFormatUri(value));
+                else
+                {
+                    SetValue(XamlSourceProperty, TryFormatUri(value));
+                }
 
 #else
-                SetValue(XamlSourceProperty, fileUri);
+                SetValue(XamlSourceProperty, value);
 #endif
             }
         }
@@ -172,11 +174,13 @@ namespace AppUIBasics
                 {
                     SetValue(XamlSourceProperty, value);
                 }
-
-                SetValue(XamlSourceProperty, TryFormatUri(value));
+                else
+                {
+                    SetValue(XamlSourceProperty, TryFormatUri(value));
+                }
 
 #else
-                SetValue(XamlSourceProperty, fileUri);
+                SetValue(XamlSourceProperty, value);
 #endif
             }
         }
