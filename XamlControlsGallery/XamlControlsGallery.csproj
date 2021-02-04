@@ -1210,6 +1210,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <None Include="testcert.pfx" />
     <None Include="XamlControlsGallery_TemporaryKey.pfx" />
   </ItemGroup>
@@ -1218,9 +1219,7 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Strings\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
