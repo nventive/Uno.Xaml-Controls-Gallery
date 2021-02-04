@@ -13,8 +13,13 @@
     x:Class="AppUIBasics.NavigationRootPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:local="using:AppUIBasics">
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
+    xmlns:xamarin="http://uno.ui/xamarin"
+    xmlns:local="using:AppUIBasics"
+    mc:Ignorable="xamarin">
 
     <Page.Resources>
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
@@ -23,9 +28,16 @@
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                 BackgroundColorOpacity="1" />
         </DataTemplate>
+        <Style TargetType="Grid"
+               x:Key="CustomApplicationPageBakgroundThemeBush">
+            
+            <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+
+            <xamarin:Setter Property="(toolkit:VisibleBoundsPadding.PaddingMask)" Value="Top" />
+        </Style>        
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Style="{StaticResource CustomApplicationPageBakgroundThemeBush}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
