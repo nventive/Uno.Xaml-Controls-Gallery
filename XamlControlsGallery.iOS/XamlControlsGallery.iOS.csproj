@@ -116,8 +116,8 @@
     <BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="3.5.0-dev.270" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.270" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="3.7.0-dev.161" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.161" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
